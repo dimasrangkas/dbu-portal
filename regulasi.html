@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulasi — Direktorat Bandar Udara</title>
+<meta name="description" content="Daftar regulasi dan peraturan bidang kebandarudaraan yang dapat dicari dan difilter berdasarkan tahun dan kategori.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span class="hide-sm"><i class="bi bi-geo-alt"></i> Jakarta, Indonesia</span>
+      <span class="hide-sm"><i class="bi bi-envelope"></i> bandarudara@dephub.go.id</span>
+    </div>
+    <div class="topbar-right">
+      <div class="social-mini">
+        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+      </div>
+      <div class="lang-switch"><button class="active">ID</button><span>/</span><button>EN</button></div>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container brandrow">
+    <a href="index.html" class="brand">
+      <div class="brand-logos">
+        <div class="logo-badge"><i class="bi bi-bank2" style="font-size:20px"></i></div>
+        <div class="brand-div"></div>
+        <div class="logo-badge small"><i class="bi bi-airplane-engines" style="font-size:16px"></i></div>
+      </div>
+      <div class="brand-text">
+        <div class="kop">Kementerian Perhubungan Republik Indonesia</div>
+        <div class="name">Direktorat <span>Bandar Udara</span></div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <div class="search-box"><input type="text" placeholder="Cari informasi..."></div>
+      <button class="icon-btn" data-search-toggle aria-label="Cari"><i class="bi bi-search"></i></button>
+      <button class="icon-btn burger" aria-label="Menu"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="container">
+    <ul class="navlist">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
+        <div class="dropdown">
+          <a href="profil.html#tentang">Tentang Direktorat</a>
+          <a href="profil.html#sejarah">Sejarah</a>
+          <a href="profil.html#visi-misi">Visi &amp; Misi</a>
+          <a href="profil.html#nilai">Nilai Organisasi</a>
+        </div>
+      </li>
+      <li><a href="organisasi.html">Organisasi</a></li>
+      <li><a href="tugas-fungsi.html">Tugas &amp; Fungsi</a></li>
+      <li><a href="layanan.html">Layanan <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
+        <div class="dropdown">
+          <a href="layanan.html">Layanan Publik</a>
+          <a href="layanan.html#online">Layanan Daring</a>
+          <a href="layanan.html#faq">FAQ</a>
+        </div>
+      </li>
+      <li><a href="informasi-publik.html">Informasi Publik</a></li>
+      <li class="active"><a href="regulasi.html">Regulasi</a></li>
+      <li><a href="berita.html">Berita</a></li>
+      <li><a href="galeri.html">Galeri</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="disclaimer">
+  <div class="container">
+    <i class="bi bi-info-circle-fill"></i>
+    <span>Disclaimer: Seluruh data, gambar, statistik, dan informasi pada website ini merupakan contoh (dummy data) untuk kebutuhan desain dan pengembangan sistem.</span>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="container breadcrumb">
+    <a href="index.html">Beranda</a><span class="sep">/</span><span class="current">Regulasi</span>
+  </div>
+</div>
+<div class="page-title-block">
+  <div class="container">
+    <div class="eyebrow">Regulasi</div>
+    <h1>Regulasi Kebandarudaraan</h1>
+    <p>Cari dan unduh peraturan, standar, dan pedoman teknis di bidang bandar udara.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="filter-bar">
+      <div class="grow">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Cari nomor atau judul regulasi..." data-reg-search>
+      </div>
+      <select data-reg-year>
+        <option value="all">Semua Tahun</option>
+        <option value="2026">2026</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+      </select>
+      <select data-reg-cat>
+        <option value="all">Semua Kategori</option>
+        <option value="keselamatan">Keselamatan</option>
+        <option value="prasarana">Prasarana</option>
+        <option value="darurat">Pelayanan Darurat</option>
+        <option value="pengusahaan">Pengusahaan</option>
+        <option value="lingkungan">Lingkungan</option>
+        <option value="umum">Umum</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="reg-table" data-reg-table>
+        <thead>
+          <tr><th>Nomor</th><th>Judul Regulasi</th><th>Tahun</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr data-year="2026" data-cat="keselamatan"><td>PM 14 Tahun 2026</td><td>Standar Keselamatan Operasional Landasan Pacu</td><td>2026</td><td><span class="badge badge-gray">Keselamatan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2026" data-cat="darurat"><td>PM 09 Tahun 2026</td><td>Standar Peralatan PKP-PK Bandar Udara</td><td>2026</td><td><span class="badge badge-gray">Pelayanan Darurat</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2025" data-cat="prasarana"><td>PM 27 Tahun 2025</td><td>Pedoman Teknis Pembangunan Apron &amp; Taxiway</td><td>2025</td><td><span class="badge badge-gray">Prasarana</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2025" data-cat="pengusahaan"><td>PM 18 Tahun 2025</td><td>Tata Kelola Kerja Sama Pengusahaan Bandar Udara</td><td>2025</td><td><span class="badge badge-gray">Pengusahaan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2025" data-cat="lingkungan"><td>PM 05 Tahun 2025</td><td>Kajian Lingkungan Kawasan Sekitar Bandar Udara</td><td>2025</td><td><span class="badge badge-gray">Lingkungan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2024" data-cat="keselamatan"><td>PM 22 Tahun 2024</td><td>Sertifikasi Operasi Bandar Udara (SBU)</td><td>2024</td><td><span class="badge badge-gray">Keselamatan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2024" data-cat="umum"><td>PM 11 Tahun 2024</td><td>Tata Naskah Dinas Direktorat Jenderal Perhubungan Udara</td><td>2024</td><td><span class="badge badge-gray">Umum</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2023" data-cat="prasarana"><td>PM 30 Tahun 2023</td><td>Standar Perencanaan Landasan Pacu Bandar Udara Perintis</td><td>2023</td><td><span class="badge badge-gray">Prasarana</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2023" data-cat="darurat"><td>PM 16 Tahun 2023</td><td>Prosedur Simulasi Tanggap Darurat Bandar Udara</td><td>2023</td><td><span class="badge badge-gray">Pelayanan Darurat</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2022" data-cat="pengusahaan"><td>PM 08 Tahun 2022</td><td>Pedoman Evaluasi Kinerja Badan Usaha Bandar Udara</td><td>2022</td><td><span class="badge badge-gray">Pengusahaan</span></td><td><span class="badge badge-gray">Dicabut</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2022" data-cat="keselamatan"><td>PM 03 Tahun 2022</td><td>Manual Standar Teknis dan Operasi Bandar Udara</td><td>2022</td><td><span class="badge badge-gray">Keselamatan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2021" data-cat="lingkungan"><td>PM 19 Tahun 2021</td><td>Pengendalian Dampak Kebisingan Operasional Bandar Udara</td><td>2021</td><td><span class="badge badge-gray">Lingkungan</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2021" data-cat="umum"><td>PM 02 Tahun 2021</td><td>Organisasi dan Tata Kerja Direktorat Jenderal Perhubungan Udara</td><td>2021</td><td><span class="badge badge-gray">Umum</span></td><td><span class="badge badge-success">Berlaku</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+          <tr data-year="2020" data-cat="prasarana"><td>PM 24 Tahun 2020</td><td>Standar Fasilitas Sisi Darat Bandar Udara</td><td>2020</td><td><span class="badge badge-gray">Prasarana</span></td><td><span class="badge badge-gray">Dicabut</span></td><td><a href="regulasi-detail.html" class="dl-link">Detail</a> &nbsp;<a href="#" class="dl-link"><i class="bi bi-download"></i></a></td></tr>
+        </tbody>
+      </table>
+      <p data-reg-empty style="display:none; text-align:center; padding:40px; color:var(--text-500);">Tidak ada regulasi yang sesuai dengan pencarian/filter Anda.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <div class="flex items-center gap-12">
+        <div class="logo-badge small"><i class="bi bi-airplane-engines" style="font-size:15px"></i></div>
+        <div class="name" style="color:#fff; font-size:15px;">Direktorat Bandar Udara</div>
+      </div>
+      <p>Direktorat Jenderal Perhubungan Udara, Kementerian Perhubungan Republik Indonesia. Mewujudkan
+      penyelenggaraan bandar udara yang profesional, aman, dan berkelanjutan.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+    <div>
+      <h4>Tautan Cepat</h4>
+      <ul class="footer-links">
+        <li><a href="profil.html">Profil Direktorat</a></li>
+        <li><a href="organisasi.html">Struktur Organisasi</a></li>
+        <li><a href="regulasi.html">Regulasi</a></li>
+        <li><a href="berita.html">Berita Terkini</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Layanan</h4>
+      <ul class="footer-links">
+        <li><a href="layanan-detail.html">Sertifikasi Bandar Udara</a></li>
+        <li><a href="layanan.html">Standardisasi Keselamatan</a></li>
+        <li><a href="informasi-publik.html">Informasi Publik</a></li>
+        <li><a href="kontak.html">Pengaduan</a></li>
+        <li><a href="layanan.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontak Kami</h4>
+      <ul class="footer-contact">
+        <li><i class="bi bi-geo-alt-fill"></i><span>Jl. Medan Merdeka Barat No. 8, Jakarta Pusat 10110</span></li>
+        <li><i class="bi bi-telephone-fill"></i><span>(021) 350-0000</span></li>
+        <li><i class="bi bi-envelope-fill"></i><span>bandarudara@dephub.go.id</span></li>
+        <li><i class="bi bi-clock-fill"></i><span>Senin–Jumat, 08.00–16.00 WIB</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Direktorat Bandar Udara — Direktorat Jenderal Perhubungan Udara. Hak cipta dilindungi.</span>
+    <span><a href="#">Kebijakan Privasi</a> &middot; <a href="kontak.html">Peta Situs</a></span>
+  </div>
+</footer>
+
+<div class="floating-col">
+  <a class="fab fab-wa" href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+  <button class="fab fab-top" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
+</div>
+
+<script src="/main.js"></script>
+</body>
+</html>
