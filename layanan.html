@@ -6,7 +6,10 @@
 <title>Layanan — Direktorat Bandar Udara</title>
 <meta name="description" content="Layanan publik Direktorat Bandar Udara: sertifikasi, standar keselamatan, prasarana, dan layanan daring lainnya.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="style.css">
+<script src="header.js" defer></script>
+<script src="navbar.js" defer></script>
+<script src="footer.js" defer></script>
 </head>
 <body>
 
@@ -28,57 +31,11 @@
   </div>
 </div>
 
-<header class="header">
-  <div class="container brandrow">
-    <a href="index.html" class="brand">
-      <div class="brand-logos">
-        <div class="logo-badge"><i class="bi bi-bank2" style="font-size:20px"></i></div>
-        <div class="brand-div"></div>
-        <div class="logo-badge small"><i class="bi bi-airplane-engines" style="font-size:16px"></i></div>
-      </div>
-      <div class="brand-text">
-        <div class="kop">Kementerian Perhubungan Republik Indonesia</div>
-        <div class="name">Direktorat <span>Bandar Udara</span></div>
-      </div>
-    </a>
-    <div class="header-actions">
-      <div class="search-box"><input type="text" placeholder="Cari informasi..."></div>
-      <button class="icon-btn" data-search-toggle aria-label="Cari"><i class="bi bi-search"></i></button>
-      <button class="icon-btn burger" aria-label="Menu"><i class="bi bi-list"></i></button>
-    </div>
-  </div>
-</header>
+<app-header>
+  
+</app-header>
 
-<nav class="navbar">
-  <div class="container">
-    <ul class="navlist">
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="profil.html">Profil <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
-        <div class="dropdown">
-          <a href="profil.html#tentang">Tentang Direktorat</a>
-          <a href="profil.html#sejarah">Sejarah</a>
-          <a href="profil.html#visi-misi">Visi &amp; Misi</a>
-          <a href="profil.html#nilai">Nilai Organisasi</a>
-        </div>
-      </li>
-      <li><a href="organisasi.html">Organisasi</a></li>
-      <li><a href="tugas-fungsi.html">Tugas &amp; Fungsi</a></li>
-      <li class="active"><a href="layanan.html">Layanan <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
-        <div class="dropdown">
-          <a href="layanan.html">Layanan Publik</a>
-          <a href="layanan.html#online">Layanan Daring</a>
-          <a href="layanan.html#faq">FAQ</a>
-        </div>
-      </li>
-      <li><a href="informasi-publik.html">Informasi Publik</a></li>
-      <li><a href="regulasi.html">Regulasi</a></li>
-      <li><a href="berita.html">Berita</a></li>
-      <li><a href="galeri.html">Galeri</a></li>
-      <li><a href="kontak.html">Kontak</a></li>
-      <li><a href="https://dbu.edifly-dev.com/kemhub-ems-dev/">Portal AEMS</a></li>
-    </ul>
-  </div>
-</nav>
+<app-navbar></app-navbar>
 
 <div class="disclaimer">
   <div class="container">
@@ -100,55 +57,92 @@
   </div>
 </div>
 
-<!-- SERVICE CARDS -->
+<!-- SERVICE TABLE -->
 <section class="section">
   <div class="container">
-    <div class="grid grid-3">
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-patch-check-fill"></i></div>
-        <h3>Sertifikasi Bandar Udara</h3>
-        <p>Penerbitan dan pembaruan Sertifikat Operasi Bandar Udara (SBU) sesuai standar keselamatan.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
+    <div class="section-head">
+      <div class="eyebrow">Daftar Layanan</div>
+      <h2>Daftar Layanan Direktorat Bandar Udara</h2>
+      <p>Seluruh layanan yang diselenggarakan oleh Direktorat Bandar Udara beserta sifat dan klasifikasinya.</p>
+    </div>
+
+    <div class="filter-bar">
+      <div class="grow">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Cari nama layanan..." data-svc-search>
       </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-shield-check"></i></div>
-        <h3>Standar Keselamatan Bandar Udara</h3>
-        <p>Penyusunan dan konsultasi penerapan norma, standar, prosedur, dan kriteria keselamatan.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-signpost-split"></i></div>
-        <h3>Manajemen Prasarana Bandar Udara</h3>
-        <p>Persetujuan teknis pembangunan dan rehabilitasi prasarana sisi udara dan sisi darat.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-map-fill"></i></div>
-        <h3>Perencanaan Bandar Udara</h3>
-        <p>Konsultasi rencana induk bandar udara dan kawasan keselamatan operasi penerbangan.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-life-preserver"></i></div>
-        <h3>Pelayanan Darurat Bandar Udara</h3>
-        <p>Verifikasi kesiapan PKP-PK dan fasilitas pelayanan darurat bandar udara.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-diagram-3-fill"></i></div>
-        <h3>Sistem Operasional Bandar Udara</h3>
-        <p>Pengawasan dan pembinaan sistem penyelenggaraan operasional bandar udara.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="card service-card">
-        <div class="ic"><i class="bi bi-briefcase-fill"></i></div>
-        <h3>Pengembangan Usaha Bandar Udara</h3>
-        <p>Bimbingan kerja sama dan tata kelola bisnis pengusahaan bandar udara.</p>
-        <a href="layanan-detail.html" class="more">Lihat Detail <i class="bi bi-arrow-right"></i></a>
-      </div>
+      <select data-svc-cat>
+        <option value="all">Semua Klasifikasi</option>
+        <option value="sertifikasi">Sertifikasi</option>
+        <option value="perizinan">Perizinan</option>
+        <option value="layanan">Layanan</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="reg-table" data-svc-table>
+        <thead>
+          <tr><th>Unit Pengelola Layanan</th><th>Nama Layanan</th><th>Sifat Layanan (Pemdi)</th><th>Klasifikasi Layanan</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr data-cat="sertifikasi"><td>Direktorat Bandar Udara</td><td>Sertifikasi Bandar Udara/ Registrasi Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-primary">Sertifikasi</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Sertifikasi Bandar Udara/ Registrasi Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="sertifikasi"><td>Direktorat Bandar Udara</td><td>Sertifikasi Lembaga Pendidikan dan/ Atau Pelatihan Personel Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-primary">Sertifikasi</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Sertifikasi Lembaga Pendidikan dan/ Atau Pelatihan Personel Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="sertifikasi"><td>Direktorat Bandar Udara</td><td>Sertifikasi Lembaga Inspeksi Keselamatan</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-primary">Sertifikasi</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Sertifikasi Lembaga Inspeksi Keselamatan">Ajukan</button></td></tr>
+          <tr data-cat="perizinan"><td>Direktorat Bandar Udara</td><td>Pelayanan Jasa Kebandarudaraan</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-accent">Perizinan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pelayanan Jasa Kebandarudaraan">Ajukan</button></td></tr>
+          <tr data-cat="perizinan"><td>Direktorat Bandar Udara</td><td>Pelayanan Teknis Penanganan Pesawat Udara di Darat, Pelayanan Penumpang dan Bagasi, Serta Penanganan Kargo dan Pos</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-accent">Perizinan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pelayanan Teknis Penanganan Pesawat Udara di Darat, Pelayanan Penumpang dan Bagasi, Serta Penanganan Kargo dan Pos">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan produksi emisi dan perubahan iklim</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan produksi emisi dan perubahan iklim">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengawasan lingkungan hidup Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengawasan lingkungan hidup Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Penanggulangan Darurat Akibat Bencana</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Penanggulangan Darurat Akibat Bencana">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan Kerjasama Pemerintah dengan Badan Usaha (Pemrakarsa Badan Usaha)</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan Kerjasama Pemerintah dengan Badan Usaha (Pemrakarsa Badan Usaha)">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Permohonan Verifikasi atau Evaluasi Pelayanan PKP-PK</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Permohonan Verifikasi atau Evaluasi Pelayanan PKP-PK">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pelaksanaan Bimtek bidang Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pelaksanaan Bimtek bidang Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengawasan Tingkat Pelayanan (Level of Service) di Bandar Udara</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengawasan Tingkat Pelayanan (Level of Service) di Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengesahan Initial dan amandemen Dokumen Airport Emergency Plan (AEP)</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengesahan Initial dan amandemen Dokumen Airport Emergency Plan (AEP)">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Perumusan Kebijakan di Bidang Bandar Udara</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Perumusan Kebijakan di Bidang Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengawasan Pemeliharaan Prasarana Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengawasan Pemeliharaan Prasarana Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan Audit Keselamatan Bandar Udara</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan Audit Keselamatan Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengenaan Sanksi Administratif Kebandarudaraan</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengenaan Sanksi Administratif Kebandarudaraan">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan pengawasan Bandar udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan pengawasan Bandar udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pembangunan atau Pengembangan Peralatan dan Pelayanan Darurat Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pembangunan atau Pengembangan Peralatan dan Pelayanan Darurat Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengawasan pembangunan fasilitas bandar udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengawasan pembangunan fasilitas bandar udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan Program Pembangunan/Pengembangan fasilitas peralatan Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan Program Pembangunan/Pengembangan fasilitas peralatan Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pembangunan atau Pengembangan Prasarana Bandar Udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pembangunan atau Pengembangan Prasarana Bandar Udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Verifikasi Fasilitas bandar udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Verifikasi Fasilitas bandar udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Pengelolaan program pembangunan dan pengembangan bandar udara, heliport dan waterbase</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Pengelolaan program pembangunan dan pengembangan bandar udara, heliport dan waterbase">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Penetapan lokasi bandar udara</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Penetapan lokasi bandar udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Penetapan rencana induk bandar udara</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Penetapan rencana induk bandar udara">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Peninjauan Tatanan Kebandarudaraan Nasional</td><td><span class="badge badge-gray">Layanan Administrasi Pemerintahan</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Peninjauan Tatanan Kebandarudaraan Nasional">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Penetapan Bandar Udara Internasional</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Penetapan Bandar Udara Internasional">Ajukan</button></td></tr>
+          <tr data-cat="layanan"><td>Direktorat Bandar Udara</td><td>Penetapan status Bandar Udara Khusus menjadi Umum</td><td><span class="badge badge-success">Layanan Publik</span></td><td><span class="badge badge-gray">Layanan</span></td><td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="Penetapan status Bandar Udara Khusus menjadi Umum">Ajukan</button></td></tr>
+        </tbody>
+      </table>
+      <p data-svc-empty style="display:none; text-align:center; padding:40px; color:var(--text-500);">Tidak ada layanan yang sesuai dengan pencarian/filter Anda.</p>
     </div>
   </div>
 </section>
+
+<!-- AJUKAN LAYANAN MODAL -->
+<div class="modal-overlay" data-apply-modal>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle">
+    <button type="button" class="modal-close" data-apply-close aria-label="Tutup"><i class="bi bi-x-lg"></i></button>
+    <span class="modal-eyebrow"><i class="bi bi-send-check"></i> Formulir Pengajuan Layanan</span>
+    <h3 id="applyModalTitle" data-apply-service>Nama Layanan</h3>
+    <p style="font-size:13.5px; color:var(--text-500); margin:6px 0 20px;">Lengkapi data berikut untuk mengajukan permohonan layanan ini. Tim kami akan menghubungi Anda setelah permohonan diterima.</p>
+    <form data-apply-form>
+      <input type="hidden" data-apply-service-input>
+      <div class="form-grid">
+        <div class="field"><label for="applyNama">Nama Pemohon</label><input type="text" id="applyNama" required placeholder="Masukkan nama lengkap"></div>
+        <div class="field"><label for="applyInstansi">Instansi / Penyelenggara</label><input type="text" id="applyInstansi" required placeholder="Nama instansi/perusahaan"></div>
+        <div class="field"><label for="applyEmail">Alamat Email</label><input type="email" id="applyEmail" required placeholder="nama@email.com"></div>
+        <div class="field"><label for="applyTelp">Nomor Telepon</label><input type="tel" id="applyTelp" required placeholder="08xx-xxxx-xxxx"></div>
+        <div class="field full"><label for="applyKet">Keterangan Permohonan</label><textarea id="applyKet" placeholder="Uraikan kebutuhan atau catatan tambahan terkait permohonan..."></textarea></div>
+        <div class="field full"><label for="applyFile">Unggah Dokumen Persyaratan</label><input type="file" id="applyFile"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:22px;">Kirim Permohonan <i class="bi bi-arrow-right"></i></button>
+      <div class="form-note" data-apply-note><i class="bi bi-check-circle-fill"></i> Permohonan Anda berhasil diajukan. Tim kami akan segera menghubungi Anda.</div>
+    </form>
+  </div>
+</div>
 
 <!-- ONLINE SERVICES -->
 <section class="section section-alt" id="online">
@@ -218,63 +212,8 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container footer-top">
-    <div class="footer-brand">
-      <div class="flex items-center gap-12">
-        <div class="logo-badge small"><i class="bi bi-airplane-engines" style="font-size:15px"></i></div>
-        <div class="name" style="color:#fff; font-size:15px;">Direktorat Bandar Udara</div>
-      </div>
-      <p>Direktorat Jenderal Perhubungan Udara, Kementerian Perhubungan Republik Indonesia. Mewujudkan
-      penyelenggaraan bandar udara yang profesional, aman, dan berkelanjutan.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-      </div>
-    </div>
-    <div>
-      <h4>Tautan Cepat</h4>
-      <ul class="footer-links">
-        <li><a href="profil.html">Profil Direktorat</a></li>
-        <li><a href="organisasi.html">Struktur Organisasi</a></li>
-        <li><a href="regulasi.html">Regulasi</a></li>
-        <li><a href="berita.html">Berita Terkini</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Layanan</h4>
-      <ul class="footer-links">
-        <li><a href="layanan-detail.html">Sertifikasi Bandar Udara</a></li>
-        <li><a href="layanan.html">Standardisasi Keselamatan</a></li>
-        <li><a href="informasi-publik.html">Informasi Publik</a></li>
-        <li><a href="kontak.html">Pengaduan</a></li>
-        <li><a href="layanan.html#faq">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Kontak Kami</h4>
-      <ul class="footer-contact">
-        <li><i class="bi bi-geo-alt-fill"></i><span>Jl. Medan Merdeka Barat No. 8, Jakarta Pusat 10110</span></li>
-        <li><i class="bi bi-telephone-fill"></i><span>(021) 350-0000</span></li>
-        <li><i class="bi bi-envelope-fill"></i><span>bandarudara@dephub.go.id</span></li>
-        <li><i class="bi bi-clock-fill"></i><span>Senin–Jumat, 08.00–16.00 WIB</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <span>© 2026 Direktorat Bandar Udara — Direktorat Jenderal Perhubungan Udara. Hak cipta dilindungi.</span>
-    <span><a href="#">Kebijakan Privasi</a> &middot; <a href="kontak.html">Peta Situs</a></span>
-  </div>
-</footer>
+<app-footer></app-footer>
 
-<div class="floating-col">
-  <a class="fab fab-wa" href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-  <button class="fab fab-top" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
-</div>
-
-<script src="/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

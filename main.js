@@ -231,6 +231,120 @@
       searchInp && searchInp.addEventListener('input', filterRows);
     }
 
+    /* ---------- Layanan table filter ---------- */
+    var svcTable = document.querySelector('[data-svc-table]');
+    if(svcTable){
+      var svcCatSel = document.querySelector('[data-svc-cat]');
+      var svcSearchInp = document.querySelector('[data-svc-search]');
+      var svcRows = Array.prototype.slice.call(svcTable.querySelectorAll('tbody tr'));
+      var svcEmptyRow = document.querySelector('[data-svc-empty]');
+      function filterSvcRows(){
+        var c = svcCatSel ? svcCatSel.value : 'all';
+        var s = svcSearchInp ? svcSearchInp.value.trim().toLowerCase() : '';
+        var visibleCount = 0;
+        svcRows.forEach(function(row){
+          var matchC = (c === 'all') || row.getAttribute('data-cat') === c;
+          var matchS = !s || row.textContent.toLowerCase().indexOf(s) !== -1;
+          var show = matchC && matchS;
+          row.style.display = show ? '' : 'none';
+          if(show) visibleCount++;
+        });
+        if(svcEmptyRow) svcEmptyRow.style.display = visibleCount === 0 ? '' : 'none';
+      }
+      svcCatSel && svcCatSel.addEventListener('change', filterSvcRows);
+      svcSearchInp && svcSearchInp.addEventListener('input', filterSvcRows);
+    }
+
+    /* ---------- Register Bandar Udara table ---------- */
+    var abuTable = document.querySelector('[data-abu-table]');
+    if(abuTable){
+      var abuRows = Array.prototype.slice.call(abuTable.querySelectorAll('tbody tr'));
+      var abuNow = new Date();
+      abuRows.forEach(function(row){
+        var expiry = new Date(row.getAttribute('data-expiry'));
+        var days = Math.floor((expiry - abuNow) / (1000 * 60 * 60 * 24));
+        row.classList.remove('status-expired', 'status-soon');
+        if(days < 0) row.classList.add('status-expired');
+        else if(days <= 90) row.classList.add('status-soon');
+      });
+
+      var abuBase = document.querySelector('[data-abu-base]');
+      var abuCert = document.querySelector('[data-abu-cert]');
+      var abuSearch = document.querySelector('[data-abu-search]');
+      var abuEmpty = document.querySelector('[data-abu-empty]');
+
+      function filterAbu(){
+        var base = abuBase ? abuBase.value : '';
+        var cert = abuCert ? abuCert.value : '';
+        var s = abuSearch ? abuSearch.value.trim().toLowerCase() : '';
+        var visible = 0;
+        abuRows.forEach(function(row){
+          var matchBase = row.getAttribute('data-base') === base;
+          var matchCert = row.getAttribute('data-cert') === cert;
+          var matchS = !s || row.textContent.toLowerCase().indexOf(s) !== -1;
+          var show = matchBase && matchCert && matchS;
+          row.style.display = show ? '' : 'none';
+          if(show){
+            visible++;
+            var noCell = row.querySelector('[data-abu-no]');
+            if(noCell) noCell.textContent = visible;
+          }
+        });
+        if(abuEmpty) abuEmpty.style.display = visible === 0 ? '' : 'none';
+      }
+
+      abuBase && abuBase.addEventListener('change', filterAbu);
+      abuCert && abuCert.addEventListener('change', filterAbu);
+      abuSearch && abuSearch.addEventListener('input', filterAbu);
+      filterAbu();
+    }
+
+    /* ---------- Ajukan Layanan modal (front-end only demo) ---------- */
+    var applyModal = document.querySelector('[data-apply-modal]');
+    if(applyModal){
+      var applyForm = applyModal.querySelector('[data-apply-form]');
+      var applyServiceLabel = applyModal.querySelector('[data-apply-service]');
+      var applyServiceInput = applyModal.querySelector('[data-apply-service-input]');
+      var applyNote = applyModal.querySelector('[data-apply-note]');
+
+      function openApplyModal(serviceName){
+        applyServiceLabel.textContent = serviceName;
+        applyServiceInput.value = serviceName;
+        applyModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeApplyModal(){
+        applyModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-svc-apply]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          openApplyModal(btn.getAttribute('data-svc-apply'));
+        });
+      });
+
+      applyModal.querySelectorAll('[data-apply-close]').forEach(function(el){
+        el.addEventListener('click', closeApplyModal);
+      });
+      applyModal.addEventListener('click', function(e){
+        if(e.target === applyModal) closeApplyModal();
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && applyModal.classList.contains('open')) closeApplyModal();
+      });
+
+      applyForm && applyForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        applyNote && applyNote.classList.add('show');
+        setTimeout(function(){
+          applyForm.reset();
+          applyNote && applyNote.classList.remove('show');
+          closeApplyModal();
+        }, 2200);
+      });
+    }
+
     /* ---------- News archive: filter + client-side pagination ---------- */
     var newsGrid = document.querySelector('[data-news-grid]');
     if(newsGrid){
@@ -292,6 +406,138 @@
         note && note.classList.add('show');
         contactForm.reset();
         setTimeout(function(){ note && note.classList.remove('show'); }, 5000);
+      });
+    }
+
+    /* ---------- Peta wilayah Otoritas Bandar Udara (zoom, pan, hover) ---------- */
+    var mapStage = document.querySelector('[data-map-stage]');
+    if(mapStage){
+      var zoomInner = mapStage.querySelector('[data-map-zoom-inner]');
+      var scale = 1, panX = 0, panY = 0;
+      var MIN_SCALE = 1, MAX_SCALE = 3.2, STEP = 0.4;
+
+      function applyMapTransform(withTransition){
+        zoomInner.style.transition = withTransition ? 'transform .25s ease' : 'none';
+        zoomInner.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+        mapStage.classList.toggle('is-zoomed', scale > 1);
+      }
+      function clampMapPan(){
+        var maxX = (scale - 1) * (mapStage.clientWidth / 2);
+        var maxY = (scale - 1) * (mapStage.clientHeight / 2);
+        panX = Math.max(-maxX, Math.min(maxX, panX));
+        panY = Math.max(-maxY, Math.min(maxY, panY));
+      }
+      function setMapScale(next){
+        scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, next));
+        if(scale === MIN_SCALE){ panX = 0; panY = 0; }
+        clampMapPan();
+        applyMapTransform(true);
+      }
+
+      var zin = document.querySelector('[data-map-zoom-in]');
+      var zout = document.querySelector('[data-map-zoom-out]');
+      var zreset = document.querySelector('[data-map-zoom-reset]');
+      zin && zin.addEventListener('click', function(){ setMapScale(scale + STEP); });
+      zout && zout.addEventListener('click', function(){ setMapScale(scale - STEP); });
+      zreset && zreset.addEventListener('click', function(){ setMapScale(1); });
+
+      mapStage.addEventListener('wheel', function(e){
+        e.preventDefault();
+        setMapScale(scale + (e.deltaY > 0 ? -STEP/2 : STEP/2));
+      }, { passive: false });
+
+      var dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0, dragMoved = false;
+      mapStage.addEventListener('mousedown', function(e){
+        if(scale <= MIN_SCALE) return;
+        dragging = true; dragMoved = false;
+        mapStage.classList.add('is-dragging');
+        dragStartX = e.clientX; dragStartY = e.clientY;
+        panStartX = panX; panStartY = panY;
+      });
+      window.addEventListener('mousemove', function(e){
+        if(!dragging) return;
+        if(Math.abs(e.clientX - dragStartX) > 3 || Math.abs(e.clientY - dragStartY) > 3) dragMoved = true;
+        panX = panStartX + (e.clientX - dragStartX);
+        panY = panStartY + (e.clientY - dragStartY);
+        clampMapPan();
+        applyMapTransform(false);
+      });
+      window.addEventListener('mouseup', function(){
+        dragging = false;
+        mapStage.classList.remove('is-dragging');
+      });
+
+      /* ---- Hover / focus / tap tooltip ---- */
+      var tooltip = document.querySelector('[data-map-tooltip]');
+      var ttNum = tooltip.querySelector('[data-tt-num]');
+      var ttTitle = tooltip.querySelector('[data-tt-title]');
+      var ttHq = tooltip.querySelector('[data-tt-hq]');
+      var ttCoverage = tooltip.querySelector('[data-tt-coverage]');
+      var pinnedRegion = null;
+
+      function positionTooltip(clientX, clientY){
+        var rect = mapStage.getBoundingClientRect();
+        var left = clientX - rect.left + 18;
+        var top = clientY - rect.top + 18;
+        var ttRect = tooltip.getBoundingClientRect();
+        if(left + ttRect.width > rect.width) left = clientX - rect.left - ttRect.width - 18;
+        if(top + ttRect.height > rect.height) top = clientY - rect.top - ttRect.height - 18;
+        tooltip.style.left = Math.max(8, left) + 'px';
+        tooltip.style.top = Math.max(8, top) + 'px';
+      }
+      function showTooltip(region, clientX, clientY){
+        ttNum.textContent = region.getAttribute('data-num');
+        ttTitle.textContent = 'Otoritas Bandar Udara ' + region.getAttribute('data-title');
+        ttHq.textContent = region.getAttribute('data-hq');
+        ttCoverage.textContent = region.getAttribute('data-coverage');
+        positionTooltip(clientX, clientY);
+        tooltip.classList.add('show');
+      }
+      function hideTooltip(){
+        if(pinnedRegion) return;
+        tooltip.classList.remove('show');
+      }
+
+      var regions = Array.prototype.slice.call(mapStage.querySelectorAll('.region'));
+      regions.forEach(function(region){
+        region.addEventListener('mouseenter', function(e){ showTooltip(region, e.clientX, e.clientY); });
+        region.addEventListener('mousemove', function(e){ if(!pinnedRegion) positionTooltip(e.clientX, e.clientY); });
+        region.addEventListener('mouseleave', function(){ if(!pinnedRegion) hideTooltip(); });
+        region.addEventListener('focus', function(){
+          var box = region.getBoundingClientRect();
+          showTooltip(region, box.left + box.width / 2, box.top + box.height / 2);
+        });
+        region.addEventListener('blur', function(){ if(pinnedRegion !== region) hideTooltip(); });
+        region.addEventListener('click', function(e){
+          if(dragMoved){ dragMoved = false; return; }
+          if(pinnedRegion === region){
+            pinnedRegion.classList.remove('is-active');
+            pinnedRegion = null;
+            hideTooltip();
+          } else {
+            if(pinnedRegion) pinnedRegion.classList.remove('is-active');
+            pinnedRegion = region;
+            region.classList.add('is-active');
+            showTooltip(region, e.clientX, e.clientY);
+          }
+          e.stopPropagation();
+        });
+      });
+      document.addEventListener('click', function(){
+        if(pinnedRegion){
+          pinnedRegion.classList.remove('is-active');
+          pinnedRegion = null;
+          tooltip.classList.remove('show');
+        }
+      });
+
+      /* ---- Legend hover sync ---- */
+      var legendItems = document.querySelectorAll('[data-legend-region]');
+      legendItems.forEach(function(item){
+        var region = mapStage.querySelector('.region[data-region="' + item.getAttribute('data-legend-region') + '"]');
+        if(!region) return;
+        item.addEventListener('mouseenter', function(){ region.classList.add('is-active'); });
+        item.addEventListener('mouseleave', function(){ if(pinnedRegion !== region) region.classList.remove('is-active'); });
       });
     }
 
