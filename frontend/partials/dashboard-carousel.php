@@ -1,117 +1,25 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informasi Publik — Direktorat Bandar Udara</title>
-<meta name="description" content="Dokumen informasi publik Direktorat Bandar Udara: laporan tahunan, laporan kinerja, rencana strategis, dan permohonan informasi.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="../css/style.css">
-<script src="../js/paths.js"></script>
-<script src="../js/topbar.js" defer></script>
-<script src="../js/header.js" defer></script>
-<script src="../js/navbar.js" defer></script>
-<script src="../js/disclaimer.js" defer></script>
-<script src="../js/footer.js" defer></script>
-</head>
-<body>
-
-<app-topbar></app-topbar>
-
-<div class="sticky-stack">
-  <app-header></app-header>
-
-  <app-navbar></app-navbar>
-
-  <app-disclaimer></app-disclaimer>
-</div>
-
-<div class="breadcrumb-bar">
-  <div class="container breadcrumb">
-    <a href="../index.html">Beranda</a><span class="sep">/</span><span class="current">Informasi Publik</span>
-  </div>
-</div>
-<div class="page-title-block">
+<?php
+/* Dasbor Data Kebandarudaraan — DI LUAR CAKUPAN CMS (markup & data statis, sesuai permintaan). */
+?>
+<section class="section section-alt" id="dashboard" data-dash-carousel>
   <div class="container">
-    <div class="eyebrow">Informasi Publik</div>
-    <h1>Informasi Publik Direktorat Bandar Udara</h1>
-    <p>Laporan tahunan, laporan kinerja, rencana strategis, dan dokumen publik lain yang dapat diunduh.</p>
-  </div>
-</div>
-
-<section class="section">
-  <div class="container">
-
-    <div class="tabs-nav" data-tabs="ip">
-      <button class="active" data-tab="semua">Semua</button>
-      <button data-tab="tahunan">Laporan Tahunan</button>
-      <button data-tab="kinerja">Laporan Kinerja</button>
-      <button data-tab="strategis">Rencana Strategis</button>
-      <button data-tab="lain">Unduhan Lain</button>
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Pusat Data</div>
+      <h2>Dasbor Data Kebandarudaraan</h2>
+      <p>Ringkasan data registrasi, emisi, fasilitas sisi udara, pelayanan darurat, dan penyelenggaraan bandar udara.</p>
     </div>
-
-    <div class="tab-panel active" data-tab-panel="ip" data-panel-id="semua">
-      <div class="grid grid-3">
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-pdf-fill"></i></div><div><h4>Laporan Tahunan 2025</h4><span>PDF · 4.2 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-pdf-fill"></i></div><div><h4>Laporan Tahunan 2024</h4><span>PDF · 3.9 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-bar-graph-fill"></i></div><div><h4>Laporan Kinerja Triwulan II 2026</h4><span>PDF · 2.1 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-bar-graph-fill"></i></div><div><h4>Laporan Kinerja Tahunan 2025</h4><span>PDF · 3.0 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-diagram-3-fill"></i></div><div><h4>Rencana Strategis 2025–2029</h4><span>PDF · 5.6 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-diagram-3-fill"></i></div><div><h4>Rencana Strategis 2020–2024</h4><span>PDF · 5.1 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Standar Pelayanan Direktorat</h4><span>PDF · 900 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Maklumat Pelayanan Publik</h4><span>PDF · 450 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Formulir Permohonan Informasi (PPID)</h4><span>PDF · 210 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-      </div>
-    </div>
-
-    <div class="tab-panel" data-tab-panel="ip" data-panel-id="tahunan">
-      <div class="grid grid-3">
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-pdf-fill"></i></div><div><h4>Laporan Tahunan 2025</h4><span>PDF · 4.2 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-pdf-fill"></i></div><div><h4>Laporan Tahunan 2024</h4><span>PDF · 3.9 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-pdf-fill"></i></div><div><h4>Laporan Tahunan 2023</h4><span>PDF · 3.7 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-      </div>
-    </div>
-
-    <div class="tab-panel" data-tab-panel="ip" data-panel-id="kinerja">
-      <div class="grid grid-3">
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-bar-graph-fill"></i></div><div><h4>Laporan Kinerja Triwulan II 2026</h4><span>PDF · 2.1 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-bar-graph-fill"></i></div><div><h4>Laporan Kinerja Tahunan 2025</h4><span>PDF · 3.0 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-      </div>
-    </div>
-
-    <div class="tab-panel" data-tab-panel="ip" data-panel-id="strategis">
-      <div class="grid grid-3">
-        <div class="card download-card"><div class="ic"><i class="bi bi-diagram-3-fill"></i></div><div><h4>Rencana Strategis 2025–2029</h4><span>PDF · 5.6 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-diagram-3-fill"></i></div><div><h4>Rencana Strategis 2020–2024</h4><span>PDF · 5.1 MB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-      </div>
-    </div>
-
-    <div class="tab-panel" data-tab-panel="ip" data-panel-id="lain">
-      <div class="grid grid-3">
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Standar Pelayanan Direktorat</h4><span>PDF · 900 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Maklumat Pelayanan Publik</h4><span>PDF · 450 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-        <div class="card download-card"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><div><h4>Formulir Permohonan Informasi (PPID)</h4><span>PDF · 210 KB</span></div><a href="informasi-publik-detail.html" class="go"><i class="bi bi-arrow-right-circle"></i></a></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PERMOHONAN INFORMASI PUBLIK -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="newsletter" style="background:linear-gradient(120deg,var(--primary-darker),var(--primary-dark));">
-      <div>
-        <h3>Permohonan Informasi Publik</h3>
-        <p>Ajukan permintaan informasi yang belum tersedia pada laman ini melalui Pejabat Pengelola Informasi dan Dokumentasi (PPID).</p>
-      </div>
-      <a href="kontak.html" class="btn btn-white">Ajukan Permohonan <i class="bi bi-arrow-right"></i></a>
+    <div class="dash-tabs" role="tablist" aria-label="Pilih dasbor">
+        <button type="button" class="dash-tab active" data-dash-tab="0" role="tab" aria-selected="true"><i class="bi bi-journal-check"></i> Register Bandar Udara</button>
+        <button type="button" class="dash-tab" data-dash-tab="1" role="tab" aria-selected="false"><i class="bi bi-cloud-haze2-fill"></i> Emisi Karbon</button>
+        <button type="button" class="dash-tab" data-dash-tab="2" role="tab" aria-selected="false"><i class="bi bi-airplane-fill"></i> Runway, Taxiway & Apron</button>
+        <button type="button" class="dash-tab" data-dash-tab="3" role="tab" aria-selected="false"><i class="bi bi-truck-front-fill"></i> Peralatan & Pelayanan Darurat</button>
+        <button type="button" class="dash-tab" data-dash-tab="4" role="tab" aria-selected="false"><i class="bi bi-graph-up"></i> Penyelenggaraan & Pengusahaan</button>
     </div>
   </div>
-</section>
 
-<!-- ===================== DASBOR DATA KEBANDARUDARAAN ===================== -->
-<section class="section" id="register-bandara">
+  <div class="dash-viewport">
+    <div class="dash-slide active" data-dash-slide="0" role="tabpanel">
+<section class="section section-alt" id="register-bandara">
   <div class="container">
     <div class="section-head center">
       <div class="eyebrow" style="justify-content:center">Registrasi</div>
@@ -194,7 +102,8 @@
     </div>
   </div>
 </section>
-
+    </div>
+    <div class="dash-slide" data-dash-slide="1" role="tabpanel" hidden>
 <section class="section section-alt" id="emisi">
   <div class="container">
     <div class="section-head center">
@@ -251,7 +160,8 @@
     </div>
   </div>
 </section>
-
+    </div>
+    <div class="dash-slide" data-dash-slide="2" role="tabpanel" hidden>
 <section class="section" id="fasilitas-sisi-udara">
   <div class="container">
     <div class="section-head center">
@@ -303,7 +213,8 @@
     </div>
   </div>
 </section>
-
+    </div>
+    <div class="dash-slide" data-dash-slide="3" role="tabpanel" hidden>
 <section class="section section-alt" id="peralatan-darurat" data-pkp-section>
   <div class="container">
     <div class="section-head center">
@@ -392,7 +303,8 @@
     </div>
   </div>
 </section>
-
+    </div>
+    <div class="dash-slide" data-dash-slide="4" role="tabpanel" hidden>
 <section class="section" id="penyelenggaraan" data-svc-section>
   <div class="container">
     <div class="section-head center">
@@ -528,9 +440,12 @@ b. Marka dan Rambu terlihat jelas</div></div>
     </div>
   </div>
 </section>
+    </div>
+  </div>
 
-<app-footer></app-footer>
-
-<script src="../js/main.js"></script>
-</body>
-</html>
+  <div class="container dash-nav">
+    <button type="button" class="dash-arrow" data-dash-prev aria-label="Dasbor sebelumnya"><i class="bi bi-chevron-left"></i></button>
+    <div class="dash-dots" data-dash-dots></div>
+    <button type="button" class="dash-arrow" data-dash-next aria-label="Dasbor berikutnya"><i class="bi bi-chevron-right"></i></button>
+  </div>
+</section>

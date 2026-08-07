@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laporan Tahunan 2025 — Informasi Publik — Direktorat Bandar Udara</title>
-<meta name="description" content="Detail dokumen Laporan Tahunan 2025 Direktorat Bandar Udara.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="../css/style.css">
-<script src="../js/paths.js"></script>
-<script src="../js/topbar.js" defer></script>
-<script src="../js/header.js" defer></script>
-<script src="../js/navbar.js" defer></script>
-<script src="../js/disclaimer.js" defer></script>
-<script src="../js/footer.js" defer></script>
-</head>
-<body>
-
-<app-topbar></app-topbar>
-
-<div class="sticky-stack">
-  <app-header></app-header>
-
-  <app-navbar></app-navbar>
-
-  <app-disclaimer></app-disclaimer>
-</div>
-
-<div class="breadcrumb-bar">
-  <div class="container breadcrumb">
-    <a href="../index.html">Beranda</a><span class="sep">/</span><a href="informasi-publik.html">Informasi Publik</a><span class="sep">/</span><span class="current">Laporan Tahunan 2025</span>
-  </div>
-</div>
-
+<?php
+/* Informasi Publik — DI LUAR CAKUPAN CMS (konten statis, sesuai permintaan).
+   Hanya kerangka situs (header/navbar/footer) yang mengikuti data CMS. */
+require_once dirname(__DIR__) . '/bootstrap.php';
+page_start('informasi-publik', [
+    'title'       => 'Laporan Tahunan 2025 — Informasi Publik — Direktorat Bandar Udara',
+    'description' => 'Detail dokumen Laporan Tahunan 2025 Direktorat Bandar Udara.',
+    'breadcrumbs' => [['label' => 'Informasi Publik', 'url' => 'pages/informasi-publik.php'], ['label' => 'Laporan Tahunan 2025']],
+]);
+partial('header');
+?>
 <section class="section">
   <div class="container">
     <div class="grid" style="grid-template-columns:2fr 1fr; align-items:start; gap:40px;">
@@ -79,22 +56,18 @@
         <div class="card card-pad">
           <h4 style="font-size:14.5px; margin-bottom:16px;">Dokumen Terkait</h4>
           <ul style="display:flex; flex-direction:column; gap:12px;">
-            <li><a href="informasi-publik.html" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-file-earmark-pdf-fill"></i> Laporan Tahunan 2024</a></li>
-            <li><a href="informasi-publik.html" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-file-earmark-bar-graph-fill"></i> Laporan Kinerja Tahunan 2025</a></li>
-            <li><a href="informasi-publik.html" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-diagram-3-fill"></i> Rencana Strategis 2025–2029</a></li>
+            <li><a href="informasi-publik.php" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-file-earmark-pdf-fill"></i> Laporan Tahunan 2024</a></li>
+            <li><a href="informasi-publik.php" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-file-earmark-bar-graph-fill"></i> Laporan Kinerja Tahunan 2025</a></li>
+            <li><a href="informasi-publik.php" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-diagram-3-fill"></i> Rencana Strategis 2025–2029</a></li>
           </ul>
         </div>
       </div>
 
     </div>
     <div style="margin-top:40px;">
-      <a href="informasi-publik.html" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Informasi Publik</a>
+      <a href="informasi-publik.php" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Informasi Publik</a>
     </div>
   </div>
 </section>
 
-<app-footer></app-footer>
-
-<script src="../js/main.js"></script>
-</body>
-</html>
+<?php partial('footer'); ?>

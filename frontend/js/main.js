@@ -4,6 +4,17 @@
 (function(){
   'use strict';
 
+  /* ---------- Kirim <form> ke backend, kembalikan {ok, message} ---------- */
+  function postForm(form){
+    return fetch(form.getAttribute('action'), {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+    })
+      .then(function(r){ return r.json(); })
+      .catch(function(){ return { ok: false, message: 'Terjadi kesalahan jaringan. Coba lagi.' }; });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
 
     /* ---------- Sticky header shadow ---------- */
@@ -336,12 +347,22 @@
 
       applyForm && applyForm.addEventListener('submit', function(e){
         e.preventDefault();
-        applyNote && applyNote.classList.add('show');
-        setTimeout(function(){
-          applyForm.reset();
-          applyNote && applyNote.classList.remove('show');
-          closeApplyModal();
-        }, 2200);
+        var submitBtn = applyForm.querySelector('button[type="submit"]');
+        submitBtn && (submitBtn.disabled = true);
+        postForm(applyForm).then(function(res){
+          if(applyNote){
+            applyNote.innerHTML = '<i class="bi bi-' + (res.ok ? 'check-circle-fill' : 'exclamation-circle-fill') + '"></i> ' + res.message;
+            applyNote.classList.add('show');
+          }
+          submitBtn && (submitBtn.disabled = false);
+          if(res.ok){
+            setTimeout(function(){
+              applyForm.reset();
+              applyNote && applyNote.classList.remove('show');
+              closeApplyModal();
+            }, 2200);
+          }
+        });
       });
     }
 
@@ -403,9 +424,17 @@
       contactForm.addEventListener('submit', function(e){
         e.preventDefault();
         var note = document.querySelector('[data-form-note]');
-        note && note.classList.add('show');
-        contactForm.reset();
-        setTimeout(function(){ note && note.classList.remove('show'); }, 5000);
+        var btn = contactForm.querySelector('button[type="submit"]');
+        btn && (btn.disabled = true);
+        postForm(contactForm).then(function(res){
+          if(note){
+            note.innerHTML = '<i class="bi bi-' + (res.ok ? 'check-circle-fill' : 'exclamation-circle-fill') + '"></i> ' + res.message;
+            note.classList.add('show');
+            setTimeout(function(){ note.classList.remove('show'); }, 5000);
+          }
+          btn && (btn.disabled = false);
+          if(res.ok) contactForm.reset();
+        });
       });
     }
 
@@ -1472,8 +1501,15 @@
         e.preventDefault();
         var btn = newsletterForm.querySelector('button');
         var original = btn.textContent;
-        btn.textContent = 'Berhasil berlangganan';
-        setTimeout(function(){ btn.textContent = original; newsletterForm.reset(); }, 2500);
+        btn.disabled = true;
+        postForm(newsletterForm).then(function(res){
+          btn.textContent = res.message;
+          setTimeout(function(){
+            btn.textContent = original;
+            btn.disabled = false;
+            if(res.ok) newsletterForm.reset();
+          }, 2500);
+        });
       });
     }
 
