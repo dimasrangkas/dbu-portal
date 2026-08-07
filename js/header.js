@@ -1,18 +1,19 @@
 class AppHeader extends HTMLElement {
-    connectedCallback() {
-      this.innerHTML = `
-        <header class="header">
+  connectedCallback() {
+    var R = window.SitePaths.root;
+    this.innerHTML = `
+      <header class="header">
   <div class="container brandrow">
-    <a href="index.html" class="brand">
+    <a href="${R}index.html" class="brand">
       <div class="brand-logos">
         <div class="logo-badge">
-            <img src="assets/images/kemenhub.png" alt="Logo 1">
+            <img src="${R}assets/images/kemenhub.png" alt="Logo Kementerian Perhubungan">
         </div>
-    
+
         <div class="brand-div"></div>
-    
+
         <div class="logo-badge small">
-            <img src="assets/images/logo-dbu.png" alt="Logo 2">
+            <img src="${R}assets/images/logo-dbu.png" alt="Logo Direktorat Bandar Udara">
         </div>
     </div>
       <div class="brand-text">
@@ -29,9 +30,8 @@ class AppHeader extends HTMLElement {
     </div>
   </div>
 </header>
-
-        `;
-    }
+    `;
   }
-  
-  customElements.define("app-header", AppHeader);
+}
+
+customElements.define("app-header", AppHeader);

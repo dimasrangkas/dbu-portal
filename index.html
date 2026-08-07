@@ -6,73 +6,27 @@
 <title>Direktorat Bandar Udara — Ditjen Perhubungan Udara, Kementerian Perhubungan RI</title>
 <meta name="description" content="Situs resmi (contoh/dummy) Direktorat Bandar Udara — perumusan kebijakan, standar, dan pengawasan penyelenggaraan bandar udara di Indonesia.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="style.css">
-<script src="header.js" defer></script>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/paths.js"></script>
+<script src="js/topbar.js" defer></script>
+<script src="js/header.js" defer></script>
+<script src="js/navbar.js" defer></script>
+<script src="js/disclaimer.js" defer></script>
+<script src="js/footer.js" defer></script>
 </head>
 <body>
 
 <!-- ===================== TOP BAR ===================== -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span class="hide-sm"><i class="bi bi-geo-alt"></i> Jakarta, Indonesia</span>
-      <span class="hide-sm"><i class="bi bi-envelope"></i> bandarudara@dephub.go.id</span>
-    </div>
-    <div class="topbar-right">
-      <div class="social-mini">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-      </div>
-      <div class="lang-switch"><button class="active">ID</button><span>/</span><button>EN</button></div>
-    </div>
-  </div>
-</div>
+<app-topbar></app-topbar>
 
 <!-- ===================== HEADER ===================== -->
 
-<app-header>
-  
-</app-header>
-<!-- ===================== NAV ===================== -->
-<nav class="navbar">
-  <div class="container">
-    <ul class="navlist">
-      <li class="active"><a href="index.html">Beranda</a></li>
-      <li><a href="profil.html">Profil <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
-        <div class="dropdown">
-          <a href="profil.html#tentang">Tentang Direktorat</a>
-          <a href="profil.html#sejarah">Sejarah</a>
-          <a href="profil.html#visi-misi">Visi &amp; Misi</a>
-          <a href="profil.html#nilai">Nilai Organisasi</a>
-        </div>
-      </li>
-      <li><a href="organisasi.html">Organisasi</a></li>
-      <li><a href="tugas-fungsi.html">Tugas &amp; Fungsi</a></li>
-      <li><a href="layanan.html">Layanan <i class="bi bi-chevron-down" style="font-size:11px"></i></a>
-        <div class="dropdown">
-          <a href="layanan.html">Layanan Publik</a>
-          <a href="layanan.html#online">Layanan Daring</a>
-          <a href="layanan.html#faq">FAQ</a>
-        </div>
-      </li>
-      <li><a href="informasi-publik.html">Informasi Publik</a></li>
-      <li><a href="regulasi.html">Regulasi</a></li>
-      <li><a href="berita.html">Berita</a></li>
-      <li><a href="galeri.html">Galeri</a></li>
-      <li><a href="kontak.html">Kontak</a></li>
-      <li><a href="https://dbu.edifly-dev.com/kemhub-ems-dev/">Portal AEMS</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="sticky-stack">
+  <app-header></app-header>
+  <app-navbar></app-navbar>
 
 <!-- ===================== DISCLAIMER ===================== -->
-<div class="disclaimer">
-  <div class="container">
-    <i class="bi bi-info-circle-fill"></i>
-    <span>Disclaimer: Seluruh data, gambar, statistik, dan informasi pada website ini merupakan contoh (dummy data) untuk kebutuhan desain dan pengembangan sistem.</span>
-  </div>
+  <app-disclaimer></app-disclaimer>
 </div>
 
 <!-- ===================== HERO CAROUSEL ===================== -->
@@ -87,8 +41,8 @@
         <h1>Direktorat Bandar Udara</h1>
         <p class="tag">Profesional, Aman, dan Berkelanjutan dalam Pengembangan Bandar Udara — "Professional, Safe, Sustainable Airport Development"</p>
         <div class="hero-actions">
-          <a href="profil.html" class="btn btn-white">Profil Direktorat</a>
-          <a href="layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
+          <a href="pages/profil.html" class="btn btn-white">Profil Direktorat</a>
+          <a href="pages/layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -102,8 +56,8 @@
         <h1>Membangun Konektivitas Udara Nasional</h1>
         <p class="tag">Mendukung penyelenggaraan terminal dan prasarana bandar udara yang modern, inklusif, dan berstandar internasional di seluruh Indonesia.</p>
         <div class="hero-actions">
-          <a href="profil.html" class="btn btn-white">Profil Direktorat</a>
-          <a href="layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
+          <a href="pages/profil.html" class="btn btn-white">Profil Direktorat</a>
+          <a href="pages/layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -117,8 +71,8 @@
         <h1>Keselamatan Udara adalah Prioritas Utama</h1>
         <p class="tag">Pengawasan operasional dan standardisasi keselamatan bandar udara dilakukan secara berkelanjutan bersama seluruh mitra penerbangan.</p>
         <div class="hero-actions">
-          <a href="profil.html" class="btn btn-white">Profil Direktorat</a>
-          <a href="layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
+          <a href="pages/profil.html" class="btn btn-white">Profil Direktorat</a>
+          <a href="pages/layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -132,8 +86,8 @@
         <h1>Siaga Darurat, Setiap Saat</h1>
         <p class="tag">Kesiapan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK) di setiap bandar udara di seluruh Indonesia.</p>
         <div class="hero-actions">
-          <a href="profil.html" class="btn btn-white">Profil Direktorat</a>
-          <a href="layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
+          <a href="pages/profil.html" class="btn btn-white">Profil Direktorat</a>
+          <a href="pages/layanan.html" class="btn btn-outline">Layanan Digital <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -176,7 +130,7 @@
           Terima kasih atas kepercayaan dan dukungan seluruh mitra kerja dalam membangun konektivitas udara nasional.
         </p>
         <div style="margin-top:24px; display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="profil.html" class="btn btn-primary btn-sm">Selengkapnya Tentang Direktorat</a>
+          <a href="pages/profil.html" class="btn btn-primary btn-sm">Selengkapnya Tentang Direktorat</a>
         </div>
       </div>
     </div>
@@ -198,37 +152,55 @@
         <div class="ic"><i class="bi bi-bullseye"></i></div>
         <h3>Tugas Pokok</h3>
         <p>Perumusan &amp; pelaksanaan kebijakan bidang bandar udara.</p>
-        <a href="tugas-fungsi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/tugas-fungsi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card icon-card card-pad">
         <div class="ic"><i class="bi bi-gear-wide-connected"></i></div>
         <h3>Fungsi</h3>
         <p>Standardisasi, bimbingan teknis, dan pengawasan.</p>
-        <a href="tugas-fungsi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/tugas-fungsi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card icon-card card-pad">
         <div class="ic"><i class="bi bi-diagram-3"></i></div>
         <h3>Struktur Organisasi</h3>
         <p>Direktur dan 5 Subdirektorat teknis.</p>
-        <a href="organisasi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/organisasi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card icon-card card-pad">
         <div class="ic"><i class="bi bi-journal-text"></i></div>
         <h3>Regulasi</h3>
         <p>Peraturan &amp; standar kebandarudaraan.</p>
-        <a href="regulasi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/regulasi.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card icon-card card-pad">
         <div class="ic"><i class="bi bi-headset"></i></div>
         <h3>Layanan</h3>
         <p>Sertifikasi &amp; layanan publik digital.</p>
-        <a href="layanan.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Lihat detail <i class="bi bi-arrow-right"></i></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== REGISTER BANDAR UDARA ===================== -->
+<!-- ===================== DASHBOARD CAROUSEL ===================== -->
+<section class="section section-alt" id="dashboard" data-dash-carousel>
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Pusat Data</div>
+      <h2>Dasbor Data Kebandarudaraan</h2>
+      <p>Ringkasan data registrasi, emisi, fasilitas sisi udara, pelayanan darurat, dan penyelenggaraan bandar udara.</p>
+    </div>
+    <div class="dash-tabs" role="tablist" aria-label="Pilih dasbor">
+        <button type="button" class="dash-tab active" data-dash-tab="0" role="tab" aria-selected="true"><i class="bi bi-journal-check"></i> Register Bandar Udara</button>
+        <button type="button" class="dash-tab" data-dash-tab="1" role="tab" aria-selected="false"><i class="bi bi-cloud-haze2-fill"></i> Emisi Karbon</button>
+        <button type="button" class="dash-tab" data-dash-tab="2" role="tab" aria-selected="false"><i class="bi bi-airplane-fill"></i> Runway, Taxiway & Apron</button>
+        <button type="button" class="dash-tab" data-dash-tab="3" role="tab" aria-selected="false"><i class="bi bi-truck-front-fill"></i> Peralatan & Pelayanan Darurat</button>
+        <button type="button" class="dash-tab" data-dash-tab="4" role="tab" aria-selected="false"><i class="bi bi-graph-up"></i> Penyelenggaraan & Pengusahaan</button>
+    </div>
+  </div>
+
+  <div class="dash-viewport">
+    <div class="dash-slide active" data-dash-slide="0" role="tabpanel">
 <section class="section section-alt" id="register-bandara">
   <div class="container">
     <div class="section-head center">
@@ -312,6 +284,355 @@
     </div>
   </div>
 </section>
+    </div>
+    <div class="dash-slide" data-dash-slide="1" role="tabpanel" hidden>
+<section class="section section-alt" id="emisi">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Lingkungan</div>
+      <h2>Emisi Karbon Bandar Udara</h2>
+      <p>Ringkasan pemantauan emisi gas rumah kaca dari operasional kebandarudaraan. Arahkan kursor ke batang grafik untuk melihat rincian.</p>
+    </div>
+
+    <div class="emisi-grid">
+      <div class="card card-pad emisi-card">
+        <h3>Emissions by Scope</h3>
+        <div class="emisi-legend" data-emisi-legend="scope">
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#00396B"></span>Scope 1</span>
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#005BAC"></span>Scope 2</span>
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#2E86D8"></span>Scope 3</span>
+        </div>
+        <div class="emisi-chart-wrap" data-emisi-chart="scope"></div>
+      </div>
+
+      <div class="card card-pad emisi-card">
+        <h3>Quarterly Comparison of Emissions</h3>
+        <div class="emisi-legend" data-emisi-legend="year">
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#a8440f"></span>2023</span>
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#e07830"></span>2024</span>
+          <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#eb9a63"></span>2025</span>
+        </div>
+        <div class="emisi-chart-wrap" data-emisi-chart="quarterly"></div>
+      </div>
+
+      <div class="card card-pad emisi-card">
+        <h3>Emissions Insights</h3>
+        <div class="emisi-total-badge"><b>14,466</b><span>tCO2e</span></div>
+        <div class="emisi-scope-list">
+          <div class="emisi-scope-row"><span>Scope 1</span><b>10.232,7 tCO2e</b></div>
+          <div class="emisi-scope-row"><span>Scope 2</span><b>2.100,7 tCO2e</b></div>
+          <div class="emisi-scope-row"><span>Scope 3</span><b>2.132,6 tCO2e</b></div>
+        </div>
+        <div class="emisi-activities">
+          <div class="emisi-activities-head"><span>Activities</span><span>% Emissions tCO2e</span></div>
+          <div class="emisi-activity-row">
+            <div class="emisi-activity-left"><div class="emisi-activity-ic" style="background:var(--success-bg); color:var(--success);"><i class="bi bi-car-front-fill"></i></div><span>Transportation</span></div>
+            <b>41%</b>
+          </div>
+          <div class="emisi-activity-row">
+            <div class="emisi-activity-left"><div class="emisi-activity-ic" style="background:var(--danger-bg); color:var(--danger);"><i class="bi bi-fuel-pump-fill"></i></div><span>Fuel &amp; Energy</span></div>
+            <b>26%</b>
+          </div>
+          <div class="emisi-activity-row">
+            <div class="emisi-activity-left"><div class="emisi-activity-ic" style="background:var(--violet-bg); color:var(--violet);"><i class="bi bi-lightbulb-fill"></i></div><span>Electricity</span></div>
+            <b>26%</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+    <div class="dash-slide" data-dash-slide="2" role="tabpanel" hidden>
+<section class="section" id="fasilitas-sisi-udara">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Fasilitas Sisi Udara</div>
+      <h2>Status Runway, Taxiway &amp; Apron</h2>
+      <p>Data kondisi dan spesifikasi teknis fasilitas sisi udara bandar udara.</p>
+    </div>
+
+    <div class="card card-pad spec-picker">
+      <div class="field">
+        <label for="specAirport"><i class="bi bi-geo-alt-fill" style="color:var(--primary)"></i> Pilih Bandara</label>
+        <select id="specAirport" data-spec-airport></select>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card card-pad spec-card">
+        <div class="spec-head">
+          <div class="ic"><i class="bi bi-airplane-fill"></i></div>
+          <div>
+            <h3>Runway</h3>
+            <span class="spec-count" data-spec-count="runway"></span>
+          </div>
+        </div>
+        <div class="spec-body" data-spec-body="runway"></div>
+      </div>
+
+      <div class="card card-pad spec-card">
+        <div class="spec-head">
+          <div class="ic"><i class="bi bi-signpost-2-fill"></i></div>
+          <div>
+            <h3>Taxiway</h3>
+            <span class="spec-count" data-spec-count="taxiway"></span>
+          </div>
+        </div>
+        <div class="spec-body" data-spec-body="taxiway"></div>
+      </div>
+
+      <div class="card card-pad spec-card">
+        <div class="spec-head">
+          <div class="ic"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+          <div>
+            <h3>Apron</h3>
+            <span class="spec-count" data-spec-count="apron"></span>
+          </div>
+        </div>
+        <div class="spec-body" data-spec-body="apron"></div>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+    <div class="dash-slide" data-dash-slide="3" role="tabpanel" hidden>
+<section class="section section-alt" id="peralatan-darurat" data-pkp-section>
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Pelayanan Darurat</div>
+      <h2>Peralatan &amp; Pelayanan Darurat Bandar Udara</h2>
+      <p>Rekap data pengelola bandar udara, kategori PKP-PK, status verifikasi, dan peralatan visual approach. Arahkan kursor ke grafik untuk melihat rincian.</p>
+    </div>
+
+    <div class="pkp-row-2">
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-airplane-fill"></i></div><h3>Data Pengelola &amp; Kelas Bandara</h3></div>
+        <div class="pkp-table-wrap">
+          <table class="pkp-table">
+            <thead><tr><th>Pengelola Bandar Udara</th><th>Kelas Bandara</th><th style="text-align:right">Jumlah</th></tr></thead>
+            <tbody>
+              <tr><td class="grp" rowspan="6">UPT Ditjen Hubud</td><td>Kelas I (BLU)</td><td class="num"><span class="badge badge-primary">20</span></td></tr>
+              <tr><td>Kelas I</td><td class="num"><span class="badge badge-primary">15</span></td></tr>
+              <tr><td>Kelas II (BLU)</td><td class="num"><span class="badge badge-primary">13</span></td></tr>
+              <tr><td>Kelas II</td><td class="num"><span class="badge badge-primary">12</span></td></tr>
+              <tr><td>Kelas III</td><td class="num"><span class="badge badge-primary">8</span></td></tr>
+              <tr><td>Satpel BU</td><td class="num"><span class="badge badge-primary">5</span></td></tr>
+              <tr><td class="grp">Angkasa Pura Indonesia</td><td>Non Kelas</td><td class="num"><span class="badge badge-primary">99</span></td></tr>
+              <tr><td class="grp">Bandar Udara UPTD/Pemda</td><td>Non Kelas</td><td class="num"><span class="badge badge-primary">37</span></td></tr>
+              <tr><td class="grp">Bandar Udara Bubu Lain</td><td>Non Kelas</td><td class="num"><span class="badge badge-primary">157</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-truck-front-fill"></i></div><h3>Kategori Pelayanan PKP-PK</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="kategori"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-3" style="margin-bottom:20px;">
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-clipboard-check-fill"></i></div><h3>Status Tindak Lanjut Verifikasi PKP-PK</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="tindak-lanjut"></div>
+        </div>
+      </div>
+
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-patch-check-fill"></i></div><h3>Status Verifikasi PKP-PK</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="verifikasi"></div>
+        </div>
+      </div>
+
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-file-earmark-check-fill"></i></div><h3>Status Dokumen AEP</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="aep"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-bullseye"></i></div><h3>Vasis Light Breakdown</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="vasis-breakdown"></div>
+        </div>
+      </div>
+
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-activity"></i></div><h3>Status Kalibrasi VASIS</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="vasis-kalibrasi"></div>
+          <div class="emisi-legend" style="margin-top:10px;">
+            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#4a3aa7"></span>PAPI</span>
+            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#1baf7a"></span>A-PAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-sun-fill"></i></div><h3>Approach Light Assets</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="approach-light"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+    <div class="dash-slide" data-dash-slide="4" role="tabpanel" hidden>
+<section class="section" id="penyelenggaraan" data-svc-section>
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">Penyelenggaraan &amp; Pengusahaan</div>
+      <h2>Level of Service &amp; Standar Pelayanan</h2>
+      <p>Pemantauan tingkat pelayanan (Level of Service), hasil inspeksi fasilitas, dan dokumen standar pelayanan bandar udara. Data bersifat tayang (read-only).</p>
+    </div>
+
+    <!-- LOS charts -->
+    <div class="pkp-row-2" style="grid-template-columns:1fr 1fr; margin-bottom:32px;">
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-graph-up"></i></div><h3>Level of Service Trend</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="los-trend"></div>
+          <div class="emisi-legend" style="margin-top:12px;">
+            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#4a3aa7"></span>Sisi Udara</span>
+            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#1baf7a"></span>Sisi Darat</span>
+            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#eb6834"></span>Terminal</span>
+          </div>
+        </div>
+      </div>
+      <div class="card card-pad pkp-card">
+        <div class="pkp-head"><div class="ic"><i class="bi bi-bar-chart-fill"></i></div><h3>Aggregate LOS Score</h3></div>
+        <div class="pkp-chart-body">
+          <div class="pkp-chart-wrap" data-pkp-chart="los-aggregate"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Inspection List -->
+    <div class="card card-pad" style="margin-bottom:32px;">
+      <div class="svc-toolbar">
+        <h3>Service Inspection List</h3>
+        <label class="svc-toggle-wrap">
+          <span class="svc-toggle">
+            <input type="checkbox" data-svc-checklist>
+            <span class="track"></span><span class="thumb"></span>
+          </span>
+          Checklist
+        </label>
+      </div>
+
+      <div class="svc-filters">
+        <div class="field"><label for="svcKategori">Kategori Pelayanan</label>
+          <select id="svcKategori">
+            <option>Pesawat Udara (PJP4U)</option>
+            <option>Penumpang Pesawat Udara (PJP2U)</option>
+            <option>Kargo dan Pos (PJPP)</option>
+          </select>
+        </div>
+        <div class="field"><label for="svcPemeriksa">Pemeriksa</label>
+          <select id="svcPemeriksa">
+            <option>Regulator</option>
+            <option>Operator Bandar Udara</option>
+            <option>Auditor Internal</option>
+          </select>
+        </div>
+        <div class="field"><label for="svcTahun">Inspection Year</label>
+          <select id="svcTahun">
+            <option>2026</option>
+            <option>2025</option>
+            <option>2024</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="svc-panel">
+        <div class="svc-panel-head">Pelayanan Pada Fasilitas Yang Digunakan Pada Proses Pendaratan, Lepas Landas dan Manuver Pesawat Udara</div>
+        <div class="svc-panel-body">
+          <div class="svc-subhead">Landas Pacu (Runway)</div>
+
+          <div class="svc-crit">
+            <div class="svc-crit-head">Kemampuan pelayanan dan memenuhi aspek keselamatan penerbangan</div>
+            <div class="svc-def-row"><div class="label">Tolok Ukur</div><div class="value">Kondisi Landas Pacu (Runway)</div></div>
+            <div class="svc-def-row"><div class="label">Uraian Tolok Ukur</div><div class="value">Hasil pengamatan langsung pada landas pacu (runway):
+a. tidak ada kerusakan pada permukaan sesuai dengan ketentuan
+b. tidak terdapat genangan air sesuai dengan ketentuan
+c. tidak ada FOD</div></div>
+            <div class="svc-def-row"><div class="label">Kesesuaian Tolok Ukur dan Nilai</div><div class="value">a. Kondisi Landas Pacu (Runway) tidak ada kerusakan pada permukaan sesuai ketentuan, tidak terdapat genangan air sesuai dengan ketentuan dan tidak ada FOD = 5.
+b. Kondisi Landas Pacu (Runway) eksisting dibagi jumlah uraian tolok ukur dikali 5.</div></div>
+            <div class="svc-def-row"><div class="label">Hasil Penilaian</div><div class="value">Kondisi Landas Pacu (Runway) tidak ada kerusakan pada permukaan sesuai ketentuan, tidak terdapat genangan air sesuai dengan ketentuan dan tidak ada FOD</div></div>
+            <div class="svc-def-row"><div class="label">Nilai</div><div class="value" data-svc-nilai="9"><span class="svc-nilai-badge">9</span></div></div>
+          </div>
+
+          <div class="svc-crit">
+            <div class="svc-crit-head">Kelengkapan dan visualisasi marka dan rambu sesuai dengan ketentuan</div>
+            <div class="svc-def-row"><div class="label">Uraian Tolok Ukur</div><div class="value">a. Marka dan Rambu Lengkap
+b. Marka dan Rambu terlihat jelas</div></div>
+            <div class="svc-def-row"><div class="label">Kesesuaian Tolok Ukur dan Nilai</div><div class="value">a. Marka dan rambu lengkap dan terlihat jelas = 5. b. Kondisi marka dan rambu eksisting dibagi jumlah uraian tolok ukur dikali 5</div></div>
+            <div class="svc-def-row"><div class="label">Hasil Penilaian</div><div class="value">Marka dan rambu lengkap dan terlihat jelas</div></div>
+            <div class="svc-def-row"><div class="label">Nilai</div><div class="value" data-svc-nilai="4"><span class="svc-nilai-badge">4</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dokumen Standar Pelayanan -->
+    <div class="card card-pad">
+      <div class="pkp-head"><div class="ic"><i class="bi bi-file-earmark-text-fill"></i></div><h3>Dokumen Standar Pelayanan (DSP)</h3></div>
+
+      <div class="svc-filters with-btn">
+        <div class="field"><label for="dspAirport">Select Airport</label>
+          <select id="dspAirport" data-dsp-airport>
+            <option value="all">Semua Bandara</option>
+          </select>
+        </div>
+        <div class="field"><label for="dspType">DSP Type</label>
+          <select id="dspType" data-dsp-type>
+            <option value="all">Semua Tipe</option>
+            <option value="Main">Main</option>
+            <option value="Addendum">Addendum</option>
+          </select>
+        </div>
+        <div class="field"><label for="dspYear">Addendum Year</label>
+          <select id="dspYear" data-dsp-year>
+            <option value="all">Semua Tahun</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" data-dsp-search><i class="bi bi-search"></i> Cari</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="reg-table" data-dsp-table>
+          <thead><tr><th>Bandara</th><th>Type</th><th>Tahun</th><th>Nomor Lembar Penerimaan</th><th>Nomor / Perihal DSP</th><th>Aksi</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p data-dsp-empty style="display:none; text-align:center; padding:40px; color:var(--text-500);">Tidak ada dokumen yang sesuai dengan filter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+  </div>
+
+  <div class="container dash-nav">
+    <button type="button" class="dash-arrow" data-dash-prev aria-label="Dasbor sebelumnya"><i class="bi bi-chevron-left"></i></button>
+    <div class="dash-dots" data-dash-dots></div>
+    <button type="button" class="dash-arrow" data-dash-next aria-label="Dasbor berikutnya"><i class="bi bi-chevron-right"></i></button>
+  </div>
+</section>
+
+
 
 <!-- ===================== REGIONAL MAP (OTORITAS BANDAR UDARA) ===================== -->
 <section class="section" id="peta-wilayah">
@@ -468,6 +789,14 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+
 <!-- ===================== QUICK ACCESS ===================== -->
 <section class="section">
   <div class="container">
@@ -476,14 +805,14 @@
       <h2>Layanan &amp; Informasi Populer</h2>
     </div>
     <div class="grid grid-4">
-      <a href="regulasi.html" class="card quick-card"><div class="ic"><i class="bi bi-journal-richtext"></i></div><span>Regulasi</span></a>
-      <a href="layanan.html" class="card quick-card"><div class="ic"><i class="bi bi-headset"></i></div><span>Layanan Publik</span></a>
-      <a href="kontak.html" class="card quick-card"><div class="ic"><i class="bi bi-megaphone"></i></div><span>Pengaduan</span></a>
-      <a href="informasi-publik.html" class="card quick-card"><div class="ic"><i class="bi bi-info-circle"></i></div><span>Informasi Publik</span></a>
-      <a href="berita.html" class="card quick-card"><div class="ic"><i class="bi bi-bell"></i></div><span>Pengumuman</span></a>
-      <a href="galeri.html" class="card quick-card"><div class="ic"><i class="bi bi-images"></i></div><span>Galeri</span></a>
-      <a href="kontak.html" class="card quick-card"><div class="ic"><i class="bi bi-telephone"></i></div><span>Kontak</span></a>
-      <a href="layanan.html#faq" class="card quick-card"><div class="ic"><i class="bi bi-question-circle"></i></div><span>FAQ</span></a>
+      <a href="pages/regulasi.html" class="card quick-card"><div class="ic"><i class="bi bi-journal-richtext"></i></div><span>Regulasi</span></a>
+      <a href="pages/layanan.html" class="card quick-card"><div class="ic"><i class="bi bi-headset"></i></div><span>Layanan Publik</span></a>
+      <a href="pages/kontak.html" class="card quick-card"><div class="ic"><i class="bi bi-megaphone"></i></div><span>Pengaduan</span></a>
+      <a href="pages/informasi-publik.html" class="card quick-card"><div class="ic"><i class="bi bi-info-circle"></i></div><span>Informasi Publik</span></a>
+      <a href="pages/berita.html" class="card quick-card"><div class="ic"><i class="bi bi-bell"></i></div><span>Pengumuman</span></a>
+      <a href="pages/galeri.html" class="card quick-card"><div class="ic"><i class="bi bi-images"></i></div><span>Galeri</span></a>
+      <a href="pages/kontak.html" class="card quick-card"><div class="ic"><i class="bi bi-telephone"></i></div><span>Kontak</span></a>
+      <a href="pages/layanan.html#faq" class="card quick-card"><div class="ic"><i class="bi bi-question-circle"></i></div><span>FAQ</span></a>
     </div>
   </div>
 </section>
@@ -496,7 +825,7 @@
         <div class="eyebrow">Berita &amp; Pengumuman</div>
         <h2>Kabar Terbaru Direktorat</h2>
       </div>
-      <a href="berita.html" class="btn btn-outline-blue btn-sm">Lihat Semua Berita <i class="bi bi-arrow-right"></i></a>
+      <a href="pages/berita.html" class="btn btn-outline-blue btn-sm">Lihat Semua Berita <i class="bi bi-arrow-right"></i></a>
     </div>
     <div class="grid" style="grid-template-columns:2fr 1fr; align-items:start;">
       <div class="grid grid-3">
@@ -506,7 +835,7 @@
             <div class="date"><i class="bi bi-calendar3"></i> 14 Juli 2026</div>
             <h3>Direktorat Terbitkan 42 Sertifikat Bandar Udara Baru di Triwulan II</h3>
             <p>Proses sertifikasi dipercepat melalui digitalisasi berkas dan verifikasi lapangan terpadu.</p>
-            <a href="berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
+            <a href="pages/berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="card news-card">
@@ -515,7 +844,7 @@
             <div class="date"><i class="bi bi-calendar3"></i> 8 Juli 2026</div>
             <h3>Perluasan Landasan Pacu di 6 Bandar Udara Perintis Dimulai</h3>
             <p>Program prasarana tahun ini menyasar bandar udara perintis di kawasan timur Indonesia.</p>
-            <a href="berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
+            <a href="pages/berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="card news-card">
@@ -524,7 +853,7 @@
             <div class="date"><i class="bi bi-calendar3"></i> 2 Juli 2026</div>
             <h3>Simulasi Tanggap Darurat PKP-PK Digelar Serentak</h3>
             <p>Latihan gabungan bertujuan menguji kesiapan tim penyelamatan bandar udara.</p>
-            <a href="berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
+            <a href="pages/berita.html" class="more">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -548,7 +877,7 @@
             <div class="announce-info"><h4>Jadwal Bimbingan Teknis Sertifikasi Bandar Udara</h4><span>Layanan</span></div>
           </div>
         </div>
-        <a href="informasi-publik.html" class="btn btn-outline-blue btn-sm btn-block" style="margin-top:18px;">Semua Pengumuman</a>
+        <a href="pages/informasi-publik.html" class="btn btn-outline-blue btn-sm btn-block" style="margin-top:18px;">Semua Pengumuman</a>
       </div>
     </div>
   </div>
@@ -566,37 +895,37 @@
         <div class="ic"><i class="bi bi-patch-check-fill"></i></div>
         <h3>Sertifikasi Bandar Udara</h3>
         <p>Penerbitan dan pembaruan sertifikat operasi bandar udara sesuai standar keselamatan.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card service-card">
         <div class="ic"><i class="bi bi-shield-check"></i></div>
         <h3>Standardisasi Keselamatan</h3>
         <p>Penyusunan norma, standar, dan prosedur keselamatan operasional bandar udara.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card service-card">
         <div class="ic"><i class="bi bi-signpost-split"></i></div>
         <h3>Prasarana Bandar Udara</h3>
         <p>Perencanaan dan pengembangan landasan pacu, taxiway, apron, dan terminal.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card service-card">
         <div class="ic"><i class="bi bi-life-preserver"></i></div>
         <h3>Pelayanan Darurat Bandar Udara</h3>
         <p>Standar peralatan dan kesiapan PKP-PK di seluruh bandar udara.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card service-card">
         <div class="ic"><i class="bi bi-diagram-3-fill"></i></div>
         <h3>Sistem Operasional Bandar Udara</h3>
         <p>Pengawasan sistem penyelenggaraan operasional bandar udara nasional.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
       <div class="card service-card">
         <div class="ic"><i class="bi bi-briefcase-fill"></i></div>
         <h3>Pengusahaan Bandar Udara</h3>
         <p>Bimbingan tata kelola bisnis dan kerja sama pengusahaan bandar udara.</p>
-        <a href="layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
+        <a href="pages/layanan.html" class="more">Ajukan Layanan <i class="bi bi-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -610,7 +939,7 @@
         <div class="eyebrow">Galeri</div>
         <h2>Dokumentasi Kegiatan</h2>
       </div>
-      <a href="galeri.html" class="btn btn-outline-blue btn-sm">Lihat Galeri Lengkap <i class="bi bi-arrow-right"></i></a>
+      <a href="pages/galeri.html" class="btn btn-outline-blue btn-sm">Lihat Galeri Lengkap <i class="bi bi-arrow-right"></i></a>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item" data-lightbox data-caption="Landasan pacu bandar udara"><div class="art art-1"><div class="art-inner"><i class="bi bi-airplane-engines"></i></div></div><span class="zoom"><i class="bi bi-zoom-in"></i></span><span class="cap">Landasan Pacu</span></div>
@@ -683,63 +1012,13 @@
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-  <div class="container footer-top">
-    <div class="footer-brand">
-      <div class="flex items-center gap-12">
-        <div class="logo-badge small"><i class="bi bi-airplane-engines" style="font-size:15px"></i></div>
-        <div class="name" style="color:#fff; font-size:15px;">Direktorat Bandar Udara</div>
-      </div>
-      <p>Direktorat Jenderal Perhubungan Udara, Kementerian Perhubungan Republik Indonesia. Mewujudkan
-      penyelenggaraan bandar udara yang profesional, aman, dan berkelanjutan.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-      </div>
-    </div>
-    <div>
-      <h4>Tautan Cepat</h4>
-      <ul class="footer-links">
-        <li><a href="profil.html">Profil Direktorat</a></li>
-        <li><a href="organisasi.html">Struktur Organisasi</a></li>
-        <li><a href="regulasi.html">Regulasi</a></li>
-        <li><a href="berita.html">Berita Terkini</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Layanan</h4>
-      <ul class="footer-links">
-        <li><a href="layanan.html">Sertifikasi Bandar Udara</a></li>
-        <li><a href="layanan.html">Standardisasi Keselamatan</a></li>
-        <li><a href="informasi-publik.html">Informasi Publik</a></li>
-        <li><a href="kontak.html">Pengaduan</a></li>
-        <li><a href="layanan.html#faq">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Kontak Kami</h4>
-      <ul class="footer-contact">
-        <li><i class="bi bi-geo-alt-fill"></i><span>Jl. Medan Merdeka Barat No. 8, Jakarta Pusat 10110</span></li>
-        <li><i class="bi bi-telephone-fill"></i><span>(021) 350-0000</span></li>
-        <li><i class="bi bi-envelope-fill"></i><span>bandarudara@dephub.go.id</span></li>
-        <li><i class="bi bi-clock-fill"></i><span>Senin–Jumat, 08.00–16.00 WIB</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <span>© 2026 Direktorat Bandar Udara — Direktorat Jenderal Perhubungan Udara. Hak cipta dilindungi.</span>
-    <span><a href="#">Kebijakan Privasi</a> &middot; <a href="kontak.html">Peta Situs</a></span>
-  </div>
-</footer>
+<app-footer></app-footer>
 
 <div class="floating-col">
   <a class="fab fab-wa" href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
   <button class="fab fab-top" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
 </div>
 
-<script src="main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
