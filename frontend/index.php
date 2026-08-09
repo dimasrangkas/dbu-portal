@@ -9,6 +9,17 @@ $aboutSec  = section('home', 'about');
 $aboutCard = db_all('SELECT * FROM about_cards WHERE is_active = 1 ORDER BY sort, id');
 $petaSec   = section('home', 'peta');
 $regions   = db_all('SELECT * FROM regions WHERE is_active = 1 ORDER BY sort, id');
+$rpjmnSec  = section('home', 'rpjmn');
+$rpjmn     = db_all('SELECT * FROM rpjmn_programs WHERE is_active = 1 ORDER BY sort, id');
+if ($rpjmn) {
+    $rpjmnAreas = [];
+    foreach (db_all('SELECT * FROM rpjmn_areas ORDER BY sort, id') as $area) {
+        $rpjmnAreas[$area['program_id']][] = $area;
+    }
+    foreach ($rpjmn as $i => $program) {
+        $rpjmn[$i]['areas'] = $rpjmnAreas[$program['id']] ?? [];
+    }
+}
 $quickSec  = section('home', 'quick');
 $quick     = db_all('SELECT * FROM quick_links WHERE is_active = 1 ORDER BY sort, id');
 $newsSec   = section('home', 'news');
@@ -137,6 +148,23 @@ partial('header');
     <?php partial('peta-wilayah', ['regions' => $regions]); ?>
   </div>
 </section>
+
+<!-- ===================== INDIKASI PEMBANGUNAN / PENGEMBANGAN BANDAR UDARA (RPJMN) ===================== -->
+<?php if ($rpjmn): ?>
+<section class="section section-alt" id="rpjmn">
+  <div class="container">
+    <div class="section-head center">
+      <?php if ($rpjmnSec['eyebrow']): ?><div class="eyebrow" style="justify-content:center"><?= e($rpjmnSec['eyebrow']) ?></div><?php endif; ?>
+      <h2><?= e($rpjmnSec['title']) ?></h2>
+      <?php if ($rpjmnSec['subtitle']): ?><p><?= e($rpjmnSec['subtitle']) ?></p><?php endif; ?>
+    </div>
+    <?php partial('rpjmn-carousel', ['programs' => $rpjmn, 'regions' => $regions]); ?>
+    <?php if (!empty($rpjmnSec['body'])): ?>
+    <p class="rpjmn-source"><i class="bi bi-journal-text"></i> <?= e($rpjmnSec['body']) ?></p>
+    <?php endif; ?>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- ===================== AKSES CEPAT ===================== -->
 <section class="section">

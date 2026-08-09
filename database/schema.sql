@@ -180,6 +180,31 @@ CREATE TABLE `regions` (
   `is_active` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Program indikasi pembangunan/pengembangan bandar udara (RPJMN 2025–2029)
+DROP TABLE IF EXISTS `rpjmn_areas`;
+DROP TABLE IF EXISTS `rpjmn_programs`;
+CREATE TABLE `rpjmn_programs` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `eyebrow` VARCHAR(160) NULL,
+  `icon` VARCHAR(80) NULL,
+  `summary` TEXT NULL,
+  `focus` TEXT NULL,
+  `note` TEXT NULL,
+  `sort` INT NOT NULL DEFAULT 0,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `rpjmn_areas` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `program_id` INT UNSIGNED NOT NULL,
+  `region_code` VARCHAR(10) NOT NULL,
+  `airports` TEXT NULL,
+  `sort` INT NOT NULL DEFAULT 0,
+  KEY `idx_rpjmn_area` (`program_id`),
+  CONSTRAINT `fk_rpjmn_area` FOREIGN KEY (`program_id`) REFERENCES `rpjmn_programs`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS `home_video`;
 CREATE TABLE `home_video` (
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -268,6 +293,26 @@ CREATE TABLE `org_units` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------- Tugas & Fungsi ----------
+DROP TABLE IF EXISTS `tf_overview`;
+CREATE TABLE `tf_overview` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `tugas_eyebrow` VARCHAR(160) NULL,
+  `tugas_title` VARCHAR(200) NULL,
+  `tugas` TEXT NULL,
+  `fungsi_eyebrow` VARCHAR(160) NULL,
+  `fungsi_title` VARCHAR(200) NULL,
+  `fungsi_intro` TEXT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS `tf_functions`;
+CREATE TABLE `tf_functions` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `icon` VARCHAR(80) NULL,
+  `content` TEXT NOT NULL,
+  `sort` INT NOT NULL DEFAULT 0,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS `tf_units`;
 CREATE TABLE `tf_units` (
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

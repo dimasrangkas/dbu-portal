@@ -70,7 +70,7 @@ INSERT INTO `page_meta` (`page_key`,`page_label`,`meta_title`,`meta_description`
 ('home','Beranda','Direktorat Bandar Udara — Ditjen Perhubungan Udara, Kementerian Perhubungan RI','Situs resmi Direktorat Bandar Udara — perumusan kebijakan, standar, dan pengawasan penyelenggaraan bandar udara di Indonesia.',NULL,NULL,NULL,'Beranda'),
 ('profil','Profil','Profil Direktorat — Direktorat Bandar Udara','Profil, sejarah, visi misi, nilai organisasi, tugas dan fungsi Direktorat Bandar Udara.','Profil Direktorat','Profil Direktorat Bandar Udara','Sejarah, visi misi, nilai organisasi, tugas pokok, dan fungsi Direktorat Bandar Udara.','Profil'),
 ('organisasi','Organisasi','Struktur Organisasi — Direktorat Bandar Udara','Struktur organisasi Direktorat Bandar Udara: Direktur dan lima Subdirektorat teknis.','Struktur Organisasi','Struktur Organisasi Direktorat Bandar Udara','Direktorat Bandar Udara dipimpin oleh seorang Direktur yang membawahi lima Subdirektorat teknis dan Jabatan Fungsional & Jabatan Pelaksana.','Organisasi'),
-('tugas-fungsi','Tugas & Fungsi','Tugas & Fungsi — Direktorat Bandar Udara','Rincian tugas dan fungsi setiap unit kerja di Direktorat Bandar Udara.','Tugas & Fungsi','Tugas & Fungsi Unit Kerja','Rincian tugas, kebijakan, standar, bimbingan teknis, pemantauan, evaluasi, dan pelaporan setiap unit kerja.','Tugas & Fungsi'),
+('tugas-fungsi','Tugas & Fungsi','Tugas & Fungsi — Direktorat Bandar Udara','Tugas dan fungsi Direktorat Bandar Udara dalam perumusan kebijakan, penyusunan NSPK, bimbingan teknis, serta pemantauan dan evaluasi di bandar udara.','Tugas & Fungsi','Tugas & Fungsi Direktorat Bandar Udara','Tugas pokok Direktorat Bandar Udara beserta enam fungsi yang diselenggarakan dalam pelaksanaannya.','Tugas & Fungsi'),
 ('layanan','Layanan','Layanan — Direktorat Bandar Udara','Layanan publik Direktorat Bandar Udara: sertifikasi, standar keselamatan, prasarana, dan layanan daring lainnya.','Layanan Publik','Layanan Direktorat Bandar Udara','Layanan sertifikasi, standardisasi, dan perizinan kebandarudaraan yang dapat diajukan secara daring.','Layanan'),
 ('regulasi','Regulasi','Regulasi — Direktorat Bandar Udara','Daftar regulasi dan peraturan bidang kebandarudaraan yang dapat dicari dan difilter berdasarkan tahun dan kategori.','Regulasi','Regulasi Kebandarudaraan','Cari dan unduh peraturan, standar, dan pedoman teknis di bidang bandar udara.','Regulasi'),
 ('berita','Berita','Berita — Direktorat Bandar Udara','Arsip berita dan kegiatan Direktorat Bandar Udara.','Berita','Berita Direktorat Bandar Udara','Kabar terbaru seputar kegiatan, sertifikasi, regulasi, dan kerja sama Direktorat Bandar Udara.','Berita'),
@@ -81,12 +81,13 @@ INSERT INTO `page_meta` (`page_key`,`page_label`,`meta_title`,`meta_description`
 INSERT INTO `sections` (`page`,`section_key`,`label`,`eyebrow`,`title`,`subtitle`,`sort`) VALUES
 ('home','about','Beranda — Tentang Kami','Tentang Kami','Mengenal Direktorat Bandar Udara','Direktorat Bandar Udara adalah unit kerja di bawah Direktorat Jenderal Perhubungan Udara yang melaksanakan perumusan dan pelaksanaan kebijakan, penyusunan norma, standar, prosedur dan kriteria, bimbingan teknis, supervisi, serta pemantauan dan evaluasi di bidang kebandarudaraan.',1),
 ('home','peta','Beranda — Peta Wilayah','Wilayah Kerja','Peta Otoritas Bandar Udara Wilayah I–X','Arahkan kursor atau ketuk setiap wilayah pada peta untuk melihat kantor pusat dan cakupan provinsi Otoritas Bandar Udara di seluruh Indonesia.',2),
-('home','quick','Beranda — Akses Cepat','Akses Cepat','Layanan & Informasi Populer',NULL,3),
-('home','news','Beranda — Berita','Berita & Pengumuman','Kabar Terbaru Direktorat',NULL,4),
-('home','services','Beranda — Layanan Unggulan','Layanan Unggulan','Layanan Utama Direktorat Bandar Udara',NULL,5),
-('home','gallery','Beranda — Galeri','Galeri','Dokumentasi Kegiatan',NULL,6),
-('home','partners','Beranda — Mitra Kerja','Mitra Kerja','Bersinergi dengan Pemangku Kepentingan Penerbangan',NULL,7),
-('home','newsletter','Beranda — Newsletter',NULL,'Dapatkan Info Terbaru','Berlangganan pembaruan regulasi, pengumuman, dan berita Direktorat Bandar Udara.',8),
+('home','rpjmn','Beranda — Program RPJMN','RPJMN 2025–2029','Indikasi Pembangunan & Pengembangan Bandar Udara','Arahkan kursor ke wilayah yang menyala pada peta untuk melihat bandar udara yang termasuk dalam setiap bagian program.',3),
+('home','quick','Beranda — Akses Cepat','Akses Cepat','Layanan & Informasi Populer',NULL,4),
+('home','news','Beranda — Berita','Berita & Pengumuman','Kabar Terbaru Direktorat',NULL,5),
+('home','services','Beranda — Layanan Unggulan','Layanan Unggulan','Layanan Utama Direktorat Bandar Udara',NULL,6),
+('home','gallery','Beranda — Galeri','Galeri','Dokumentasi Kegiatan',NULL,7),
+('home','partners','Beranda — Mitra Kerja','Mitra Kerja','Bersinergi dengan Pemangku Kepentingan Penerbangan',NULL,8),
+('home','newsletter','Beranda — Newsletter',NULL,'Dapatkan Info Terbaru','Berlangganan pembaruan regulasi, pengumuman, dan berita Direktorat Bandar Udara.',9),
 ('profil','sejarah','Profil — Sejarah','Sejarah','Perjalanan Direktorat Bandar Udara',NULL,1),
 ('profil','visi','Profil — Visi','Visi','Visi Direktorat',NULL,2),
 ('profil','misi','Profil — Misi','Misi','Misi Direktorat',NULL,3),
@@ -101,7 +102,13 @@ INSERT INTO `sections` (`page`,`section_key`,`label`,`eyebrow`,`title`,`subtitle
 ('layanan','alur','Layanan — Alur Proses','Alur Proses','Proses Layanan',NULL,3),
 ('layanan','faq','Layanan — FAQ','FAQ','Pertanyaan yang Sering Diajukan',NULL,4),
 ('layanan','cta','Layanan — Kartu Ajakan',NULL,'Siap Mengajukan Layanan?','Lengkapi persyaratan di atas lalu ajukan permohonan melalui sistem layanan digital kami.',5),
+('tugas-fungsi','tugas','Tugas & Fungsi — Tugas','Tugas','Tugas Direktorat Bandar Udara',NULL,1),
+('tugas-fungsi','fungsi','Tugas & Fungsi — Fungsi','Fungsi','Fungsi Direktorat Bandar Udara',NULL,2),
 ('galeri','tabs','Galeri — Tab',NULL,NULL,NULL,1);
+
+UPDATE `sections`
+   SET `body` = 'Seluruh data pada bagian ini bersumber dari Peraturan Presiden Nomor 12 Tahun 2025 Lampiran IV RPJMN 2025–2029.'
+ WHERE `page` = 'home' AND `section_key` = 'rpjmn';
 
 -- ---------- Hero ----------
 INSERT INTO `hero_slides` (`eyebrow`,`title`,`tagline`,`art_class`,`icon`,`btn1_label`,`btn1_url`,`btn2_label`,`btn2_url`,`sort`) VALUES
@@ -172,6 +179,52 @@ INSERT INTO `regions` (`region_code`,`numeral`,`title`,`hq`,`hq_short`,`coverage
 ('9','IX','Wilayah IX','Bandara Rendani, Manokwari','Rendani, Manokwari','Papua Barat, Papua Barat Daya, Papua Tengah','Papua Barat, Papua Barat Daya, Papua Tengah',9),
 ('10','X','Wilayah X','Bandara Mopah, Merauke','Mopah, Merauke','Papua Selatan, Papua Pegunungan, Papua','Papua Selatan, Papua Pegunungan, Papua',10);
 
+
+-- ---------- Program RPJMN 2025–2029 (indikasi pembangunan/pengembangan bandar udara) ----------
+INSERT INTO `rpjmn_programs` (`id`,`title`,`eyebrow`,`icon`,`summary`,`focus`,`note`,`sort`) VALUES
+(1,'Kawasan Pariwisata / Destinasi Pariwisata','Prioritas Nasional 3','bi-airplane-engines',
+ 'Indikasi pembangunan/pengembangan bandar udara pada kawasan pariwisata yang dikaitkan dengan RPJMN 2025–2029 PN 3 (pengembangan pariwisata, ekonomi kreatif, dan infrastruktur). Bandara: Kualanamu, Internasional Yogyakarta, Zainuddin Abdul Madjid, Komodo, Matahora, Perairan Misool (Raja Ampat), dan Domine Eduard Osok.',
+ 'Fokus mendukung DPP Borobudur–Yogyakarta–Prambanan, Danau Toba, Labuan Bajo, dan Lombok–Gili Tramena.',
+ NULL,1),
+(2,'Kawasan Perbatasan','Wilayah Terdepan','bi-signpost-2',
+ 'Indikasi pembangunan/pengembangan bandar udara di kawasan perbatasan. Bandara: Yuvai Semaring, Long Apung, Kol. Robert Atty Bessing, Kalimarau, dan Nunukan.',
+ NULL,
+ 'Pertimbangan teknis: rencana induk bandar udara, RTT sisi udara dan sisi darat, serta kesiapan lahan.',2),
+(3,'Bandar Udara Perairan Periode 2025–2029','Dukungan Kawasan Pariwisata','bi-water',
+ 'Indikasi pembangunan bandar udara perairan sebagai dukungan kawasan pengembangan pariwisata. Lokasi: Bandar Udara Perairan Sulawesi Selatan, pengembangan seaplane di Maluku dan Maluku Utara, serta Bandar Udara Perairan Misool Selatan.',
+ NULL,
+ 'Belum ada readiness criteria. Lokasi masih dalam proses kelengkapan administrasi dan justifikasi luasan lahan.',3),
+(4,'Kawasan Sentra Produksi Pangan / Food Estate','Fokus Wilayah Papua Selatan','bi-basket',
+ 'Indikasi pembangunan/pengembangan bandar udara pendukung kawasan sentra produksi pangan dengan fokus wilayah Papua Selatan. Bandara: Kimaam, Wanam, Kepi, Senggo, Bomakia, Korowai Batu, Senggeh, Manggelum, Mindiptanah, Tanah Merah, Bade, Okaba, dan Mopah.',
+ NULL,
+ 'Pertimbangan: bandar udara UPBU Ditjen Perhubungan Udara dibandingkan bandar udara/lapangan terbang yang dikelola swasta (PT Djarmaru) atau aset pihak swasta terkait rute perintis Mopah–Wanam.',4),
+(5,'Kawasan Hilirisasi','KEK & Kawasan Industri','bi-buildings',
+ 'Indikasi pembangunan/pengembangan bandar udara pendukung hilirisasi. Bandara: Raja Haji Abdullah (KEK Arun Lhokseumawe), Malikussaleh, Singkawang dan Pangsuma (KI Ketapang), serta Morowali (KI Morowali/Morowali Utara).',
+ 'Pertimbangan teknis pengembangan memperhatikan: (1) rencana induk bandar udara; (2) RTT sisi udara dan sisi darat; (3) kesiapan lahan.',
+ 'Telah dilakukan penandatanganan kesepakatan bersama pengembangan Bandar Udara Morowali antara Ditjen Perhubungan Udara dan PT Zhenshi Indonesia Industrial Park pada 13 November 2024. Rencana CSR sebesar Rp166.646.566.790 dengan rincian kegiatan: pekerjaan runway 300 m x 30 m; runway strip 260 m x 85 m; RESA 92,5 m x 65 m; serta pagar sisi udara sepanjang 720 meter.',5),
+(6,'Pendukung Logistik (Penurunan Harga Logistik)','Jembatan Udara','bi-box-seam',
+ 'Indikasi pembangunan/pengembangan bandar udara pendukung logistik. Bandara: Long Apung, Yuvai Semaring, Juwata, Ilaga, Mozes Kilangin, Sinak, Elelim, Wamena, Sobaham, Tanah Merah, Nop Goliat Dekai, Mopah, dan Oksibil.',
+ 'Mendukung rute perintis kargo (jembatan udara) untuk menekan harga logistik di wilayah pedalaman.',
+ NULL,6);
+
+INSERT INTO `rpjmn_areas` (`program_id`,`region_code`,`airports`,`sort`) VALUES
+(1,'2','Kualanamu — mendukung DPP Danau Toba',1),
+(1,'3','Bandara Internasional Yogyakarta — mendukung DPP Borobudur–Yogyakarta–Prambanan',2),
+(1,'4','Zainuddin Abdul Madjid (DPP Lombok–Gili Tramena), Komodo (DPP Labuan Bajo)',3),
+(1,'5','Matahora, Wakatobi',4),
+(1,'9','Perairan Misool (Raja Ampat), Domine Eduard Osok (Sorong)',5),
+(2,'7','Yuvai Semaring, Long Apung, Kol. Robert Atty Bessing, Kalimarau, Nunukan',1),
+(3,'5','Bandar Udara Perairan Sulawesi Selatan',1),
+(3,'8','Pengembangan seaplane di Maluku dan Maluku Utara',2),
+(3,'9','Bandar Udara Perairan Misool Selatan (Raja Ampat)',3),
+(4,'10','Kimaam, Wanam, Kepi, Senggo, Bomakia, Korowai Batu, Senggeh, Manggelum, Mindiptanah, Tanah Merah, Bade, Okaba, Mopah',1),
+(5,'1','Singkawang, Pangsuma (KI Ketapang)',1),
+(5,'2','Raja Haji Abdullah (KEK Arun Lhokseumawe), Malikussaleh',2),
+(5,'5','Morowali (KI Morowali / Morowali Utara)',3),
+(6,'7','Long Apung, Yuvai Semaring, Juwata',1),
+(6,'9','Ilaga, Mozes Kilangin, Sinak',2),
+(6,'10','Elelim, Wamena, Sobaham, Tanah Merah, Nop Goliat Dekai, Mopah, Oksibil',3);
+
 -- ---------- Video profil ----------
 INSERT INTO `home_video` (`eyebrow`,`title`,`caption`,`art_class`,`icon`) VALUES
 ('Video Profil','Mengenal Lebih Dekat Direktorat Bandar Udara','Placeholder video profil — sematkan tautan YouTube resmi pada berkas produksi.','art-2','bi-camera-reels');
@@ -231,7 +284,23 @@ INSERT INTO `org_units` (`unit_key`,`icon`,`title`,`description`,`chips`,`branch
 ('tu','bi-archive','Jabatan Fungsional & Jabatan Pelaksana','Mengelola administrasi umum, kepegawaian, keuangan, serta data dan informasi di lingkungan Direktorat Bandar Udara.','Administrasi, Kepegawaian, Pengelolaan Data','org-branch2',5),
 ('sistem','bi-diagram-3','Subdirektorat Sistem Penyelenggaraan & Pengusahaan','Mengawasi sistem penyelenggaraan operasional bandar udara serta membina tata kelola pengusahaan dan kerja sama bandar udara oleh badan usaha bandar udara.','Operasional, Pengusahaan, Kerja Sama','org-branch',6);
 
+
 -- ---------- Tugas & Fungsi ----------
+INSERT INTO `tf_overview` (`tugas_eyebrow`,`tugas_title`,`tugas`,`fungsi_eyebrow`,`fungsi_title`,`fungsi_intro`) VALUES
+('Tugas','Tugas Direktorat Bandar Udara',
+ 'Direktorat Bandar Udara mempunyai tugas melaksanakan perumusan kebijakan, penyusunan norma, standar, prosedur dan kriteria, pemberian bimbingan teknis dan supervisi, serta pemantauan, analisis, evaluasi dan pelaporan di bandar udara.',
+ 'Fungsi','Fungsi Direktorat Bandar Udara',
+ 'Dalam melaksanakan tugas tersebut, Direktorat Bandar Udara menyelenggarakan fungsi sebagai berikut.');
+
+INSERT INTO `tf_functions` (`icon`,`content`,`sort`) VALUES
+('bi-pencil-square','Penyiapan perumusan kebijakan di bidang standardisasi keselamatan bandar udara, tatanan kebandarudaraan dan lingkungan, prasarana bandar udara, peralatan dan pelayanan darurat bandar udara serta sistem penyelenggaraan dan pengusahaan bandar udara;',1),
+('bi-play-circle','Penyiapan pelaksanaan kebijakan di bidang standardisasi keselamatan bandar udara, tatanan kebandarudaraan dan lingkungan, prasarana bandar udara, peralatan dan pelayanan darurat bandar udara serta sistem penyelenggaraan dan pengusahaan bandar udara;',2),
+('bi-rulers','Penyiapan penyusunan, norma, standar, prosedur, dan kriteria di bidang standardisasi keselamatan bandar udara, tatanan kebandarudaraan dan lingkungan, prasarana bandar udara, peralatan dan pelayanan darurat bandar udara serta sistem penyelenggaraan dan pengusahaan bandar udara;',3),
+('bi-mortarboard','Penyiapan pemberian bimbingan teknis dan supervisi di bidang standardisasi keselamatan bandar udara, tatanan kebandarudaraan dan lingkungan, prasarana bandar udara, peralatan dan pelayanan darurat bandar udara serta sistem penyelenggaraan dan pengusahaan bandar udara;',4),
+('bi-clipboard-data','Penyiapan pelaksanaan pemantauan, analisis, evaluasi dan pelaporan di bidang standardisasi keselamatan bandar udara, tatanan kebandarudaraan dan lingkungan, prasarana bandar udara, peralatan dan pelayanan darurat bandar udara serta sistem penyelenggaraan dan pengusahaan bandar udara; dan',5),
+('bi-archive','Penyiapan pelaksanaan urusan tata usaha, keuangan, sumber daya manusia, pengelolaan data dan informasi, dan rumah tangga direktorat.',6);
+
+-- ---------- Tugas & Fungsi (unit kerja — arsip) ----------
 INSERT INTO `tf_units` (`id`,`number`,`title`,`intro`,`sort`) VALUES
 (1,'01','Standardisasi Keselamatan Bandar Udara','Unit ini menyusun dan mengawasi penerapan standar keselamatan operasional bandar udara secara nasional.',1),
 (2,'02','Tatanan Kebandarudaraan & Lingkungan','Unit ini menyusun tatanan kebandarudaraan nasional serta memastikan aspek lingkungan terjaga.',2),

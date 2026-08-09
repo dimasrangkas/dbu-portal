@@ -570,6 +570,153 @@
       });
     }
 
+    /* ---------- Korsel indikasi pembangunan bandar udara (RPJMN 2025–2029) ---------- */
+    var rpjmn = document.querySelector('[data-rpjmn]');
+    if(rpjmn){
+      var rPanes   = Array.prototype.slice.call(rpjmn.querySelectorAll('[data-rpjmn-pane]'));
+      var rDots    = Array.prototype.slice.call(rpjmn.querySelectorAll('[data-rpjmn-dot]'));
+      var rMap     = rpjmn.querySelector('[data-rpjmn-map]');
+      var rTooltip = rpjmn.querySelector('[data-rpjmn-tooltip]');
+      var rShapes  = Array.prototype.slice.call(rMap.querySelectorAll('.region'));
+      var rIndex   = 0;
+      var rTimer   = null;
+      var rDelay   = parseInt(rpjmn.getAttribute('data-rpjmn-interval'), 10) || 3000;
+
+      var rtNum      = rTooltip.querySelector('[data-rt-num]');
+      var rtTitle    = rTooltip.querySelector('[data-rt-title]');
+      var rtCoverage = rTooltip.querySelector('[data-rt-coverage]');
+      var rtAirports = rTooltip.querySelector('[data-rt-airports]');
+
+      function rShape(code){
+        for(var i = 0; i < rShapes.length; i++){
+          if(rShapes[i].getAttribute('data-region') === code) return rShapes[i];
+        }
+        return null;
+      }
+
+      /* Sorot wilayah milik bagian yang sedang aktif; sisanya kembali pasif. */
+      function rSyncMap(){
+        rShapes.forEach(function(shape){
+          shape.classList.remove('is-on', 'is-active');
+          shape.classList.add('is-muted');
+          shape.removeAttribute('data-airports');
+          shape.setAttribute('tabindex', '-1');
+        });
+        var areas = rPanes[rIndex].querySelectorAll('[data-rpjmn-area]');
+        Array.prototype.forEach.call(areas, function(area){
+          var shape = rShape(area.getAttribute('data-rpjmn-area'));
+          if(!shape) return;
+          shape.classList.remove('is-muted');
+          shape.classList.add('is-on');
+          shape.setAttribute('data-airports', area.getAttribute('data-airports') || '');
+          shape.setAttribute('tabindex', '0');
+        });
+        rTooltip.classList.remove('show');
+      }
+
+      /* Tinggi panel mengikuti pane aktif — pane lain diposisikan absolut. */
+      var rPaneWrap = rpjmn.querySelector('.rpjmn-panes');
+      function rSyncHeight(){
+        var style = window.getComputedStyle(rPaneWrap);
+        var pad = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+        rPaneWrap.style.height = (rPanes[rIndex].offsetHeight + pad) + 'px';
+      }
+      window.addEventListener('resize', rSyncHeight);
+
+      function rShow(next){
+        rIndex = (next + rPanes.length) % rPanes.length;
+        rPanes.forEach(function(pane, i){
+          pane.classList.toggle('active', i === rIndex);
+          if(i === rIndex){ pane.removeAttribute('aria-hidden'); }
+          else { pane.setAttribute('aria-hidden', 'true'); }
+        });
+        rDots.forEach(function(dot, i){
+          dot.classList.toggle('active', i === rIndex);
+          if(i === rIndex){ dot.setAttribute('aria-selected', 'true'); }
+          else { dot.removeAttribute('aria-selected'); }
+        });
+        rSyncHeight();
+        rSyncMap();
+      }
+
+      function rStart(){
+        rStop();
+        if(rPanes.length > 1) rTimer = setInterval(function(){ rShow(rIndex + 1); }, rDelay);
+      }
+      function rStop(){
+        if(rTimer){ clearInterval(rTimer); rTimer = null; }
+      }
+      function rGoto(next){ rShow(next); rStart(); }
+
+      rDots.forEach(function(dot, i){ dot.addEventListener('click', function(){ rGoto(i); }); });
+      var rPrev = rpjmn.querySelector('[data-rpjmn-prev]');
+      var rNext = rpjmn.querySelector('[data-rpjmn-next]');
+      rPrev && rPrev.addEventListener('click', function(){ rGoto(rIndex - 1); });
+      rNext && rNext.addEventListener('click', function(){ rGoto(rIndex + 1); });
+
+      /* Berhenti otomatis selagi pengunjung membaca atau menelusuri peta. */
+      rpjmn.addEventListener('mouseenter', rStop);
+      rpjmn.addEventListener('mouseleave', rStart);
+      rpjmn.addEventListener('focusin', rStop);
+      rpjmn.addEventListener('focusout', function(e){
+        if(!rpjmn.contains(e.relatedTarget)) rStart();
+      });
+
+      /* ---- Tooltip peta ---- */
+      function rPlaceTooltip(clientX, clientY){
+        var rect = rMap.getBoundingClientRect();
+        var box  = rTooltip.getBoundingClientRect();
+        var left = clientX - rect.left + 18;
+        var top  = clientY - rect.top + 18;
+        if(left + box.width > rect.width) left = clientX - rect.left - box.width - 18;
+        if(top + box.height > rect.height) top = clientY - rect.top - box.height - 18;
+        rTooltip.style.left = Math.max(8, left) + 'px';
+        rTooltip.style.top  = Math.max(8, top) + 'px';
+      }
+      function rShowTooltip(shape, clientX, clientY){
+        if(!shape.classList.contains('is-on')) return;
+        rtNum.textContent      = shape.getAttribute('data-num') || '';
+        rtTitle.textContent    = shape.getAttribute('data-title') || '';
+        rtCoverage.textContent = shape.getAttribute('data-coverage') || '';
+        rtAirports.textContent = shape.getAttribute('data-airports') || '';
+        rPlaceTooltip(clientX, clientY);
+        rTooltip.classList.add('show');
+      }
+
+      rShapes.forEach(function(shape){
+        shape.addEventListener('mouseenter', function(e){ rShowTooltip(shape, e.clientX, e.clientY); });
+        shape.addEventListener('mousemove', function(e){
+          if(shape.classList.contains('is-on')) rPlaceTooltip(e.clientX, e.clientY);
+        });
+        shape.addEventListener('mouseleave', function(){ rTooltip.classList.remove('show'); });
+        shape.addEventListener('focus', function(){
+          var box = shape.getBoundingClientRect();
+          rShowTooltip(shape, box.left + box.width / 2, box.top + box.height / 2);
+        });
+        shape.addEventListener('blur', function(){ rTooltip.classList.remove('show'); });
+      });
+
+      /* ---- Sinkron daftar wilayah pada panel teks dengan peta ---- */
+      rpjmn.addEventListener('mouseover', function(e){
+        var area = e.target.closest ? e.target.closest('[data-rpjmn-area]') : null;
+        if(!area) return;
+        var shape = rShape(area.getAttribute('data-rpjmn-area'));
+        if(shape) shape.classList.add('is-active');
+      });
+      rpjmn.addEventListener('mouseout', function(e){
+        var area = e.target.closest ? e.target.closest('[data-rpjmn-area]') : null;
+        if(!area) return;
+        var shape = rShape(area.getAttribute('data-rpjmn-area'));
+        if(shape) shape.classList.remove('is-active');
+      });
+
+      rSyncHeight();
+      rSyncMap();
+      rStart();
+      /* Ukur ulang setelah webfont & ikon selesai dimuat. */
+      window.addEventListener('load', rSyncHeight);
+    }
+
     /* ---------- Emissions dashboard (SVG bar charts, hover tooltips) ---------- */
     var emisiScopeWrap = document.querySelector('[data-emisi-chart="scope"]');
     var emisiQuarterlyWrap = document.querySelector('[data-emisi-chart="quarterly"]');

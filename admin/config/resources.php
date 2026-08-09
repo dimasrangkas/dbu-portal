@@ -153,6 +153,37 @@ return [
         ],
     ],
 
+    'rpjmn_programs' => [
+        'group' => 'Beranda', 'label' => 'Program RPJMN 2025–2029', 'icon' => 'bi-airplane', 'table' => 'rpjmn_programs',
+        'order' => 'sort, id', 'reorder' => true,
+        'list'  => ['title' => 'Bagian', 'eyebrow' => 'Label Atas', 'sort' => 'Urutan', 'is_active' => 'Aktif'],
+        'fields' => [
+            'title'     => ['label' => 'Judul Bagian', 'type' => 'text', 'required' => true],
+            'eyebrow'   => ['label' => 'Label Atas', 'type' => 'text', 'col' => 'half', 'hint' => 'Contoh: Prioritas Nasional 3'],
+            'icon'      => f_icon(),
+            'summary'   => ['label' => 'Uraian', 'type' => 'textarea', 'rows' => 5,
+                            'hint'  => 'Isi utama bagian: cakupan program dan daftar bandar udara'],
+            'focus'     => ['label' => 'Catatan Fokus', 'type' => 'textarea',
+                            'hint'  => 'Tampil dengan latar biru — mis. kawasan/DPP yang didukung'],
+            'note'      => ['label' => 'Catatan Tambahan', 'type' => 'textarea',
+                            'hint'  => 'Tampil dengan latar abu — mis. pertimbangan teknis atau status kesiapan'],
+            'sort'      => f_sort(),
+            'is_active' => f_active('Tampilkan sebagai bagian korsel'),
+        ],
+        'children' => [
+            'rpjmn_areas' => [
+                'label' => 'Wilayah pada Peta', 'table' => 'rpjmn_areas', 'foreign_key' => 'program_id', 'order' => 'sort, id',
+                'hint'  => 'Wilayah yang dipilih akan menyala pada peta saat bagian ini aktif. Daftar bandar udara tampil pada tooltip peta.',
+                'fields' => [
+                    'region_code' => ['label' => 'Wilayah OBU', 'type' => 'select', 'required' => true,
+                                      'options_sql' => 'SELECT region_code AS value, CONCAT(numeral, " — ", title, " (", COALESCE(hq_short, ""), ")") AS label FROM regions ORDER BY sort'],
+                    'airports'    => ['label' => 'Bandar Udara / Lokasi', 'type' => 'text', 'required' => true,
+                                      'hint'  => 'Pisahkan dengan koma'],
+                ],
+            ],
+        ],
+    ],
+
     'home_video' => [
         'group' => 'Beranda', 'label' => 'Video Profil', 'icon' => 'bi-camera-reels',
         'table' => 'home_video', 'single' => true,
@@ -273,26 +304,29 @@ return [
     ],
 
     /* ============ TUGAS & FUNGSI ============ */
-    'tf_units' => [
-        'group' => 'Tugas & Fungsi', 'label' => 'Unit & Rincian', 'icon' => 'bi-list-check', 'table' => 'tf_units',
-        'order' => 'sort, id', 'reorder' => true,
-        'list'  => ['number' => 'No.', 'title' => 'Unit Kerja', 'sort' => 'Urutan', 'is_active' => 'Aktif'],
+    'tf_overview' => [
+        'group' => 'Tugas & Fungsi', 'label' => 'Tugas Direktorat', 'icon' => 'bi-bullseye',
+        'table' => 'tf_overview', 'single' => true,
         'fields' => [
-            'number'    => ['label' => 'Nomor', 'type' => 'text', 'required' => true, 'col' => 'half', 'hint' => 'Contoh: 01'],
-            'title'     => ['label' => 'Nama Unit', 'type' => 'text', 'required' => true, 'col' => 'half'],
-            'intro'     => ['label' => 'Pengantar', 'type' => 'textarea'],
+            'tugas_eyebrow'  => ['label' => 'Label Atas — Tugas', 'type' => 'text', 'col' => 'half'],
+            'tugas_title'    => ['label' => 'Judul Seksi Tugas', 'type' => 'text', 'col' => 'half'],
+            'tugas'          => ['label' => 'Isi Tugas', 'type' => 'richtext', 'rows' => 6,
+                                 'hint'  => 'Pisahkan paragraf dengan baris kosong'],
+            'fungsi_eyebrow' => ['label' => 'Label Atas — Fungsi', 'type' => 'text', 'col' => 'half'],
+            'fungsi_title'   => ['label' => 'Judul Seksi Fungsi', 'type' => 'text', 'col' => 'half'],
+            'fungsi_intro'   => ['label' => 'Pengantar Daftar Fungsi', 'type' => 'textarea'],
+        ],
+    ],
+
+    'tf_functions' => [
+        'group' => 'Tugas & Fungsi', 'label' => 'Daftar Fungsi', 'icon' => 'bi-list-ol', 'table' => 'tf_functions',
+        'order' => 'sort, id', 'reorder' => true,
+        'list'  => ['content' => 'Fungsi', 'sort' => 'Urutan', 'is_active' => 'Aktif'],
+        'fields' => [
+            'icon'      => f_icon(),
+            'content'   => ['label' => 'Isi Fungsi', 'type' => 'textarea', 'rows' => 4, 'required' => true],
             'sort'      => f_sort(),
             'is_active' => f_active(),
-        ],
-        'children' => [
-            'tf_details' => [
-                'label' => 'Rincian Tugas & Fungsi', 'table' => 'tf_details', 'foreign_key' => 'unit_id', 'order' => 'sort, id',
-                'fields' => [
-                    'icon'    => ['label' => 'Ikon', 'type' => 'icon'],
-                    'label'   => ['label' => 'Judul', 'type' => 'text', 'required' => true],
-                    'content' => ['label' => 'Isi', 'type' => 'textarea'],
-                ],
-            ],
         ],
     ],
 
@@ -573,6 +607,8 @@ return [
             'eyebrow'     => ['label' => 'Label Atas', 'type' => 'text', 'col' => 'half'],
             'title'       => ['label' => 'Judul', 'type' => 'text', 'col' => 'half'],
             'subtitle'    => ['label' => 'Sub Judul', 'type' => 'textarea'],
+            'body'        => ['label' => 'Teks Tambahan', 'type' => 'textarea',
+                              'hint'  => 'Dipakai sebagian seksi untuk catatan di bawah konten, mis. sumber data'],
             'is_active'   => f_active(),
         ],
     ],

@@ -2,34 +2,52 @@
 require_once dirname(__DIR__) . '/bootstrap.php';
 $meta = page_start('tugas-fungsi', ['breadcrumbs' => [['label' => 'Tugas & Fungsi']]]);
 
-$units = db_all('SELECT * FROM tf_units WHERE is_active = 1 ORDER BY sort, id');
-$byUnit = [];
-foreach (db_all('SELECT * FROM tf_details ORDER BY sort, id') as $d) {
-    $byUnit[$d['unit_id']][] = $d;
-}
+$overview = db_one('SELECT * FROM tf_overview ORDER BY id LIMIT 1') ?: [];
+$funcs    = db_all('SELECT * FROM tf_functions WHERE is_active = 1 ORDER BY sort, id');
+$s        = sections('tugas-fungsi');
 
 partial('header');
 partial('page-title', ['meta' => $meta]);
 ?>
 
-<section class="section">
-  <div class="container" style="max-width:960px;">
-    <?php foreach ($units as $i => $unit): $details = $byUnit[$unit['id']] ?? []; ?>
-    <div class="accordion-item<?= $i === 0 ? ' open' : '' ?>">
-      <button class="accordion-head"><span><span class="num"><?= e($unit['number']) ?></span><?= e($unit['title']) ?></span><i class="bi bi-chevron-down"></i></button>
-      <div class="accordion-body"><div class="accordion-body-in">
-        <?php if ($unit['intro']): ?><p><?= e($unit['intro']) ?></p><?php endif; ?>
-        <?php if ($details): ?>
-        <div class="sub-grid">
-          <?php foreach ($details as $d): ?>
-          <div class="sub"><b><i class="bi <?= e($d['icon']) ?>"></i> <?= e($d['label']) ?></b><?= e($d['content']) ?></div>
-          <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-      </div></div>
+<!-- ===================== TUGAS ===================== -->
+<?php if (!empty($overview['tugas'])): ?>
+<section class="section" id="tugas">
+  <div class="container" style="max-width:900px;">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center"><?= e($overview['tugas_eyebrow'] ?: ($s['tugas']['eyebrow'] ?? 'Tugas')) ?></div>
+      <h2><?= e($overview['tugas_title'] ?: ($s['tugas']['title'] ?? 'Tugas Direktorat Bandar Udara')) ?></h2>
     </div>
-    <?php endforeach; ?>
+    <div class="info-box">
+      <h3><i class="bi bi-bullseye"></i>&nbsp; Tugas</h3>
+      <?= paragraphs($overview['tugas']) ?>
+    </div>
   </div>
 </section>
+<?php endif; ?>
+
+<!-- ===================== FUNGSI ===================== -->
+<?php if ($funcs): ?>
+<section class="section section-alt" id="fungsi">
+  <div class="container" style="max-width:960px;">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center"><?= e(($overview['fungsi_eyebrow'] ?? '') ?: ($s['fungsi']['eyebrow'] ?? 'Fungsi')) ?></div>
+      <h2><?= e(($overview['fungsi_title'] ?? '') ?: ($s['fungsi']['title'] ?? 'Fungsi Direktorat Bandar Udara')) ?></h2>
+      <?php if (!empty($overview['fungsi_intro'])): ?><p><?= e($overview['fungsi_intro']) ?></p><?php endif; ?>
+    </div>
+    <ol class="fungsi-list">
+      <?php foreach ($funcs as $i => $f): ?>
+      <li class="fungsi-item">
+        <span class="fungsi-num"><?= $i + 1 ?></span>
+        <div class="fungsi-body">
+          <?php if ($f['icon']): ?><i class="bi <?= e($f['icon']) ?>"></i><?php endif; ?>
+          <p><?= e($f['content']) ?></p>
+        </div>
+      </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</section>
+<?php endif; ?>
 
 <?php partial('footer'); ?>
