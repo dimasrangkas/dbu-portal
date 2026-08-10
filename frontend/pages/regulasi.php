@@ -50,6 +50,7 @@ partial('page-title', ['meta' => $meta]);
             <td>
               <a href="<?= e($detail) ?>" class="dl-link">Detail</a>
               <?php if ($r['file']): ?> &nbsp;<a href="<?= e(asset_url($r['file'])) ?>" class="dl-link" download><i class="bi bi-download"></i></a><?php endif; ?>
+              <?php if (!empty($r['source_url'])): ?> &nbsp;<a href="<?= e($r['source_url']) ?>" class="dl-link" target="_blank" rel="noopener" title="Buka di JDIH Kemenhub"><i class="bi bi-box-arrow-up-right"></i></a><?php endif; ?>
             </td>
           </tr>
           <?php endforeach; ?>

@@ -1,21 +1,26 @@
 <?php
-/* Peta Otoritas Bandar Udara — bentuk peta dari indonesia-map.php, metadata wilayah dari basis data. */
+/* Peta Otoritas Bandar Udara — bentuk peta dari indonesia-map.php, metadata wilayah dari basis data.
+   $regions  baris tabel regions
+   $airports region_id => daftar baris region_airports */
+$airports   = $airports ?? [];
 $obuRegions = [];
 foreach ($regions as $r) {
+    $list = $airports[$r['id']] ?? [];
     $obuRegions[$r['region_code']] = [
         'attrs' => [
-            'data-num'        => $r['numeral'],
-            'data-title'      => $r['title'],
-            'data-hq'         => $r['hq'],
-            'data-coverage'   => $r['coverage'],
-            'aria-label'      => 'Otoritas Bandar Udara ' . $r['title'],
+            'data-num'       => $r['numeral'],
+            'data-title'     => $r['title'],
+            'data-hq'        => $r['hq_short'] ?: $r['hq'],
+            'data-coverage'  => $r['coverage'],
+            'data-airports'  => count($list),
+            'aria-label'     => 'Otoritas Bandar Udara ' . $r['title'] . ' — ' . count($list) . ' bandar udara',
         ],
     ];
 }
 ?>
     <div class="map-wrap">
       <div class="map-toolbar">
-        <div class="map-hint"><i class="bi bi-hand-index-thumb"></i> Arahkan kursor / ketuk wilayah pada peta</div>
+        <div class="map-hint"><i class="bi bi-hand-index-thumb"></i> Klik salah satu wilayah pada peta untuk melihat daftar bandar udaranya</div>
         <div class="map-zoom-controls">
           <button type="button" class="icon-btn" data-map-zoom-out aria-label="Perkecil peta"><i class="bi bi-dash-lg"></i></button>
           <button type="button" class="icon-btn" data-map-zoom-reset aria-label="Atur ulang zoom"><i class="bi bi-arrow-counterclockwise"></i></button>
@@ -39,19 +44,41 @@ foreach ($regions as $r) {
             <h4 data-tt-title>Wilayah I</h4>
             <span class="map-tooltip-hq" data-tt-hq></span>
             <p data-tt-coverage></p>
+            <span class="map-tooltip-count" data-tt-count></span>
           </div>
         </div>
+      </div>
+
+      <!-- Daftar bandar udara wilayah yang sedang disorot -->
+      <div class="map-airports" data-map-airports>
+        <div class="map-airports-empty" data-airports-empty>
+          <i class="bi bi-hand-index-thumb"></i> Klik salah satu wilayah pada peta atau pada daftar di bawah untuk melihat bandar udaranya.
+        </div>
+        <?php foreach ($regions as $r): $list = $airports[$r['id']] ?? []; if (!$list) continue; ?>
+        <div class="map-airports-panel" data-airports-region="<?= e($r['region_code']) ?>" hidden>
+          <div class="map-airports-head">
+            <span class="map-airports-num"><?= e($r['numeral']) ?></span>
+            <div>
+              <h4>Otoritas Bandar Udara <?= e($r['title']) ?><?= $r['hq_short'] ? ' — ' . e($r['hq_short']) : '' ?></h4>
+              <span><?= count($list) ?> bandar udara &middot; <?= e($r['coverage_short'] ?: $r['coverage']) ?></span>
+            </div>
+          </div>
+          <ol class="map-airports-list">
+            <?php foreach ($list as $a): ?><li><?= e($a['name']) ?></li><?php endforeach; ?>
+          </ol>
+        </div>
+        <?php endforeach; ?>
       </div>
 
       <div class="map-legend">
         <?php foreach ($regions as $r): ?>
         <div class="map-legend-item" data-legend-region="<?= e($r['region_code']) ?>">
           <div class="map-legend-num"><?= e($r['numeral']) ?></div>
-          <div><h4><?= e($r['title']) ?></h4><span><?= e($r['hq_short'] ?: $r['hq']) ?></span>
+          <div><h4><?= e($r['title']) ?><?= $r['hq_short'] ? ' — ' . e($r['hq_short']) : '' ?></h4>
+          <span><?= count($airports[$r['id']] ?? []) ?> bandar udara</span>
           <p><?= e($r['coverage_short'] ?: $r['coverage']) ?></p></div>
         </div>
         <?php endforeach; ?>
       </div>
 
-      <p style="font-size:12px; color:var(--text-500); margin-top:14px;"><i class="bi bi-info-circle"></i> Peta bersifat skematik (bukan batas administratif presisi) dan disederhanakan untuk kebutuhan visualisasi wilayah kerja. Sumber pembagian wilayah: Wikipedia — Otoritas Bandar Udara.</p>
     </div>

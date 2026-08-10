@@ -9,6 +9,10 @@ $aboutSec  = section('home', 'about');
 $aboutCard = db_all('SELECT * FROM about_cards WHERE is_active = 1 ORDER BY sort, id');
 $petaSec   = section('home', 'peta');
 $regions   = db_all('SELECT * FROM regions WHERE is_active = 1 ORDER BY sort, id');
+$regionAir = [];
+foreach (db_all('SELECT * FROM region_airports ORDER BY sort, id') as $airport) {
+    $regionAir[$airport['region_id']][] = $airport;
+}
 $rpjmnSec  = section('home', 'rpjmn');
 $rpjmn     = db_all('SELECT * FROM rpjmn_programs WHERE is_active = 1 ORDER BY sort, id');
 if ($rpjmn) {
@@ -134,9 +138,6 @@ partial('header');
   </div>
 </section>
 
-<!-- ===================== DASBOR DATA (di luar cakupan CMS) ===================== -->
-<?php partial('dashboard-carousel'); ?>
-
 <!-- ===================== PETA WILAYAH ===================== -->
 <section class="section" id="peta-wilayah">
   <div class="container">
@@ -145,7 +146,7 @@ partial('header');
       <h2><?= e($petaSec['title']) ?></h2>
       <?php if ($petaSec['subtitle']): ?><p><?= e($petaSec['subtitle']) ?></p><?php endif; ?>
     </div>
-    <?php partial('peta-wilayah', ['regions' => $regions]); ?>
+    <?php partial('peta-wilayah', ['regions' => $regions, 'airports' => $regionAir]); ?>
   </div>
 </section>
 
@@ -160,7 +161,6 @@ partial('header');
     </div>
     <?php partial('rpjmn-carousel', ['programs' => $rpjmn, 'regions' => $regions]); ?>
     <?php if (!empty($rpjmnSec['body'])): ?>
-    <p class="rpjmn-source"><i class="bi bi-journal-text"></i> <?= e($rpjmnSec['body']) ?></p>
     <?php endif; ?>
   </div>
 </section>

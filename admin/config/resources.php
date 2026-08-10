@@ -151,6 +151,15 @@ return [
             'sort'           => f_sort(),
             'is_active'      => f_active(),
         ],
+        'children' => [
+            'region_airports' => [
+                'label' => 'Daftar Bandar Udara', 'table' => 'region_airports', 'foreign_key' => 'region_id', 'order' => 'sort, id',
+                'hint'  => 'Tampil saat wilayah ini disorot pada peta beranda. Urutan baris menentukan urutan tampil.',
+                'fields' => [
+                    'name' => ['label' => 'Nama Bandar Udara', 'type' => 'text', 'required' => true],
+                ],
+            ],
+        ],
     ],
 
     'rpjmn_programs' => [
@@ -437,6 +446,8 @@ return [
             'date_published' => ['label' => 'Tanggal Diundangkan', 'type' => 'date', 'col' => 'half'],
             'about'          => ['label' => 'Tentang Regulasi', 'type' => 'richtext'],
             'file'           => ['label' => 'Berkas PDF', 'type' => 'file'],
+            'source_url'     => ['label' => 'Tautan Sumber (JDIH)', 'type' => 'text',
+                                 'hint'  => 'Alamat dokumen pada jdih.kemenhub.go.id — tampil sebagai tombol "Lihat di JDIH Kemenhub"'],
             'sort'           => f_sort(),
             'is_active'      => f_active(),
         ],

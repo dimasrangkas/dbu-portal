@@ -496,13 +496,32 @@
         mapStage.classList.remove('is-dragging');
       });
 
-      /* ---- Hover / focus / tap tooltip ---- */
+      /* ---- Pilih wilayah lewat klik (bukan hover) ---- */
       var tooltip = document.querySelector('[data-map-tooltip]');
       var ttNum = tooltip.querySelector('[data-tt-num]');
       var ttTitle = tooltip.querySelector('[data-tt-title]');
       var ttHq = tooltip.querySelector('[data-tt-hq]');
       var ttCoverage = tooltip.querySelector('[data-tt-coverage]');
+      var ttCount = tooltip.querySelector('[data-tt-count]');
       var pinnedRegion = null;
+
+      /* ---- Panel daftar bandar udara di bawah peta ---- */
+      var airportsWrap  = document.querySelector('[data-map-airports]');
+      var airportsEmpty = airportsWrap && airportsWrap.querySelector('[data-airports-empty]');
+      var airportPanels = airportsWrap
+        ? Array.prototype.slice.call(airportsWrap.querySelectorAll('[data-airports-region]'))
+        : [];
+
+      function showAirports(code){
+        if(!airportsWrap) return;
+        var found = false;
+        airportPanels.forEach(function(panel){
+          var match = panel.getAttribute('data-airports-region') === code;
+          panel.hidden = !match;
+          if(match) found = true;
+        });
+        if(airportsEmpty) airportsEmpty.hidden = found;
+      }
 
       function positionTooltip(clientX, clientY){
         var rect = mapStage.getBoundingClientRect();
@@ -514,59 +533,80 @@
         tooltip.style.left = Math.max(8, left) + 'px';
         tooltip.style.top = Math.max(8, top) + 'px';
       }
-      function showTooltip(region, clientX, clientY){
+      function fillTooltip(region){
         ttNum.textContent = region.getAttribute('data-num');
         ttTitle.textContent = 'Otoritas Bandar Udara ' + region.getAttribute('data-title');
         ttHq.textContent = region.getAttribute('data-hq');
         ttCoverage.textContent = region.getAttribute('data-coverage');
-        positionTooltip(clientX, clientY);
-        tooltip.classList.add('show');
-      }
-      function hideTooltip(){
-        if(pinnedRegion) return;
-        tooltip.classList.remove('show');
+        if(ttCount){
+          var jml = region.getAttribute('data-airports');
+          ttCount.textContent = jml ? jml + ' bandar udara' : '';
+        }
       }
 
       var regions = Array.prototype.slice.call(mapStage.querySelectorAll('.region'));
-      regions.forEach(function(region){
-        region.addEventListener('mouseenter', function(e){ showTooltip(region, e.clientX, e.clientY); });
-        region.addEventListener('mousemove', function(e){ if(!pinnedRegion) positionTooltip(e.clientX, e.clientY); });
-        region.addEventListener('mouseleave', function(){ if(!pinnedRegion) hideTooltip(); });
-        region.addEventListener('focus', function(){
-          var box = region.getBoundingClientRect();
-          showTooltip(region, box.left + box.width / 2, box.top + box.height / 2);
+      var legendItems = Array.prototype.slice.call(document.querySelectorAll('[data-legend-region]'));
+
+      /** Satu-satunya jalan mengubah pilihan: klik peta, klik legenda, atau Enter/Spasi. */
+      function selectRegion(region, clientX, clientY){
+        if(pinnedRegion && pinnedRegion !== region) pinnedRegion.classList.remove('is-active');
+        pinnedRegion = region;
+        region.classList.add('is-active');
+
+        var code = region.getAttribute('data-region');
+        legendItems.forEach(function(item){
+          item.classList.toggle('is-active', item.getAttribute('data-legend-region') === code);
         });
-        region.addEventListener('blur', function(){ if(pinnedRegion !== region) hideTooltip(); });
+
+        fillTooltip(region);
+        if(clientX === undefined){
+          var box = region.getBoundingClientRect();
+          clientX = box.left + box.width / 2;
+          clientY = box.top + box.height / 2;
+        }
+        tooltip.classList.add('show');
+        positionTooltip(clientX, clientY);
+        showAirports(code);
+      }
+
+      function clearRegion(){
+        if(pinnedRegion) pinnedRegion.classList.remove('is-active');
+        pinnedRegion = null;
+        legendItems.forEach(function(item){ item.classList.remove('is-active'); });
+        tooltip.classList.remove('show');
+        showAirports(null);
+      }
+
+      function toggleRegion(region, clientX, clientY){
+        if(pinnedRegion === region) clearRegion();
+        else selectRegion(region, clientX, clientY);
+      }
+
+      regions.forEach(function(region){
         region.addEventListener('click', function(e){
           if(dragMoved){ dragMoved = false; return; }
-          if(pinnedRegion === region){
-            pinnedRegion.classList.remove('is-active');
-            pinnedRegion = null;
-            hideTooltip();
-          } else {
-            if(pinnedRegion) pinnedRegion.classList.remove('is-active');
-            pinnedRegion = region;
-            region.classList.add('is-active');
-            showTooltip(region, e.clientX, e.clientY);
-          }
+          toggleRegion(region, e.clientX, e.clientY);
+          e.stopPropagation();
+        });
+        region.addEventListener('keydown', function(e){
+          if(e.key !== 'Enter' && e.key !== ' ') return;
+          e.preventDefault();
+          toggleRegion(region);
           e.stopPropagation();
         });
       });
-      document.addEventListener('click', function(){
-        if(pinnedRegion){
-          pinnedRegion.classList.remove('is-active');
-          pinnedRegion = null;
-          tooltip.classList.remove('show');
-        }
-      });
 
-      /* ---- Legend hover sync ---- */
-      var legendItems = document.querySelectorAll('[data-legend-region]');
       legendItems.forEach(function(item){
         var region = mapStage.querySelector('.region[data-region="' + item.getAttribute('data-legend-region') + '"]');
         if(!region) return;
-        item.addEventListener('mouseenter', function(){ region.classList.add('is-active'); });
-        item.addEventListener('mouseleave', function(){ if(pinnedRegion !== region) region.classList.remove('is-active'); });
+        item.addEventListener('click', function(e){
+          toggleRegion(region);
+          e.stopPropagation();
+        });
+      });
+
+      document.addEventListener('click', function(){
+        if(pinnedRegion) clearRegion();
       });
     }
 
@@ -1226,54 +1266,6 @@
       }
 
       /* ---- Simple grouped bar (2 categories x 2 series) ---- */
-      function pkpRenderGroupedBar(wrap, categories, series){
-        var width = 260, height = 210, padL = 30, padR = 6, padT = 10, padB = 26;
-        var plotW = width - padL - padR, plotH = height - padT - padB;
-        var maxY = Math.max.apply(null, series.reduce(function(a, s){ return a.concat(s.values); }, [])) * 1.15;
-        var step = maxY > 20 ? 8 : 4;
-        var baseline = padT + plotH;
-        var svg = pkpEl('svg', { viewBox: '0 0 ' + width + ' ' + height, width: '100%' });
-
-        for(var v = 0; v <= maxY; v += step){
-          var gy = baseline - (v / maxY) * plotH;
-          svg.appendChild(pkpEl('line', { class: 'pkp-axis-line', x1: padL, x2: padL + plotW, y1: gy, y2: gy }));
-          var lbl = pkpEl('text', { class: 'pkp-axis-label', x: padL - 6, y: gy + 3, 'text-anchor': 'end' });
-          lbl.textContent = Math.round(v);
-          svg.appendChild(lbl);
-        }
-
-        var clusterGap = 22, barGap = 4, maxBarW = 26;
-        var clusterW = (plotW - (categories.length - 1) * clusterGap) / categories.length;
-        var barSlot = clusterW / series.length;
-        var barW = Math.min(maxBarW, barSlot - barGap);
-
-        categories.forEach(function(cat, ci){
-          var clusterX = padL + ci * (clusterW + clusterGap);
-          series.forEach(function(s, si){
-            var val = s.values[ci];
-            var h = (val / maxY) * plotH;
-            var x = clusterX + si * barSlot + (barSlot - barW) / 2;
-            var y = baseline - h;
-            var bar = pkpEl('rect', { class: 'pkp-bar', x: x, y: y, width: barW, height: h, rx: 4, fill: s.color });
-            svg.appendChild(bar);
-            var vLbl = pkpEl('text', { class: 'pkp-val-label', x: x + barW / 2, y: y - 6 });
-            vLbl.textContent = val;
-            svg.appendChild(vLbl);
-            bar.addEventListener('pointerenter', function(){ bar.classList.add('is-hover'); });
-            bar.addEventListener('pointerleave', function(){ pkpHideTooltip(); });
-            bar.addEventListener('pointermove', function(e){
-              pkpShowTooltip(wrap, e.clientX, e.clientY, cat, [
-                { color: s.color, label: s.name, value: pkpFmt(val) }
-              ]);
-            });
-          });
-          var qLbl = pkpEl('text', { class: 'pkp-cat-label', x: clusterX + clusterW / 2, y: baseline + 18 });
-          qLbl.textContent = cat;
-          svg.appendChild(qLbl);
-        });
-
-        wrap.appendChild(svg);
-      }
 
       /* ---- Single-series categorical bar (own color per bar) ---- */
       function pkpRenderCategoryBar(wrap, data){
@@ -1316,7 +1308,6 @@
 
       /* ---- Palette (validated categorical order — see dataviz skill) ---- */
       var CAT = { blue: '#2a78d6', orange: '#eb6834', aqua: '#1baf7a', yellow: '#eda100', magenta: '#e87ba4', green: '#008300', violet: '#4a3aa7', red: '#e34948' };
-      var STATUS_BAD = '#C0392B', STATUS_WARN = '#e07830', STATUS_GOOD = '#1B8A5A';
 
       /* ---- Data ---- */
       pkpRenderDonut(document.querySelector('[data-pkp-chart="kategori"]'), [
@@ -1330,35 +1321,10 @@
         { label: 'Kategori 9', value: 5, color: CAT.red }
       ], { centerValue: 247, centerLabel: 'TOTAL' });
 
-      pkpRenderDonut(document.querySelector('[data-pkp-chart="tindak-lanjut"]'), [
-        { label: 'Belum ditindak lanjut', value: 30, color: STATUS_BAD },
-        { label: 'Sudah ditindak lanjut (Ada temuan/Open)', value: 50, color: STATUS_WARN },
-        { label: 'Sudah ditindak lanjut & Lengkap', value: 20, color: STATUS_GOOD }
-      ], { centerValue: 100, centerLabel: 'TOTAL' });
-
-      pkpRenderDonut(document.querySelector('[data-pkp-chart="verifikasi"]'), [
-        { label: 'Belum di Verifikasi', value: 30, color: STATUS_BAD },
-        { label: 'Sudah Di verifikasi', value: 70, color: STATUS_GOOD }
-      ], { centerValue: 100, centerLabel: 'TOTAL' });
-
-      pkpRenderPie(document.querySelector('[data-pkp-chart="aep"]'), [
-        { label: 'ADA', value: 157, color: STATUS_GOOD },
-        { label: 'Proses Penyusunan', value: 72, color: STATUS_WARN },
-        { label: 'Belum Ada', value: 20, color: STATUS_BAD }
-      ]);
-
       pkpRenderPie(document.querySelector('[data-pkp-chart="vasis-breakdown"]'), [
         { label: 'PAPI', value: 75, color: CAT.violet },
         { label: 'A-PAPI', value: 25, color: CAT.aqua }
       ]);
-
-      pkpRenderGroupedBar(document.querySelector('[data-pkp-chart="vasis-kalibrasi"]'),
-        ['OVERDUE', 'VALID'],
-        [
-          { name: 'PAPI', color: CAT.violet, values: [5, 30] },
-          { name: 'A-PAPI', color: CAT.aqua, values: [10, 20] }
-        ]
-      );
 
       pkpRenderCategoryBar(document.querySelector('[data-pkp-chart="approach-light"]'), [
         { label: 'SALS', value: 4, color: CAT.blue },

@@ -72,7 +72,7 @@ INSERT INTO `page_meta` (`page_key`,`page_label`,`meta_title`,`meta_description`
 ('organisasi','Organisasi','Struktur Organisasi — Direktorat Bandar Udara','Struktur organisasi Direktorat Bandar Udara: Direktur dan lima Subdirektorat teknis.','Struktur Organisasi','Struktur Organisasi Direktorat Bandar Udara','Direktorat Bandar Udara dipimpin oleh seorang Direktur yang membawahi lima Subdirektorat teknis dan Jabatan Fungsional & Jabatan Pelaksana.','Organisasi'),
 ('tugas-fungsi','Tugas & Fungsi','Tugas & Fungsi — Direktorat Bandar Udara','Tugas dan fungsi Direktorat Bandar Udara dalam perumusan kebijakan, penyusunan NSPK, bimbingan teknis, serta pemantauan dan evaluasi di bandar udara.','Tugas & Fungsi','Tugas & Fungsi Direktorat Bandar Udara','Tugas pokok Direktorat Bandar Udara beserta enam fungsi yang diselenggarakan dalam pelaksanaannya.','Tugas & Fungsi'),
 ('layanan','Layanan','Layanan — Direktorat Bandar Udara','Layanan publik Direktorat Bandar Udara: sertifikasi, standar keselamatan, prasarana, dan layanan daring lainnya.','Layanan Publik','Layanan Direktorat Bandar Udara','Layanan sertifikasi, standardisasi, dan perizinan kebandarudaraan yang dapat diajukan secara daring.','Layanan'),
-('regulasi','Regulasi','Regulasi — Direktorat Bandar Udara','Daftar regulasi dan peraturan bidang kebandarudaraan yang dapat dicari dan difilter berdasarkan tahun dan kategori.','Regulasi','Regulasi Kebandarudaraan','Cari dan unduh peraturan, standar, dan pedoman teknis di bidang bandar udara.','Regulasi'),
+('regulasi','Regulasi','Regulasi — Direktorat Bandar Udara','Daftar regulasi kebandarudaraan yang mengacu pada JDIH Kementerian Perhubungan — dapat dicari dan difilter berdasarkan tahun, kategori, dan status.','Regulasi','Regulasi Kebandarudaraan','Daftar peraturan bidang kebandarudaraan yang mengacu pada JDIH Kementerian Perhubungan. Klik ikon tautan untuk membuka dokumen resminya.','Regulasi'),
 ('berita','Berita','Berita — Direktorat Bandar Udara','Arsip berita dan kegiatan Direktorat Bandar Udara.','Berita','Berita Direktorat Bandar Udara','Kabar terbaru seputar kegiatan, sertifikasi, regulasi, dan kerja sama Direktorat Bandar Udara.','Berita'),
 ('galeri','Galeri','Galeri — Direktorat Bandar Udara','Galeri foto, video, dan album dokumentasi kegiatan Direktorat Bandar Udara.','Galeri','Galeri Direktorat Bandar Udara','Dokumentasi foto, video, dan album kegiatan Direktorat Bandar Udara.','Galeri'),
 ('kontak','Kontak','Kontak — Direktorat Bandar Udara','Hubungi Direktorat Bandar Udara: alamat kantor, telepon, email, jam layanan, dan formulir kontak.','Kontak','Hubungi Direktorat Bandar Udara','Kami siap membantu pertanyaan, layanan, dan pengaduan terkait kebandarudaraan.','Kontak');
@@ -127,7 +127,7 @@ INSERT INTO `stats` (`label`,`value`,`suffix`,`sort`) VALUES
 
 -- ---------- Sambutan direktur ----------
 INSERT INTO `director_message` (`eyebrow`,`title`,`body`,`director_name`,`director_position`,`art_class`,`icon`,`btn_label`,`btn_url`) VALUES
-('Sambutan Direktur','Sambutan Direktur Bandar Udara','Selamat datang di laman resmi Direktorat Bandar Udara. Kami berkomitmen mewujudkan penyelenggaraan bandar udara yang profesional, aman, dan berkelanjutan melalui perumusan kebijakan, penyusunan standar, serta pengawasan yang konsisten di seluruh wilayah Indonesia. Transformasi digital layanan publik terus kami dorong agar masyarakat dan pemangku kepentingan mendapatkan kemudahan akses informasi dan layanan. Terima kasih atas kepercayaan dan dukungan seluruh mitra kerja dalam membangun konektivitas udara nasional.','Ir. Bagas Wirawan, M.T.','Direktur Bandar Udara','art-2','bi-person-badge','Selengkapnya Tentang Direktorat','pages/profil.php');
+('Sambutan Direktur','Sambutan Direktur Bandar Udara','Selamat datang di laman resmi Direktorat Bandar Udara. Kami berkomitmen mewujudkan penyelenggaraan bandar udara yang profesional, aman, dan berkelanjutan melalui perumusan kebijakan, penyusunan standar, serta pengawasan yang konsisten di seluruh wilayah Indonesia. Transformasi digital layanan publik terus kami dorong agar masyarakat dan pemangku kepentingan mendapatkan kemudahan akses informasi dan layanan. Terima kasih atas kepercayaan dan dukungan seluruh mitra kerja dalam membangun konektivitas udara nasional.','Budhi Kurniawan Kresna, S.T., M.M.Tr.','Direktur Bandar Udara','art-2','bi-person-badge','Selengkapnya Tentang Direktorat','pages/profil.php');
 
 -- ---------- Kartu tentang (beranda) ----------
 INSERT INTO `about_cards` (`icon`,`title`,`description`,`url`,`sort`) VALUES
@@ -178,6 +178,302 @@ INSERT INTO `regions` (`region_code`,`numeral`,`title`,`hq`,`hq_short`,`coverage
 ('8','VIII','Wilayah VIII','Bandara Internasional Sam Ratulangi, Manado','Sam Ratulangi, Manado','Sulawesi Utara, Gorontalo, Maluku, Maluku Utara','Sulawesi Utara, Gorontalo, Maluku, Maluku Utara',8),
 ('9','IX','Wilayah IX','Bandara Rendani, Manokwari','Rendani, Manokwari','Papua Barat, Papua Barat Daya, Papua Tengah','Papua Barat, Papua Barat Daya, Papua Tengah',9),
 ('10','X','Wilayah X','Bandara Mopah, Merauke','Mopah, Merauke','Papua Selatan, Papua Pegunungan, Papua','Papua Selatan, Papua Pegunungan, Papua',10);
+
+
+-- ---------- Bandar udara per wilayah OBU ----------
+-- Kantor pusat wilayah mengikuti rekapitulasi PEROTBAN
+UPDATE `regions` SET `hq_short` = 'Tangerang – Banten' WHERE `region_code` = '1';
+UPDATE `regions` SET `hq_short` = 'Medan' WHERE `region_code` = '2';
+UPDATE `regions` SET `hq_short` = 'Surabaya' WHERE `region_code` = '3';
+UPDATE `regions` SET `hq_short` = 'Bali' WHERE `region_code` = '4';
+UPDATE `regions` SET `hq_short` = 'Makassar' WHERE `region_code` = '5';
+UPDATE `regions` SET `hq_short` = 'Padang' WHERE `region_code` = '6';
+UPDATE `regions` SET `hq_short` = 'Balikpapan' WHERE `region_code` = '7';
+UPDATE `regions` SET `hq_short` = 'Manado' WHERE `region_code` = '8';
+UPDATE `regions` SET `hq_short` = 'Manokwari' WHERE `region_code` = '9';
+UPDATE `regions` SET `hq_short` = 'Merauke' WHERE `region_code` = '10';
+
+-- Bandar udara per wilayah (251 lokasi)
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '1');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Budiarto, Curug', 1),
+  (@r, 'UPBU Rahadi Oesman, Ketapang', 2),
+  (@r, 'UPBU Cakrabhuwana, Cirebon', 3),
+  (@r, 'UPBU Pangsuma, Putussibau', 4),
+  (@r, 'Satpel Wiriadinata', 5),
+  (@r, 'UPBU Tebelian, Sintang', 6),
+  (@r, 'Satpel Taufiq Kiemas', 7),
+  (@r, 'Gatot Subroto', 8),
+  (@r, 'Soekarno–Hatta (AP II)', 9),
+  (@r, 'Halim Perdanakusuma (AP II)', 10),
+  (@r, 'Radin Inten II (AP II)', 11),
+  (@r, 'Nusawiru (UPTD)', 12),
+  (@r, 'Kertajati (AP II)', 13),
+  (@r, 'Husein Sastranegara (AP II)', 14),
+  (@r, 'Supadio', 15),
+  (@r, 'Nangapinoh', 16);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '2');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'Sultan Iskandar Muda (AP II)', 1),
+  (@r, 'UPBU Alas Leuser', 2),
+  (@r, 'UPBU Lasikin', 3),
+  (@r, 'UPBU Cut Nyak Dhien', 4),
+  (@r, 'UPBU Maimun Saleh', 5),
+  (@r, 'UPBU Rembele', 6),
+  (@r, 'UPBU Malikussaleh', 7),
+  (@r, 'Kuala Batu (UPTD)', 8),
+  (@r, 'Satpel Blangkejeren', 9),
+  (@r, 'Satpel Syekh Hamzah Fansuri', 10),
+  (@r, 'Kualanamu (AP II)', 11),
+  (@r, 'UPBU Binaka', 12),
+  (@r, 'Satpel Sibisa', 13),
+  (@r, 'UPBU Dr. Ferdinan L. Tobing', 14),
+  (@r, 'UPBU Aek Godang', 15),
+  (@r, 'Silangit / Raja Sisingamangaraja XII (AP II)', 16),
+  (@r, 'UPBU Lasondre', 17),
+  (@r, 'Sultan Syarif Kasim II (AP II)', 18),
+  (@r, 'Tempuling (UPTD)', 19),
+  (@r, 'UPBU Japura', 20),
+  (@r, 'Tuanku Tambusai', 21),
+  (@r, 'Pinang Kampai', 22),
+  (@r, 'Hang Nadim (BUBU)', 23),
+  (@r, 'Raja Haji Fisabilillah / RHF (AP II)', 24),
+  (@r, 'UPBU Ranai', 25),
+  (@r, 'UPBU Raja Haji Abdullah', 26),
+  (@r, 'UPBU Dabo Singkep', 27),
+  (@r, 'UPBU Letung – Anambas', 28),
+  (@r, 'Matak (ConocoPhillips)', 29),
+  (@r, 'UPBU Tambelan', 30),
+  (@r, 'Teuku Cut Ali', 31);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '3');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Trunojoyo, Sumenep', 1),
+  (@r, 'UPBU Dewadaru, Karimunjawa', 2),
+  (@r, 'UPBU Harun Thohir, Bawean', 3),
+  (@r, 'UPBU Tunggul Wulung, Cilacap', 4),
+  (@r, 'UPBU Gusti Sjamsir Alam, Kotabaru', 5),
+  (@r, 'Satpel Ngloram, Cepu', 6),
+  (@r, 'Abdul Rachman Saleh (UPTD)', 7),
+  (@r, 'Warukin', 8),
+  (@r, 'Notohadinegoro (UPTD)', 9),
+  (@r, 'Juanda (AP I)', 10),
+  (@r, 'Yogyakarta International Airport (AP I)', 11),
+  (@r, 'Adi Soemarmo (AP I)', 12),
+  (@r, 'Jenderal Ahmad Yani (AP I)', 13),
+  (@r, 'Syamsudin Noor (AP I)', 14),
+  (@r, 'Banyuwangi (AP II)', 15),
+  (@r, 'Adi Sutjipto (AP I)', 16),
+  (@r, 'Jenderal Besar Soedirman (AP II)', 17);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '4');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Kelas III David Constantijn Saudale', 1),
+  (@r, 'UPBU Kelas III Wunopito, Lewoleba', 2),
+  (@r, 'UPBU H. Aroeboesman, Ende', 3),
+  (@r, 'UPBU Kelas II Sultan M. Salahuddin, Bima', 4),
+  (@r, 'UPBU Kelas III Sultan M. Kaharuddin, Sumbawa', 5),
+  (@r, 'UPBU Kelas II Tambolaka, Sumba Barat', 6),
+  (@r, 'UPBU Kelas II Umbu Mehang Kunda, Waingapu', 7),
+  (@r, 'UPBU Kelas III Gewayantana, Larantuka', 8),
+  (@r, 'UPBU Kelas II Fransiskus Xaverius Seda, Maumere', 9),
+  (@r, 'UPBU Kelas III Soa, Bajawa', 10),
+  (@r, 'UPBU Kelas II Komodo, Labuan Bajo', 11),
+  (@r, 'UPBU Kelas III Frans Sales Lega, Ruteng', 12),
+  (@r, 'UPBU Tardamu, Sabu', 13),
+  (@r, 'UPBU Kelas III Mali, Alor', 14),
+  (@r, 'UPBU Kelas III A.A. Bere Talo, Atambua', 15),
+  (@r, 'Satpel Kabir', 16),
+  (@r, 'I Gusti Ngurah Rai (AP I)', 17),
+  (@r, 'Zainuddin Abdul Madjid (AP I)', 18),
+  (@r, 'El Tari (AP I)', 19);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '5');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Haluoleo, Kendari', 1),
+  (@r, 'UPBU Mutiara SIS Al-Jufri, Palu', 2),
+  (@r, 'UPBU Syukuran Aminuddin Amir', 3),
+  (@r, 'UPBU Kasiguncu, Poso', 4),
+  (@r, 'UPBU Sultan Bantilan, Toli-Toli', 5),
+  (@r, 'UPBU Lagaligo, Bua', 6),
+  (@r, 'UPBU Matahora, Wakatobi', 7),
+  (@r, 'UPBU H. Aroeppala, Selayar', 8),
+  (@r, 'UPBU Tanjung Api, Ampana', 9),
+  (@r, 'UPBU Betoambari, Bau-Bau', 10),
+  (@r, 'UPBU Sangia Nibandera, Kolaka', 11),
+  (@r, 'UPBU Tampa Padang, Mamuju', 12),
+  (@r, 'UPBU Sumarorong, Mamasa', 13),
+  (@r, 'UPBU Morowali, Morowali', 14),
+  (@r, 'UPBU Pogogul, Buol', 15),
+  (@r, 'UPBU Arung Palakka, Bone', 16),
+  (@r, 'UPBU Rampi, Luwu Utara', 17),
+  (@r, 'UPBU Seko, Luwu Utara', 18),
+  (@r, 'UPBU Andi Jemma, Masamba', 19),
+  (@r, 'UPBU Pongtiku, Tana Toraja', 20),
+  (@r, 'UPBU Sugimanuru, Raha', 21),
+  (@r, 'Sultan Hasanuddin (AP I)', 22),
+  (@r, 'Bandar Udara Khusus Sorowako', 23);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '6');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Depati Parbo, Kerinci', 1),
+  (@r, 'UPBU Muara Bungo', 2),
+  (@r, 'UPBU Mukomuko', 3),
+  (@r, 'UPBU Silampari, Lubuklinggau', 4),
+  (@r, 'UPBU Rokot, Sipora', 5),
+  (@r, 'Satpel Enggano', 6),
+  (@r, 'Satpel Atung Bungsu, Pagar Alam', 7),
+  (@r, 'Minangkabau (AP II)', 8),
+  (@r, 'Sultan Mahmud Badaruddin II (AP II)', 9),
+  (@r, 'H.A.S. Hanandjoeddin (AP II)', 10),
+  (@r, 'Depati Amir (AP II)', 11),
+  (@r, 'Fatmawati Soekarno (AP II)', 12),
+  (@r, 'Sultan Thaha (AP II)', 13),
+  (@r, 'Pusako Anak Negari, Pasaman Barat', 14);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '7');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Juwata', 1),
+  (@r, 'UPBU Nunukan', 2),
+  (@r, 'UPBU Yuvai Semaring, Long Bawan', 3),
+  (@r, 'UPBU Long Apung', 4),
+  (@r, 'UPBU Kol. Robert Atty Bessing', 5),
+  (@r, 'UPBU Tanjung Harapan', 6),
+  (@r, 'UPBU Maratua', 7),
+  (@r, 'UPBU Kalimarau', 8),
+  (@r, 'UPBU Aji Pangeran Tumenggung Pranoto', 9),
+  (@r, 'UPBU Melalan, Melak', 10),
+  (@r, 'UPBU Datah Dawai', 11),
+  (@r, 'UPBU H. Asan, Sampit', 12),
+  (@r, 'UPBU Kuala Kurun', 13),
+  (@r, 'UPBU Kuala Pembuang', 14),
+  (@r, 'UPBU Tumbang Samba', 15),
+  (@r, 'UPBU Sanggu, Buntok', 16),
+  (@r, 'UPBU Haji Muhammad Sidik', 17),
+  (@r, 'UPBU Iskandar, Pangkalanbun', 18),
+  (@r, 'Sultan Aji Muhammad Sulaiman (AP II)', 19),
+  (@r, 'Tjilik Riwut (AP II)', 20),
+  (@r, 'Tanjung Bara', 21),
+  (@r, 'Long Layu', 22),
+  (@r, 'Binuang', 23),
+  (@r, 'Bersujud', 24),
+  (@r, 'Singkawang', 25);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '8');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'Sultan Babullah, Ternate', 1),
+  (@r, 'UPBU Djalaluddin Kelas I, Gorontalo', 2),
+  (@r, 'Karel Sadsuitubun, Tual', 3),
+  (@r, 'Pitu, Morotai', 4),
+  (@r, 'Melonguane, Sangihe Talaud', 5),
+  (@r, 'Naha, Tahuna', 6),
+  (@r, 'Mathilda Batlayeri, Saumlaki', 7),
+  (@r, 'Larat, Pulau Yamdena / Liwur Bunga', 8),
+  (@r, 'Satpel Kuffar, Seram Bagian Timur', 9),
+  (@r, 'Wahai', 10),
+  (@r, 'Amahai, Pulau Seram', 11),
+  (@r, 'Namniwel, Kab. Buru', 12),
+  (@r, 'Namrole, Pulau Buru', 13),
+  (@r, 'Bandaneira, Pulau Banda', 14),
+  (@r, 'Buli, Maba', 15),
+  (@r, 'Oesman Sadik, Labuha', 16),
+  (@r, 'Gamar Malamo, Galela', 17),
+  (@r, 'Kuabang, Kao', 18),
+  (@r, 'Emalamo, Sanana', 19),
+  (@r, 'Dobo, Pulau Aru', 20),
+  (@r, 'Satpel Jos Orno Imsula', 21),
+  (@r, 'Jhon Becker, Pulau Kisar', 22),
+  (@r, 'Miangas', 23),
+  (@r, 'Gebe', 24),
+  (@r, 'Weda', 25),
+  (@r, 'Sam Ratulangi (AP I)', 26),
+  (@r, 'Pattimura (AP I)', 27),
+  (@r, 'Dofa Benjina Falabisahaya', 28);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '9');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'Domine Eduard Osok (DEO)', 1),
+  (@r, 'Rendani, Manokwari', 2),
+  (@r, 'Douw Aturure, Nabire', 3),
+  (@r, 'Utarom, Kaimana', 4),
+  (@r, 'Torea, Fak-Fak', 5),
+  (@r, 'Wasior', 6),
+  (@r, 'Bintuni', 7),
+  (@r, 'Babo', 8),
+  (@r, 'Merdey / Ijahabra', 9),
+  (@r, 'Kebar', 10),
+  (@r, 'Inanwatan', 11),
+  (@r, 'Ayawasi', 12),
+  (@r, 'Kambuaya', 13),
+  (@r, 'Teminabuan', 14),
+  (@r, 'Marinda, Raja Ampat', 15),
+  (@r, 'Frans Kaisiepo, Biak', 16),
+  (@r, 'Anggi', 17),
+  (@r, 'Werur', 18),
+  (@r, 'Taive II', 19);
+
+SET @r = (SELECT id FROM `regions` WHERE `region_code` = '10');
+INSERT INTO `region_airports` (`region_id`,`name`,`sort`) VALUES
+  (@r, 'UPBU Kelas III Bade', 1),
+  (@r, 'UPBU Kelas III Moanamani', 2),
+  (@r, 'UPBU Kelas III Kimam', 3),
+  (@r, 'UPBU Kelas III Akimuga', 4),
+  (@r, 'UPBU Kelas III Kepi', 5),
+  (@r, 'UPBU Kelas III Ilaga, Puncak', 6),
+  (@r, 'UPBU Kelas III Okaba', 7),
+  (@r, 'UPBU Kelas III Kokonao', 8),
+  (@r, 'UPBU Kelas I Mopah, Merauke', 9),
+  (@r, 'UPBU Kelas III Elelim', 10),
+  (@r, 'UPBU Kelas III Waghete', 11),
+  (@r, 'UPBU Kelas III Kamur', 12),
+  (@r, 'UPBU Kelas I Wamena', 13),
+  (@r, 'UPBU Kelas III Numfor', 14),
+  (@r, 'UPBU Kelas III Bomakia', 15),
+  (@r, 'UPBU Kelas III Tanah Merah', 16),
+  (@r, 'Sentani (AP I)', 17),
+  (@r, 'UPBU Kelas II Mozes Kilangin', 18),
+  (@r, 'UPBU Kelas III Tiom', 19),
+  (@r, 'UPBU Kelas III Bilorai', 20),
+  (@r, 'UPBU Kelas III Batom', 21),
+  (@r, 'UPBU Kelas III Senggeh', 22),
+  (@r, 'UPBU Kelas III Stevanus Rumbewas', 23),
+  (@r, 'UPBU Kelas III Illu', 24),
+  (@r, 'UPBU Kelas III Dabra', 25),
+  (@r, 'UPBU Kelas III Kiwirok', 26),
+  (@r, 'UPBU Kelas III Mararena, Sarmi', 27),
+  (@r, 'UPBU Kelas III Bokondini', 28),
+  (@r, 'UPBU Kelas III Karubaga', 29),
+  (@r, 'UPBU Kelas II Nop Goliat Dekai', 30),
+  (@r, 'UPBU Kelas III Mindiptana', 31),
+  (@r, 'UPBU Kelas III Oksibil', 32),
+  (@r, 'UPBU Kelas III Enarotali', 33),
+  (@r, 'UPBU Kelas III Mulia', 34),
+  (@r, 'Satpel Senggo', 35),
+  (@r, 'UPBU Kelas III Ewer', 36),
+  (@r, 'Molof', 37),
+  (@r, 'Satpel Sinak', 38),
+  (@r, 'Satpel Mangelum', 39),
+  (@r, 'Kelila', 40),
+  (@r, 'Kebo', 41),
+  (@r, 'Aboyaga', 42),
+  (@r, 'Aboy', 43),
+  (@r, 'Yaniruma', 44),
+  (@r, 'Kobakma', 45),
+  (@r, 'Apalapsili', 46),
+  (@r, 'Kenyam', 47),
+  (@r, 'Mapenduma', 48),
+  (@r, 'Paro', 49),
+  (@r, 'Fawi', 50),
+  (@r, 'Beoga', 51),
+  (@r, 'Jila', 52),
+  (@r, 'Jita', 53),
+  (@r, 'Potowai', 54),
+  (@r, 'Alama', 55),
+  (@r, 'Wangbe', 56),
+  (@r, 'Waris Baru / Towe Hitam', 57),
+  (@r, 'Yuruf', 58),
+  (@r, 'Tsinga', 59);
 
 
 -- ---------- Program RPJMN 2025–2029 (indikasi pembangunan/pengembangan bandar udara) ----------
@@ -438,27 +734,44 @@ INSERT INTO `regulation_categories` (`slug`,`label`,`sort`) VALUES
 ('lingkungan','Lingkungan',5),
 ('umum','Umum',6);
 
-INSERT INTO `regulations` (`id`,`slug`,`number`,`title`,`year`,`category`,`status`,`about`,`date_set`,`date_published`,`sort`) VALUES
-(1,'pm-14-2026','PM 14 Tahun 2026','Standar Keselamatan Operasional Landasan Pacu',2026,'keselamatan','berlaku','Peraturan ini mengatur standar keselamatan operasional landasan pacu, termasuk ketentuan mengenai marka, rambu, pencahayaan, serta prosedur pemeriksaan berkala kondisi permukaan landasan pacu guna memastikan kelaikan operasi penerbangan di seluruh bandar udara di Indonesia.','2026-02-03','2026-02-10',1),
-(2,'pm-09-2026','PM 09 Tahun 2026','Standar Peralatan PKP-PK Bandar Udara',2026,'darurat','berlaku','Peraturan ini mengatur standar minimum peralatan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK) sesuai kategori bandar udara.','2026-01-15','2026-01-22',2),
-(3,'pm-27-2025','PM 27 Tahun 2025','Pedoman Teknis Pembangunan Apron & Taxiway',2025,'prasarana','berlaku','Pedoman teknis perencanaan dan pembangunan apron serta taxiway pada bandar udara di Indonesia.','2025-08-05','2025-08-12',3),
-(4,'pm-18-2025','PM 18 Tahun 2025','Tata Kelola Kerja Sama Pengusahaan Bandar Udara',2025,'pengusahaan','berlaku','Ketentuan tata kelola kerja sama pengusahaan bandar udara antara pemerintah dan badan usaha.','2025-05-11','2025-05-18',4),
-(5,'pm-05-2025','PM 05 Tahun 2025','Kajian Lingkungan Kawasan Sekitar Bandar Udara',2025,'lingkungan','berlaku','Ketentuan penyusunan kajian lingkungan pada kawasan sekitar bandar udara.','2025-02-04','2025-02-11',5),
-(6,'pm-22-2024','PM 22 Tahun 2024','Sertifikasi Operasi Bandar Udara (SBU)',2024,'keselamatan','berlaku','Ketentuan penerbitan dan pembaruan Sertifikat Operasi Bandar Udara.','2024-07-09','2024-07-16',6),
-(7,'pm-11-2024','PM 11 Tahun 2024','Tata Naskah Dinas Direktorat Jenderal Perhubungan Udara',2024,'umum','berlaku','Pedoman tata naskah dinas di lingkungan Direktorat Jenderal Perhubungan Udara.','2024-04-02','2024-04-09',7),
-(8,'pm-30-2023','PM 30 Tahun 2023','Standar Perencanaan Landasan Pacu Bandar Udara Perintis',2023,'prasarana','berlaku','Standar perencanaan teknis landasan pacu pada bandar udara perintis.','2023-10-03','2023-10-10',8),
-(9,'pm-16-2023','PM 16 Tahun 2023','Prosedur Simulasi Tanggap Darurat Bandar Udara',2023,'darurat','berlaku','Prosedur pelaksanaan simulasi tanggap darurat di bandar udara.','2023-06-06','2023-06-13',9),
-(10,'pm-08-2022','PM 08 Tahun 2022','Pedoman Evaluasi Kinerja Badan Usaha Bandar Udara',2022,'pengusahaan','dicabut','Pedoman evaluasi kinerja badan usaha bandar udara (telah dicabut dan digantikan aturan terbaru).','2022-03-08','2022-03-15',10),
-(11,'pm-03-2022','PM 03 Tahun 2022','Manual Standar Teknis dan Operasi Bandar Udara',2022,'keselamatan','berlaku','Manual standar teknis dan operasi bandar udara sebagai acuan penyelenggara bandar udara.','2022-01-11','2022-01-18',11),
-(12,'pm-19-2021','PM 19 Tahun 2021','Pengendalian Dampak Kebisingan Operasional Bandar Udara',2021,'lingkungan','berlaku','Ketentuan pengendalian dampak kebisingan akibat operasional bandar udara.','2021-09-07','2021-09-14',12),
-(13,'pm-02-2021','PM 02 Tahun 2021','Organisasi dan Tata Kerja Direktorat Jenderal Perhubungan Udara',2021,'umum','berlaku','Ketentuan organisasi dan tata kerja di lingkungan Direktorat Jenderal Perhubungan Udara.','2021-01-05','2021-01-12',13),
-(14,'pm-24-2020','PM 24 Tahun 2020','Standar Fasilitas Sisi Darat Bandar Udara',2020,'prasarana','dicabut','Standar fasilitas sisi darat bandar udara (telah dicabut).','2020-08-04','2020-08-11',14);
+INSERT INTO `regulations` (`slug`,`number`,`title`,`year`,`category`,`status`,`date_set`,`source_url`,`sort`) VALUES
+('pr-djpu-06-tahun-2026','PR-DJPU 06 Tahun 2026','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 (Manual of Standard CASR Part 139) Volume IV Pelayanan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2026,'darurat','berlaku','2026-07-01','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR-DJPU%2006%20Tahun%202026&pencarian-cepat-button=Cari',1),
+('pr-djpu-4-tahun-2026','PR-DJPU 4 Tahun 2026','Pedoman Teknis Operasional Peraturan Keselamatan Penerbangan Sipil Bagian 139-30 (Advisory Circular Part 139-30) tentang Sistem Kelistrikan',2026,'prasarana','berlaku','2026-06-22','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR-DJPU%204%20Tahun%202026&pencarian-cepat-button=Cari',2),
+('pr-djpu-3-tahun-2026','PR-DJPU 3 Tahun 2026','Pedoman Teknis Operasional Peraturan Keselamatan Penerbangan Sipil Bagian 139-23 tentang Program Pemeliharaan Perkerasan',2026,'prasarana','berlaku','2026-05-19','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR-DJPU%203%20Tahun%202026&pencarian-cepat-button=Cari',3),
+('kp-djpu-140-tahun-2026','KP-DJPU 140 Tahun 2026','Penetapan Indikator Kinerja Kegiatan Kantor Unit Penyelenggara Bandar Udara',2026,'umum','berlaku','2026-06-11','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP-DJPU%20140%20Tahun%202026&pencarian-cepat-button=Cari',4),
+('km-1038-tahun-2026','KM 1038 Tahun 2026','Penetapan Lokasi Bandar Udara Wanam Baru di Kabupaten Merauke Provinsi Papua Selatan',2026,'umum','berlaku','2026-05-13','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KM%201038%20Tahun%202026&pencarian-cepat-button=Cari',5),
+('kp-djpu-74-tahun-2026','KP-DJPU 74 Tahun 2026','Spesifikasi Teknis Pekerjaan Fasilitas Sisi Udara Bandar Udara',2026,'prasarana','berlaku','2026-03-16','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP-DJPU%2074%20Tahun%202026&pencarian-cepat-button=Cari',6),
+('kp-djpu-27-tahun-2026','KP-DJPU 27 Tahun 2026','Pengenaan Tarif Penerimaan Negara Bukan Pajak Sebesar 50% terhadap Pelayanan Jasa Kebandarudaraan pada Unit Penyelenggara Bandar Udara',2026,'pengusahaan','berlaku','2026-02-06','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP-DJPU%2027%20Tahun%202026&pencarian-cepat-button=Cari',7),
+('km-51-tahun-2026','KM 51 Tahun 2026','Perubahan Nama Bandar Udara Kediri di Kabupaten Kediri Provinsi Jawa Timur Menjadi Bandar Udara Dhoho',2026,'umum','berlaku','2026-02-11','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KM%2051%20Tahun%202026&pencarian-cepat-button=Cari',8),
+('kp-djpu-235-tahun-2025','KP-DJPU 235 Tahun 2025','Pengenaan Tarif Penerimaan Negara Bukan Pajak Sebesar 50% terhadap Pelayanan Jasa Kebandarudaraan selama Hari Raya Natal 2025 dan Tahun Baru 2026',2025,'pengusahaan','berlaku','2025-10-10','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP-DJPU%20235%20Tahun%202025&pencarian-cepat-button=Cari',9),
+('pr-djpu-10-tahun-2025','PR-DJPU 10 Tahun 2025','Pedoman Pelaporan Perhitungan PCR Perkerasan Prasarana Bandar Udara',2025,'prasarana','berlaku','2025-07-15','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR-DJPU%2010%20Tahun%202025&pencarian-cepat-button=Cari',10),
+('pr-djpu-03-tahun-2025','PR-DJPU 03 Tahun 2025','Tata Cara Pengukuran Tingkat Kepuasan Pengguna Jasa dalam Pelayanan Kebandarudaraan',2025,'pengusahaan','berlaku','2025-01-13','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR-DJPU%2003%20Tahun%202025&pencarian-cepat-button=Cari',11),
+('km-33-tahun-2024','KM 33 Tahun 2024','Tatanan Kebandarudaraan Nasional',2024,'umum','berlaku','2024-04-02','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KM%2033%20Tahun%202024&pencarian-cepat-button=Cari',12),
+('pr-7-djpu-tahun-2024','PR 7 DJPU Tahun 2024','Pedoman Surface Movement Guidance and Control System (SMGCS)',2024,'keselamatan','berlaku','2024-05-29','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR%207%20DJPU%20Tahun%202024&pencarian-cepat-button=Cari',13),
+('pm-41-tahun-2023','PM 41 Tahun 2023','Pelayanan Jasa Kebandarudaraan di Bandar Udara',2023,'pengusahaan','berlaku','2023-08-01','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%2041%20Tahun%202023&pencarian-cepat-button=Cari',14),
+('pm-40-tahun-2023','PM 40 Tahun 2023','Perubahan atas Peraturan Menteri Perhubungan Nomor PM 39 Tahun 2019 tentang Tatanan Kebandarudaraan Nasional',2023,'umum','berlaku','2023-08-01','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%2040%20Tahun%202023&pencarian-cepat-button=Cari',15),
+('pr-21-tahun-2023','PR 21 Tahun 2023','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume I Aerodrome (Bandar Udara) Daratan',2023,'keselamatan','dicabut','2023-10-10','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR%2021%20Tahun%202023&pencarian-cepat-button=Cari',16),
+('pr-30-tahun-2022','PR 30 Tahun 2022','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume IV Pelayanan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2022,'darurat','dicabut','2022-12-23','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR%2030%20Tahun%202022&pencarian-cepat-button=Cari',17),
+('pr-26-tahun-2022','PR 26 Tahun 2022','Pedoman Pengoperasian Peralatan Bantu Pendaratan Visual',2022,'prasarana','berlaku','2022-11-29','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR%2026%20Tahun%202022&pencarian-cepat-button=Cari',18),
+('pr-8-tahun-2022','PR 8 Tahun 2022','Panduan Desain Aerodrome — Alat Bantu Visual',2022,'prasarana','berlaku','2022-05-09','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PR%208%20Tahun%202022&pencarian-cepat-button=Cari',19),
+('pm-95-tahun-2021','PM 95 Tahun 2021','Peraturan Keselamatan Penerbangan Sipil Bagian 139 tentang Aerodrome',2021,'keselamatan','dicabut','2021-12-24','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%2095%20Tahun%202021&pencarian-cepat-button=Cari',20),
+('km-329-tahun-2020','KM 329 Tahun 2020','Pemberlakuan Standar Kompetensi Kerja Nasional Indonesia untuk Ground Operation and Service',2020,'umum','berlaku','2020-12-16','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KM%20329%20Tahun%202020&pencarian-cepat-button=Cari',21),
+('kp-113-tahun-2020','KP 113 Tahun 2020','Penetapan Inspektur Keamanan Penerbangan Bidang Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK) dan Salvage Tahun 2020',2020,'darurat','berlaku','2020-06-15','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20113%20Tahun%202020&pencarian-cepat-button=Cari',22),
+('kp-326-tahun-2019','KP 326 Tahun 2019','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume I Bandar Udara',2019,'keselamatan','berlaku','2019-12-12','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20326%20Tahun%202019&pencarian-cepat-button=Cari',23),
+('km-166-tahun-2019','KM 166 Tahun 2019','Tatanan Kebandarudaraan Nasional',2019,'umum','berlaku','2019-08-26','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KM%20166%20Tahun%202019&pencarian-cepat-button=Cari',24),
+('kp-215-tahun-2019','KP 215 Tahun 2019','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume II Tempat Pendaratan dan Lepas Landas Helikopter',2019,'keselamatan','berlaku','2019-08-12','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20215%20Tahun%202019&pencarian-cepat-button=Cari',25),
+('kp-156-tahun-2019','KP 156 Tahun 2019','Perubahan Kedua atas Peraturan Direktur Jenderal tentang Kendaraan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2019,'darurat','berlaku','2019-06-10','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20156%20Tahun%202019&pencarian-cepat-button=Cari',26),
+('pm-39-tahun-2019','PM 39 Tahun 2019','Tatanan Kebandarudaraan Nasional',2019,'umum','dicabut','2019-05-20','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%2039%20Tahun%202019&pencarian-cepat-button=Cari',27),
+('kp-381-tahun-2018','KP 381 Tahun 2018','Perubahan atas Peraturan Direktur Jenderal tentang Kendaraan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2018,'darurat','berlaku','2018-12-05','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20381%20Tahun%202018&pencarian-cepat-button=Cari',28),
+('kp-321-tahun-2018','KP 321 Tahun 2018','Perubahan atas Peraturan Direktur Jenderal tentang Petunjuk Teknis Pengawasan Rencana Penanggulangan Keadaan Darurat Bandar Udara dan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2018,'darurat','berlaku','2018-10-19','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20321%20Tahun%202018&pencarian-cepat-button=Cari',29),
+('kp-172-tahun-2017','KP 172 Tahun 2017','Petunjuk Teknis Pengawasan Rencana Penanggulangan Keadaan Darurat Bandar Udara (Airport Emergency Plan) dan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2017,'darurat','berlaku','2017-07-18','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20172%20Tahun%202017&pencarian-cepat-button=Cari',30),
+('pm-193-tahun-2015','PM 193 Tahun 2015','Konsesi dan Bentuk Kerja Sama Lainnya antara Pemerintah dengan Badan Usaha Bandar Udara untuk Pelayanan Jasa Kebandarudaraan',2015,'pengusahaan','berlaku','2015-12-14','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%20193%20Tahun%202015&pencarian-cepat-button=Cari',31),
+('pm-179-tahun-2015','PM 179 Tahun 2015','Perubahan atas Peraturan Menteri tentang Tata Cara dan Prosedur Pengenaan Tarif Jasa Kebandarudaraan',2015,'pengusahaan','dicabut','2015-11-16','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=PM%20179%20Tahun%202015&pencarian-cepat-button=Cari',32),
+('kp-547-tahun-2015','KP 547 Tahun 2015','Pedoman Teknis Operasional Peraturan Keselamatan Penerbangan Sipil Bagian 139-25 Kendaraan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2015,'darurat','berlaku','2015-09-14','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20547%20Tahun%202015&pencarian-cepat-button=Cari',33),
+('kp-458-tahun-2015','KP 458 Tahun 2015','Sertifikasi Pelayanan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK) Bandar Udara',2015,'darurat','berlaku','2015-06-26','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20458%20Tahun%202015&pencarian-cepat-button=Cari',34),
+('kp-14-tahun-2015','KP 14 Tahun 2015','Standar Teknis dan Operasi Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume IV Pelayanan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2015,'darurat','dicabut','2015-01-26','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%2014%20Tahun%202015&pencarian-cepat-button=Cari',35),
+('kp-420-tahun-2011','KP 420 Tahun 2011','Persyaratan Standar Teknis dan Operasional Peraturan Keselamatan Penerbangan Sipil Bagian 139 Volume IV Pelayanan Pertolongan Kecelakaan Penerbangan dan Pemadam Kebakaran (PKP-PK)',2011,'darurat','dicabut','2011-08-24','https://jdih.kemenhub.go.id/peraturan/index?PencarianPeraturanForm%5BkataKunci%5D=KP%20420%20Tahun%202011&pencarian-cepat-button=Cari',36);
 
-INSERT INTO `regulation_scopes` (`regulation_id`,`content`,`sort`) VALUES
-(1,'Ketentuan marka dan rambu landasan pacu',1),
-(1,'Standar pencahayaan & alat bantu visual',2),
-(1,'Prosedur pemeriksaan berkala kondisi permukaan',3),
-(1,'Pelaporan dan tindak lanjut temuan inspeksi',4);
 
 -- ---------- Berita ----------
 INSERT INTO `news_categories` (`slug`,`label`,`sort`) VALUES

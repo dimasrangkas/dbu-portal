@@ -180,6 +180,17 @@ CREATE TABLE `regions` (
   `is_active` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Daftar bandar udara di bawah tiap Otoritas Bandar Udara
+DROP TABLE IF EXISTS `region_airports`;
+CREATE TABLE `region_airports` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `region_id` INT UNSIGNED NOT NULL,
+  `name` VARCHAR(200) NOT NULL,
+  `sort` INT NOT NULL DEFAULT 0,
+  KEY `idx_region_airport` (`region_id`),
+  CONSTRAINT `fk_region_airport` FOREIGN KEY (`region_id`) REFERENCES `regions`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Program indikasi pembangunan/pengembangan bandar udara (RPJMN 2025–2029)
 DROP TABLE IF EXISTS `rpjmn_areas`;
 DROP TABLE IF EXISTS `rpjmn_programs`;
@@ -433,6 +444,7 @@ CREATE TABLE `regulations` (
   `date_set` DATE NULL,
   `date_published` DATE NULL,
   `file` VARCHAR(255) NULL,
+  `source_url` VARCHAR(500) NULL,
   `sort` INT NOT NULL DEFAULT 0,
   `is_active` TINYINT(1) NOT NULL DEFAULT 1,
   KEY `idx_reg` (`year`,`category`,`status`)

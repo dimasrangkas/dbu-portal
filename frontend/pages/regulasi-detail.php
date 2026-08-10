@@ -66,11 +66,21 @@ partial('header');
           <div style="display:flex; flex-direction:column; gap:14px; font-size:13.5px;">
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Nomor</span><b><?= e($reg['number']) ?></b></div>
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Kategori</span><b><?= e($catLabel) ?></b></div>
+            <?php if ($reg['date_set']): ?>
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Tanggal Ditetapkan</span><b><?= e(tanggal_id($reg['date_set'])) ?></b></div>
+            <?php endif; ?>
+            <?php if ($reg['date_published']): ?>
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Tanggal Diundangkan</span><b><?= e(tanggal_id($reg['date_published'])) ?></b></div>
+            <?php endif; ?>
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Status</span><b style="color:<?= $reg['status'] === 'berlaku' ? 'var(--success)' : 'var(--text-500)' ?>"><?= $reg['status'] === 'berlaku' ? 'Berlaku' : 'Dicabut' ?></b></div>
           </div>
-          <a href="<?= e($reg['file'] ? asset_url($reg['file']) : '#') ?>" class="btn btn-primary btn-block" style="margin-top:22px;"<?= $reg['file'] ? ' download' : '' ?>><i class="bi bi-download"></i> Unduh Peraturan (PDF)</a>
+          <?php if ($reg['file']): ?>
+          <a href="<?= e(asset_url($reg['file'])) ?>" class="btn btn-primary btn-block" style="margin-top:22px;" download><i class="bi bi-download"></i> Unduh Peraturan (PDF)</a>
+          <?php endif; ?>
+          <?php if (!empty($reg['source_url'])): ?>
+          <a href="<?= e($reg['source_url']) ?>" class="btn <?= $reg['file'] ? 'btn-outline-blue' : 'btn-primary' ?> btn-block" style="margin-top:12px;" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Lihat di JDIH Kemenhub</a>
+          <p style="font-size:12px; color:var(--text-500); margin-top:12px; line-height:1.5;">Dokumen resmi beserta berkas PDF-nya tersedia pada Jaringan Dokumentasi dan Informasi Hukum Kementerian Perhubungan.</p>
+          <?php endif; ?>
         </div>
         <?php if ($related): ?>
         <div class="card card-pad">

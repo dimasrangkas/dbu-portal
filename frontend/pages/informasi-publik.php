@@ -240,45 +240,11 @@ partial('header');
       </div>
     </div>
 
-    <div class="grid grid-3" style="margin-bottom:20px;">
+    <div class="grid grid-2">
       <div class="card card-pad pkp-card">
-        <div class="pkp-head"><div class="ic"><i class="bi bi-clipboard-check-fill"></i></div><h3>Status Tindak Lanjut Verifikasi PKP-PK</h3></div>
-        <div class="pkp-chart-body">
-          <div class="pkp-chart-wrap" data-pkp-chart="tindak-lanjut"></div>
-        </div>
-      </div>
-
-      <div class="card card-pad pkp-card">
-        <div class="pkp-head"><div class="ic"><i class="bi bi-patch-check-fill"></i></div><h3>Status Verifikasi PKP-PK</h3></div>
-        <div class="pkp-chart-body">
-          <div class="pkp-chart-wrap" data-pkp-chart="verifikasi"></div>
-        </div>
-      </div>
-
-      <div class="card card-pad pkp-card">
-        <div class="pkp-head"><div class="ic"><i class="bi bi-file-earmark-check-fill"></i></div><h3>Status Dokumen AEP</h3></div>
-        <div class="pkp-chart-body">
-          <div class="pkp-chart-wrap" data-pkp-chart="aep"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-3">
-      <div class="card card-pad pkp-card">
-        <div class="pkp-head"><div class="ic"><i class="bi bi-bullseye"></i></div><h3>Vasis Light Breakdown</h3></div>
+        <div class="pkp-head"><div class="ic"><i class="bi bi-bullseye"></i></div><h3>Vasis Breakdown</h3></div>
         <div class="pkp-chart-body">
           <div class="pkp-chart-wrap" data-pkp-chart="vasis-breakdown"></div>
-        </div>
-      </div>
-
-      <div class="card card-pad pkp-card">
-        <div class="pkp-head"><div class="ic"><i class="bi bi-activity"></i></div><h3>Status Kalibrasi VASIS</h3></div>
-        <div class="pkp-chart-body">
-          <div class="pkp-chart-wrap" data-pkp-chart="vasis-kalibrasi"></div>
-          <div class="emisi-legend" style="margin-top:10px;">
-            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#4a3aa7"></span>PAPI</span>
-            <span class="emisi-legend-item"><span class="emisi-legend-dot" style="background:#1baf7a"></span>A-PAPI</span>
-          </div>
         </div>
       </div>
 

@@ -37,7 +37,8 @@ $gridId     = $mapId . 'Grid';
     <?php foreach ($shape['paths'] as $d): ?>
     <path d="<?= e($d) ?>" fill-rule="evenodd"></path>
     <?php endforeach; ?>
-    <text x="<?= (int) $shape['label']['x'] ?>" y="<?= (int) $shape['label']['y'] ?>"><?= e($shape['label']['text']) ?></text>
+    <?php /* dy .35em memusatkan glif pada titik jangkar — titik itulah yang diuji berada di daratan. */ ?>
+    <text x="<?= (int) $shape['label']['x'] ?>" y="<?= (int) $shape['label']['y'] ?>" dy=".35em"><?= e($shape['label']['text']) ?></text>
   </g>
   <?php endforeach; ?>
 
