@@ -2,3 +2,5 @@
 *
 !.gitignore
 !.htaccess
+/shared/config.php
+/frontend/bootstrap.php
