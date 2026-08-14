@@ -1,0 +1,10 @@
+# Penyesuaian per server — jangan dilacak, jangan ditimpa saat deploy.
+shared/config.php
+frontend/bootstrap.php
+
+# Berkas unggahan CMS diatur oleh uploads/.gitignore.
+
+# Sampah sistem & editor.
+.DS_Store
+Thumbs.db
+*.log
