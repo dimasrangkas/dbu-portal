@@ -41,7 +41,22 @@ SELECT 'migrate-organisasi-navbar',
   FROM information_schema.COLUMNS
  WHERE TABLE_SCHEMA = DATABASE()
    AND TABLE_NAME = 'org_units'
-   AND COLUMN_NAME IN ('team_lead_name','team_lead_position','team_lead_photo');
+   AND COLUMN_NAME IN ('team_lead_name','team_lead_position','team_lead_photo')
+UNION ALL
+SELECT 'bandaras',
+       IF(COUNT(*) = 1, 'sudah', 'BELUM')
+  FROM information_schema.TABLES
+ WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'bandaras'
+UNION ALL
+SELECT 'migrate-daftar-bandara',
+       IF(COUNT(*) = 1, 'sudah', 'BELUM')
+  FROM `page_meta`
+ WHERE `page_key` = 'dokumen-publik'
+UNION ALL
+SELECT 'migrate-apindo',
+       IF(COUNT(*) = 0, 'sudah', 'BELUM')
+  FROM `region_airports`
+ WHERE `name` LIKE '%(AP I)%' OR `name` LIKE '%(AP II)%';
 ```
 
 ## 3. Jalankan migrasi yang berstatus BELUM
@@ -53,9 +68,12 @@ mysql -u USER -p NAMA_DB < database/migrate-rpjmn-tugas-fungsi.sql
 mysql -u USER -p NAMA_DB < database/migrate-region-airports.sql
 mysql -u USER -p NAMA_DB < database/migrate-regulasi-jdih.sql
 mysql -u USER -p NAMA_DB < database/migrate-organisasi-navbar.sql
+mysql -u USER -p NAMA_DB < database/bandaras.sql
+mysql -u USER -p NAMA_DB < database/migrate-daftar-bandara.sql
+mysql -u USER -p NAMA_DB < database/migrate-apindo.sql
 ```
 
-Tanpa pesan galat = berhasil. Keempatnya aman dijalankan ulang bila perlu.
+Tanpa pesan galat = berhasil. Ketujuhnya aman dijalankan ulang bila perlu.
 
 Lewat phpMyAdmin: buka basis datanya → tab **Import** → pilih berkas → **Go**.
 
@@ -70,6 +88,9 @@ sudah pernah diubah lewat CMS di server, perubahan itu akan hilang:
 | `migrate-region-airports.sql` | Daftar bandar udara per wilayah, kolom kantor pusat ringkas pada `regions` |
 | `migrate-regulasi-jdih.sql` | **Seluruh isi tabel `regulations`** — regulasi yang ditambahkan lewat CMS ikut terhapus |
 | `migrate-organisasi-navbar.sql` | Menu utama "Regulasi" pada navbar (dinonaktifkan), label kelompok mega menu Informasi Publik. Menambah kolom Kepala Tim pada `org_units` tanpa menghapus data lama |
+| `bandaras.sql` | **Seluruh isi tabel `bandaras`** (608 bandar udara) — berkas ini diawali `DROP TABLE`, jadi perubahan pada tabel itu akan hilang |
+| `migrate-daftar-bandara.sql` | Meta halaman Informasi Publik & Dokumen Publik, menambah tautan Dokumen Publik pada mega menu |
+| `migrate-apindo.sql` | Label pengelola `(AP I)`/`(AP II)` pada `region_airports` menjadi `(APINDO)` |
 
 Tabel lain tidak disentuh. Tidak ada kolom yang dihapus atau diubah tipenya.
 
@@ -86,19 +107,24 @@ Bila server memakai git:
 git pull
 ```
 
-> **Perhatian.** `shared/config.php` masih ikut terlacak git, sehingga `git pull`
-> akan menimpa kredensial basis data di server. Amankan lebih dulu:
-> ```bash
-> cp shared/config.php /tmp/config-server.php   # sebelum pull
-> cp /tmp/config-server.php shared/config.php   # sesudah pull
-> ```
-> Cara permanennya: keluarkan berkas itu dari git (lihat catatan di bawah).
+`shared/config.php` dan `frontend/bootstrap.php` sudah dikeluarkan dari git, jadi
+`git pull` tidak lagi menimpa penyesuaian server. Pada server yang belum pernah
+menarik pembaruan sejak perubahan itu, berkasnya akan ikut terhapus saat pull —
+cadangkan dulu, lalu kembalikan:
+
+```bash
+cp shared/config.php frontend/bootstrap.php /tmp/   # sebelum pull
+cp /tmp/config.php shared/ ; cp /tmp/bootstrap.php frontend/   # sesudah pull
+```
 
 ## 5. Verifikasi
 
 - Beranda tampil, peta wilayah bisa diklik dan memunculkan daftar bandar udara.
+- Halaman Informasi Publik menampilkan peta 608 bandar udara; marker bisa di-hover
+  dan tombol *Tabel* menampilkan daftarnya.
 - Halaman Regulasi berisi peraturan dengan tombol "Lihat di JDIH Kemenhub".
-- Halaman Tugas & Fungsi menampilkan Tugas + 6 Fungsi.
+- Halaman Profil menampilkan Tugas + 6 Fungsi pada bagian Tugas dan Fungsi.
+- Halaman Organisasi menampilkan dua pejabat per subdirektorat.
 - Masuk ke `/admin`, buka *Beranda → Peta Wilayah OBU* dan *Regulasi*.
 
 Bila ada yang salah, pulihkan dari cadangan:
@@ -117,13 +143,14 @@ nama basis data apa pun — pilih basis datanya lewat perintah `mysql`.
 
 **Kredensial.** `shared/config.php` membaca variabel lingkungan lebih dulu, jadi
 di server sebaiknya set `DBU_DB_NAME`, `DBU_DB_USER`, `DBU_DB_PASS`, dan
-`DBU_BASE_URL` daripada menyunting berkasnya. Untuk mengeluarkannya dari git:
+`DBU_BASE_URL` daripada menyunting berkasnya. Berkas ini beserta
+`frontend/bootstrap.php` sudah tercantum di `.gitignore` di akar proyek.
 
-```bash
-git rm --cached shared/config.php frontend/bootstrap.php
-printf 'shared/config.php\nfrontend/bootstrap.php\n' >> .gitignore
-git commit -m "config server tidak ikut git"
-```
+**Peta bandar udara.** Halaman Daftar Bandar Udara memuat Leaflet dan ubin peta
+OpenStreetMap dari internet, jadi server yang dipakai pengunjung perlu akses ke
+`cdnjs.cloudflare.com` dan `tile.openstreetmap.org`. Titik marker dihitung dari
+kolom `lokasi_arp` (derajat-menit-detik), bukan dari `latitude`/`longitude` yang
+sebagian besar kosong.
 
 **Folder unggahan.** Pastikan `uploads/` dapat ditulis oleh web server
 (`chmod 755`, pemilik sesuai pengguna PHP) dan `uploads/.htaccess` ikut terunggah —

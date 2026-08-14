@@ -240,3 +240,37 @@ function embed_url(?string $url): string
     }
     return $url;
 }
+
+/**
+ * Ubah koordinat ARP bentuk derajat-menit-detik menjadi desimal.
+ * Contoh masukan: 03° 17' 24.36" LS 102° 54' 50.08" BT
+ * Arah diterima dalam istilah Indonesia (LS/LU/BT/BB) maupun Inggris (S/N/E/W).
+ * Mengembalikan ['lat' => float, 'lng' => float] atau null bila tidak terbaca.
+ */
+function arp_to_latlng(?string $arp): ?array
+{
+    $arp = trim((string) $arp);
+    if ($arp === '') {
+        return null;
+    }
+    /* Sebagian data memakai koma sebagai tanda desimal (31,62") dan sebagai pemisah. */
+    $arp   = preg_replace('/(\d),(\d)/', '$1.$2', $arp);
+    $angka = "(\d+(?:\.\d+)?)";
+    $sela  = '[\s,]*';
+    $pola  = '#' . $angka . $sela . '°' . $sela . $angka . $sela . "'" . $sela . '(?:' . $angka . $sela . '"?' . $sela . ')?(LS|LU|S|N)'
+           . $sela . $angka . $sela . '°' . $sela . $angka . $sela . "'" . $sela . '(?:' . $angka . $sela . '"?' . $sela . ')?(BT|BB|E|W)#i';
+    if (!preg_match($pola, $arp, $m)) {
+        return null;
+    }
+    $lat = (float) $m[1] + (float) $m[2] / 60 + (float) ($m[3] ?: 0) / 3600;
+    $lng = (float) $m[5] + (float) $m[6] / 60 + (float) ($m[7] ?: 0) / 3600;
+
+    $utara = in_array(strtoupper($m[4]), ['LU', 'N'], true);
+    $timur = in_array(strtoupper($m[8]), ['BT', 'E'], true);
+
+    /* Di luar rentang wilayah Indonesia berarti pembacaan meleset. */
+    if ($lat > 90 || $lng > 180) {
+        return null;
+    }
+    return ['lat' => $utara ? $lat : -$lat, 'lng' => $timur ? $lng : -$lng];
+}

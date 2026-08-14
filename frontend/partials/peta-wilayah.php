@@ -66,6 +66,14 @@ foreach ($regions as $r) {
           <ol class="map-airports-list">
             <?php foreach ($list as $a): ?><li><?= e($a['name']) ?></li><?php endforeach; ?>
           </ol>
+          <?php /* Kepanjangan singkatan pengelola, muncul hanya bila dipakai di wilayah ini. */
+          $adaApindo = false;
+          foreach ($list as $a) {
+              if (strpos($a['name'], '(APINDO)') !== false) { $adaApindo = true; break; }
+          }
+          if ($adaApindo): ?>
+          <p class="map-airports-note">APINDO — PT Angkasa Pura Indonesia</p>
+          <?php endif; ?>
         </div>
         <?php endforeach; ?>
       </div>

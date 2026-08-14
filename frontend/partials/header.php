@@ -13,6 +13,8 @@ $currentFile = $ctx['file'];
 <meta name="description" content="<?= e($ctx['description']) ?>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="<?= e(url('css/style.css')) ?>">
+<?php /* Aset tambahan khusus satu halaman: isi $GLOBALS['dbu_head'] sebelum memanggil partial ini. */ ?>
+<?= $GLOBALS['dbu_head'] ?? '' ?>
 </head>
 <body>
 
