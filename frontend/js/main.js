@@ -36,7 +36,7 @@
       /* accordion-style dropdowns on mobile */
       document.querySelectorAll('.navlist > li').forEach(function(li){
         var link = li.querySelector('a');
-        var dd = li.querySelector('.dropdown');
+        var dd = li.querySelector('.megamenu');
         if(dd && link){
           link.addEventListener('click', function(e){
             if(window.innerWidth <= 900){

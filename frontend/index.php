@@ -189,12 +189,12 @@ partial('header');
         <?php if ($newsSec['eyebrow']): ?><div class="eyebrow"><?= e($newsSec['eyebrow']) ?></div><?php endif; ?>
         <h2><?= e($newsSec['title']) ?></h2>
       </div>
-      <a href="<?= e(url('pages/berita.php')) ?>" class="btn btn-outline-blue btn-sm">Lihat Semua Berita <i class="bi bi-arrow-right"></i></a>
+      <a href="<?= e(url('pages/berita')) ?>" class="btn btn-outline-blue btn-sm">Lihat Semua Berita <i class="bi bi-arrow-right"></i></a>
     </div>
     <div class="grid" style="grid-template-columns:2fr 1fr; align-items:start;">
       <div class="grid grid-3">
         <?php foreach ($news as $item):
-            $detail = url('pages/berita-detail.php?slug=' . urlencode($item['slug'])); ?>
+            $detail = url('pages/berita-detail?slug=' . urlencode($item['slug'])); ?>
         <div class="card news-card">
           <div class="thumb"><?= art_block($item['image'], $item['art_class'], $item['icon'], '', $item['title']) ?><span class="cat"><?= e(db_value('SELECT label FROM news_categories WHERE slug = ?', [$item['category']], $item['category'])) ?></span></div>
           <div class="body">
@@ -216,7 +216,7 @@ partial('header');
           </a>
           <?php endforeach; ?>
         </div>
-        <a href="<?= e(url('pages/berita.php?cat=pengumuman')) ?>" class="btn btn-outline-blue btn-sm btn-block" style="margin-top:18px;">Semua Pengumuman</a>
+        <a href="<?= e(url('pages/berita?cat=pengumuman')) ?>" class="btn btn-outline-blue btn-sm btn-block" style="margin-top:18px;">Semua Pengumuman</a>
       </div>
     </div>
   </div>
@@ -250,7 +250,7 @@ partial('header');
         <?php if ($galSec['eyebrow']): ?><div class="eyebrow"><?= e($galSec['eyebrow']) ?></div><?php endif; ?>
         <h2><?= e($galSec['title']) ?></h2>
       </div>
-      <a href="<?= e(url('pages/galeri.php')) ?>" class="btn btn-outline-blue btn-sm">Lihat Galeri Lengkap <i class="bi bi-arrow-right"></i></a>
+      <a href="<?= e(url('pages/galeri')) ?>" class="btn btn-outline-blue btn-sm">Lihat Galeri Lengkap <i class="bi bi-arrow-right"></i></a>
     </div>
     <div class="gallery-grid">
       <?php foreach ($photos as $photo): ?>

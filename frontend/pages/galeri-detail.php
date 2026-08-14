@@ -8,11 +8,11 @@ $album = $slug !== ''
 
 if (!$album) {
     http_response_code(404);
-    page_start('galeri', ['title' => 'Album tidak ditemukan', 'breadcrumbs' => [['label' => 'Galeri', 'url' => 'pages/galeri.php'], ['label' => 'Tidak ditemukan']]]);
+    page_start('galeri', ['title' => 'Album tidak ditemukan', 'breadcrumbs' => [['label' => 'Galeri', 'url' => 'pages/galeri'], ['label' => 'Tidak ditemukan']]]);
     partial('header');
     echo '<section class="section"><div class="container" style="text-align:center;padding:60px 0;">'
        . '<h1 style="font-size:24px;margin-bottom:12px;">Album tidak ditemukan</h1>'
-       . '<a href="' . e(url('pages/galeri.php')) . '" class="btn btn-primary btn-sm">Kembali ke Galeri</a></div></section>';
+       . '<a href="' . e(url('pages/galeri')) . '" class="btn btn-primary btn-sm">Kembali ke Galeri</a></div></section>';
     partial('footer');
     exit;
 }
@@ -22,7 +22,7 @@ $photos = db_all('SELECT * FROM gallery_photos WHERE album_id = ? AND is_active 
 page_start('galeri', [
     'title'       => $album['title'] . ' — Galeri — ' . setting('site_name'),
     'description' => excerpt($album['description'], 200),
-    'breadcrumbs' => [['label' => 'Galeri', 'url' => 'pages/galeri.php'], ['label' => excerpt($album['title'], 60)]],
+    'breadcrumbs' => [['label' => 'Galeri', 'url' => 'pages/galeri'], ['label' => excerpt($album['title'], 60)]],
 ]);
 
 $meta = [
@@ -47,7 +47,7 @@ partial('page-title', ['meta' => $meta]);
     </div>
     <?php if (!$photos): ?><p style="text-align:center;padding:40px;color:var(--text-500);">Album ini belum memiliki foto.</p><?php endif; ?>
     <div style="margin-top:40px;">
-      <a href="<?= e(url('pages/galeri.php')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Galeri</a>
+      <a href="<?= e(url('pages/galeri')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Galeri</a>
     </div>
   </div>
 </section>

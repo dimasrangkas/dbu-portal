@@ -39,7 +39,7 @@ $currentFile = $ctx['file'];
   <!-- ===================== HEADER ===================== -->
   <header class="header">
     <div class="container brandrow">
-      <a href="<?= e(url('index.php')) ?>" class="brand">
+      <a href="<?= e(url('')) ?>" class="brand">
         <div class="brand-logos">
           <div class="logo-badge">
             <img src="<?= e(asset_url(setting('logo_primary', 'assets/images/kemenhub.png'))) ?>" alt="Logo Kementerian Perhubungan">
@@ -76,11 +76,41 @@ $currentFile = $ctx['file'];
           <a href="<?= e($item['is_external'] ? $item['url'] : url($item['url'])) ?>"<?= $item['is_external'] ? ' target="_blank" rel="noopener"' : '' ?>>
             <?= e($item['label']) ?><?= $item['children'] ? ' <i class="bi bi-chevron-down" style="font-size:11px"></i>' : '' ?>
           </a>
-          <?php if ($item['children']): ?>
-          <div class="dropdown">
-            <?php foreach ($item['children'] as $child): ?>
-            <a href="<?= e($child['is_external'] ? $child['url'] : url($child['url'])) ?>"><?= e($child['label']) ?></a>
-            <?php endforeach; ?>
+          <?php if ($item['children']):
+              /* Anak menu dikelompokkan per group_label menjadi kolom mega menu. */
+              $kolom = [];
+              foreach ($item['children'] as $child) {
+                  $kolom[$child['group_label'] ?: ''][] = $child;
+              }
+          ?>
+          <div class="megamenu">
+            <div class="container">
+              <div class="megamenu-grid" style="--kolom:<?= count($kolom) ?>">
+                <?php foreach ($kolom as $judul => $anak): ?>
+                <div class="megamenu-col">
+                  <?php if ($judul !== ''): ?><h4><?= e($judul) ?></h4><?php endif; ?>
+                  <?php foreach ($anak as $child):
+                      $href  = $child['is_external'] ? $child['url'] : url($child['url']);
+                      $gaya  = $child['style'] ?? 'link';
+                      $extra = $child['is_external'] ? ' target="_blank" rel="noopener"' : ''; ?>
+                  <?php if ($gaya === 'link'): ?>
+                  <a class="megamenu-item" href="<?= e($href) ?>"<?= $extra ?>>
+                    <?php if ($child['icon']): ?><span class="megamenu-ic"><i class="bi <?= e($child['icon']) ?>"></i></span><?php endif; ?>
+                    <span class="megamenu-text">
+                      <b><?= e($child['label']) ?></b>
+                      <?php if ($child['description']): ?><small><?= e($child['description']) ?></small><?php endif; ?>
+                    </span>
+                  </a>
+                  <?php else: ?>
+                  <a class="megamenu-btn<?= $gaya === 'button-primary' ? ' is-primary' : '' ?>" href="<?= e($href) ?>"<?= $extra ?>>
+                    <span><?= e($child['label']) ?></span><i class="bi bi-chevron-right"></i>
+                  </a>
+                  <?php endif; ?>
+                  <?php endforeach; ?>
+                </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
           </div>
           <?php endif; ?>
         </li>
@@ -103,7 +133,7 @@ $currentFile = $ctx['file'];
 <?php if (!empty($ctx['breadcrumbs'])): ?>
 <div class="breadcrumb-bar">
   <div class="container breadcrumb">
-    <a href="<?= e(url('index.php')) ?>">Beranda</a>
+    <a href="<?= e(url('')) ?>">Beranda</a>
     <?php foreach ($ctx['breadcrumbs'] as $i => $crumb):
         $last = $i === count($ctx['breadcrumbs']) - 1; ?>
       <span class="sep">/</span>

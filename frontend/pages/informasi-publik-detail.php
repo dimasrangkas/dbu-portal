@@ -5,7 +5,7 @@ require_once dirname(__DIR__) . '/bootstrap.php';
 page_start('informasi-publik', [
     'title'       => 'Laporan Tahunan 2025 — Informasi Publik — Direktorat Bandar Udara',
     'description' => 'Detail dokumen Laporan Tahunan 2025 Direktorat Bandar Udara.',
-    'breadcrumbs' => [['label' => 'Informasi Publik', 'url' => 'pages/informasi-publik.php'], ['label' => 'Laporan Tahunan 2025']],
+    'breadcrumbs' => [['label' => 'Informasi Publik', 'url' => 'pages/informasi-publik'], ['label' => 'Laporan Tahunan 2025']],
 ]);
 partial('header');
 ?>

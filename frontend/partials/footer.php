@@ -50,7 +50,7 @@ $socials  = social_links();
   </div>
   <div class="container footer-bottom">
     <span>&copy; <?= date('Y') ?> <?= e(setting('footer_copyright')) ?></span>
-    <span><a href="#">Kebijakan Privasi</a> &middot; <a href="<?= e(url('pages/kontak.php')) ?>">Peta Situs</a></span>
+    <span><a href="#">Kebijakan Privasi</a> &middot; <a href="<?= e(url('pages/kontak')) ?>">Peta Situs</a></span>
   </div>
 </footer>
 

@@ -8,11 +8,11 @@ $reg  = $slug !== ''
 
 if (!$reg) {
     http_response_code(404);
-    page_start('regulasi', ['title' => 'Regulasi tidak ditemukan', 'breadcrumbs' => [['label' => 'Regulasi', 'url' => 'pages/regulasi.php'], ['label' => 'Tidak ditemukan']]]);
+    page_start('regulasi', ['title' => 'Regulasi tidak ditemukan', 'breadcrumbs' => [['label' => 'Regulasi', 'url' => 'pages/regulasi'], ['label' => 'Tidak ditemukan']]]);
     partial('header');
     echo '<section class="section"><div class="container" style="text-align:center;padding:60px 0;">'
        . '<h1 style="font-size:24px;margin-bottom:12px;">Regulasi tidak ditemukan</h1>'
-       . '<a href="' . e(url('pages/regulasi.php')) . '" class="btn btn-primary btn-sm">Kembali ke Daftar Regulasi</a></div></section>';
+       . '<a href="' . e(url('pages/regulasi')) . '" class="btn btn-primary btn-sm">Kembali ke Daftar Regulasi</a></div></section>';
     partial('footer');
     exit;
 }
@@ -20,7 +20,7 @@ if (!$reg) {
 page_start('regulasi', [
     'title'       => $reg['number'] . ' — Regulasi — ' . setting('site_name'),
     'description' => excerpt($reg['about'], 200),
-    'breadcrumbs' => [['label' => 'Regulasi', 'url' => 'pages/regulasi.php'], ['label' => $reg['number']]],
+    'breadcrumbs' => [['label' => 'Regulasi', 'url' => 'pages/regulasi'], ['label' => $reg['number']]],
 ]);
 
 $catLabel = db_value('SELECT label FROM regulation_categories WHERE slug = ?', [$reg['category']], $reg['category']);
@@ -87,7 +87,7 @@ partial('header');
           <h4 style="font-size:14.5px; margin-bottom:16px;">Regulasi Terkait</h4>
           <ul style="display:flex; flex-direction:column; gap:12px;">
             <?php foreach ($related as $rel): ?>
-            <li><a href="<?= e(url('pages/regulasi-detail.php?slug=' . urlencode($rel['slug']))) ?>" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-journal-text"></i> <?= e($rel['number']) ?> — <?= e(excerpt($rel['title'], 45)) ?></a></li>
+            <li><a href="<?= e(url('pages/regulasi-detail?slug=' . urlencode($rel['slug']))) ?>" style="color:var(--primary-dark); font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:8px;"><i class="bi bi-journal-text"></i> <?= e($rel['number']) ?> — <?= e(excerpt($rel['title'], 45)) ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>
@@ -96,7 +96,7 @@ partial('header');
 
     </div>
     <div style="margin-top:40px;">
-      <a href="<?= e(url('pages/regulasi.php')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Daftar Regulasi</a>
+      <a href="<?= e(url('pages/regulasi')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Daftar Regulasi</a>
     </div>
   </div>
 </section>

@@ -40,7 +40,7 @@ partial('page-title', ['meta' => $meta]);
         </thead>
         <tbody>
           <?php foreach ($regs as $r):
-              $detail = url('pages/regulasi-detail.php?slug=' . urlencode($r['slug'])); ?>
+              $detail = url('pages/regulasi-detail?slug=' . urlencode($r['slug'])); ?>
           <tr data-year="<?= (int) $r['year'] ?>" data-cat="<?= e($r['category']) ?>">
             <td><?= e($r['number']) ?></td>
             <td><?= e($r['title']) ?></td>

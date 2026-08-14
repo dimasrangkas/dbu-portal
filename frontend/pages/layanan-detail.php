@@ -8,12 +8,12 @@ $svc  = $slug !== ''
 
 if (!$svc) {
     http_response_code(404);
-    $meta = page_start('layanan', ['title' => 'Layanan tidak ditemukan', 'breadcrumbs' => [['label' => 'Layanan', 'url' => 'pages/layanan.php'], ['label' => 'Tidak ditemukan']]]);
+    $meta = page_start('layanan', ['title' => 'Layanan tidak ditemukan', 'breadcrumbs' => [['label' => 'Layanan', 'url' => 'pages/layanan'], ['label' => 'Tidak ditemukan']]]);
     partial('header');
     echo '<section class="section"><div class="container" style="text-align:center;padding:60px 0;">'
        . '<h1 style="font-size:24px;margin-bottom:12px;">Layanan tidak ditemukan</h1>'
        . '<p style="color:var(--text-500);margin-bottom:24px;">Layanan yang Anda cari tidak tersedia atau telah dinonaktifkan.</p>'
-       . '<a href="' . e(url('pages/layanan.php')) . '" class="btn btn-primary btn-sm">Kembali ke Daftar Layanan</a></div></section>';
+       . '<a href="' . e(url('pages/layanan')) . '" class="btn btn-primary btn-sm">Kembali ke Daftar Layanan</a></div></section>';
     partial('footer');
     exit;
 }
@@ -21,7 +21,7 @@ if (!$svc) {
 $meta = page_start('layanan', [
     'title'       => $svc['name'] . ' — Layanan — ' . setting('site_name'),
     'description' => excerpt($svc['description'], 200),
-    'breadcrumbs' => [['label' => 'Layanan', 'url' => 'pages/layanan.php'], ['label' => excerpt($svc['name'], 60)]],
+    'breadcrumbs' => [['label' => 'Layanan', 'url' => 'pages/layanan'], ['label' => excerpt($svc['name'], 60)]],
 ]);
 
 $reqs      = db_all('SELECT * FROM service_requirements WHERE service_id = ? ORDER BY sort, id', [$svc['id']]);
@@ -103,14 +103,14 @@ partial('header');
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Masa Berlaku</span><b><?= e($svc['validity']) ?></b></div>
             <div class="flex" style="justify-content:space-between;"><span style="color:var(--text-500);">Metode</span><b><?= e($svc['method']) ?></b></div>
           </div>
-          <a href="<?= e(url($svc['cta_url'] ?: 'pages/kontak.php')) ?>" class="btn btn-primary btn-block" style="margin-top:22px;"><?= e($svc['cta_label'] ?: 'Ajukan Layanan Sekarang') ?></a>
+          <a href="<?= e(url($svc['cta_url'] ?: 'pages/kontak')) ?>" class="btn btn-primary btn-block" style="margin-top:22px;"><?= e($svc['cta_label'] ?: 'Ajukan Layanan Sekarang') ?></a>
         </div>
         <?php if ($related): ?>
         <div class="card card-pad">
           <h4 style="font-size:14.5px; margin-bottom:16px;">Layanan Terkait</h4>
           <ul class="footer-links" style="display:flex; flex-direction:column; gap:12px;">
             <?php foreach ($related as $rel): ?>
-            <li><a href="<?= e(url('pages/layanan-detail.php?slug=' . urlencode($rel['slug']))) ?>" style="color:var(--primary-dark); font-weight:600; display:flex; align-items:center; gap:8px;"><i class="bi <?= e($rel['icon'] ?: 'bi-dot') ?>"></i> <?= e(excerpt($rel['name'], 60)) ?></a></li>
+            <li><a href="<?= e(url('pages/layanan-detail?slug=' . urlencode($rel['slug']))) ?>" style="color:var(--primary-dark); font-weight:600; display:flex; align-items:center; gap:8px;"><i class="bi <?= e($rel['icon'] ?: 'bi-dot') ?>"></i> <?= e(excerpt($rel['name'], 60)) ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>
@@ -119,7 +119,7 @@ partial('header');
 
     </div>
     <div style="margin-top:40px;">
-      <a href="<?= e(url('pages/layanan.php')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Daftar Layanan</a>
+      <a href="<?= e(url('pages/layanan')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Daftar Layanan</a>
     </div>
   </div>
 </section>

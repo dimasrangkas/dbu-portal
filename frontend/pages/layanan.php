@@ -48,7 +48,7 @@ partial('page-title', ['meta' => $meta]);
           <?php foreach ($services as $svc): ?>
           <tr data-cat="<?= e($svc['category']) ?>">
             <td><?= e($svc['unit_pengelola']) ?></td>
-            <td><a href="<?= e(url('pages/layanan-detail.php?slug=' . urlencode($svc['slug']))) ?>" style="color:var(--primary-dark);font-weight:600;"><?= e($svc['name']) ?></a></td>
+            <td><a href="<?= e(url('pages/layanan-detail?slug=' . urlencode($svc['slug']))) ?>" style="color:var(--primary-dark);font-weight:600;"><?= e($svc['name']) ?></a></td>
             <td><span class="badge <?= e($svc['sifat_badge']) ?>"><?= e($svc['sifat']) ?></span></td>
             <td><span class="badge <?= e($svc['klasifikasi_badge']) ?>"><?= e($svc['klasifikasi']) ?></span></td>
             <td><button type="button" class="btn btn-primary btn-sm" data-svc-apply="<?= e($svc['name']) ?>">Ajukan</button></td>
@@ -107,7 +107,7 @@ partial('page-title', ['meta' => $meta]);
         <div class="ic" style="width:60px;height:60px;border-radius:50%;background:var(--sky-50);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;"><i class="bi bi-send-check"></i></div>
         <h3 style="font-size:16.5px; margin-bottom:10px;"><?= e($s['cta']['title'] ?? 'Siap Mengajukan Layanan?') ?></h3>
         <p style="font-size:14px; color:var(--text-500); margin-bottom:22px;"><?= e($s['cta']['subtitle'] ?? '') ?></p>
-        <a href="<?= e(url('pages/layanan-detail.php?slug=' . urlencode($services[0]['slug'] ?? ''))) ?>" class="btn btn-primary btn-block">Ajukan Layanan Sekarang <i class="bi bi-arrow-right"></i></a>
+        <a href="<?= e(url('pages/layanan-detail?slug=' . urlencode($services[0]['slug'] ?? ''))) ?>" class="btn btn-primary btn-block">Ajukan Layanan Sekarang <i class="bi bi-arrow-right"></i></a>
       </div>
     </div>
 

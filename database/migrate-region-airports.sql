@@ -4,7 +4,9 @@
 --  Jalankan: mysql -u root -h 127.0.0.1 dbu_cms < database/migrate-region-airports.sql
 -- ============================================================
 SET NAMES utf8mb4;
-USE `dbu_cms`;
+-- USE `dbu_cms`;   <- nama basis data di server sering berbeda.
+--                    Pilih basis datanya saat menjalankan, contoh:
+--                    mysql -u USER -p NAMA_DB < migrate-region-airports.sql
 
 -- Daftar bandar udara di bawah tiap Otoritas Bandar Udara
 DROP TABLE IF EXISTS `region_airports`;

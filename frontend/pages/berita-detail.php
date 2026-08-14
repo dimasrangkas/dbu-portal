@@ -8,11 +8,11 @@ $item = $slug !== ''
 
 if (!$item) {
     http_response_code(404);
-    page_start('berita', ['title' => 'Berita tidak ditemukan', 'breadcrumbs' => [['label' => 'Berita', 'url' => 'pages/berita.php'], ['label' => 'Tidak ditemukan']]]);
+    page_start('berita', ['title' => 'Berita tidak ditemukan', 'breadcrumbs' => [['label' => 'Berita', 'url' => 'pages/berita'], ['label' => 'Tidak ditemukan']]]);
     partial('header');
     echo '<section class="section"><div class="container" style="text-align:center;padding:60px 0;">'
        . '<h1 style="font-size:24px;margin-bottom:12px;">Berita tidak ditemukan</h1>'
-       . '<a href="' . e(url('pages/berita.php')) . '" class="btn btn-primary btn-sm">Kembali ke Berita</a></div></section>';
+       . '<a href="' . e(url('pages/berita')) . '" class="btn btn-primary btn-sm">Kembali ke Berita</a></div></section>';
     partial('footer');
     exit;
 }
@@ -22,7 +22,7 @@ db_exec('UPDATE news SET views = views + 1 WHERE id = ?', [$item['id']]);
 page_start('berita', [
     'title'       => $item['title'] . ' — Berita — ' . setting('site_name'),
     'description' => $item['excerpt'] ?: excerpt($item['content'], 200),
-    'breadcrumbs' => [['label' => 'Berita', 'url' => 'pages/berita.php'], ['label' => excerpt($item['title'], 60)]],
+    'breadcrumbs' => [['label' => 'Berita', 'url' => 'pages/berita'], ['label' => excerpt($item['title'], 60)]],
 ]);
 
 $catLabel = db_value('SELECT label FROM news_categories WHERE slug = ?', [$item['category']], $item['category']);
@@ -73,7 +73,7 @@ partial('header');
           <h4 style="font-size:14.5px; margin-bottom:16px;">Berita Terkait</h4>
           <ul style="display:flex; flex-direction:column; gap:16px;">
             <?php foreach ($related as $rel): ?>
-            <li><a href="<?= e(url('pages/berita-detail.php?slug=' . urlencode($rel['slug']))) ?>" style="display:block; color:var(--text-900); font-weight:600; font-size:13.5px; line-height:1.4;"><?= e($rel['title']) ?></a></li>
+            <li><a href="<?= e(url('pages/berita-detail?slug=' . urlencode($rel['slug']))) ?>" style="display:block; color:var(--text-900); font-weight:600; font-size:13.5px; line-height:1.4;"><?= e($rel['title']) ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>
@@ -91,7 +91,7 @@ partial('header');
 
     </div>
     <div style="margin-top:40px;">
-      <a href="<?= e(url('pages/berita.php')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Berita</a>
+      <a href="<?= e(url('pages/berita')) ?>" class="btn btn-outline-blue btn-sm"><i class="bi bi-arrow-left"></i> Kembali ke Berita</a>
     </div>
   </div>
 </section>

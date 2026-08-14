@@ -219,7 +219,7 @@ return [
 
     /* ============ PROFIL ============ */
     'profil_about' => [
-        'group' => 'Profil', 'label' => 'Tentang, Visi & Tugas Pokok', 'icon' => 'bi-info-square',
+        'group' => 'Profil', 'label' => 'Tentang & Visi', 'icon' => 'bi-info-square',
         'table' => 'profil_about', 'single' => true,
         'fields' => [
             'eyebrow'     => ['label' => 'Label Atas', 'type' => 'text', 'col' => 'half'],
@@ -227,8 +227,9 @@ return [
             'body'        => ['label' => 'Uraian Tentang Direktorat', 'type' => 'richtext'],
         ] + f_visual('art-6') + [
             'visi'        => ['label' => 'Visi', 'type' => 'textarea'],
-            'tugas_pokok' => ['label' => 'Tugas Pokok', 'type' => 'richtext'],
         ],
+        /* Tugas & fungsi direktorat diatur di menu "Tugas & Fungsi",
+           tampil pada halaman Profil bagian Tugas dan Fungsi. */
     ],
 
     'timeline_items' => [
@@ -280,18 +281,9 @@ return [
         ],
     ],
 
-    'directorate_functions' => [
-        'group' => 'Profil', 'label' => 'Fungsi Direktorat', 'icon' => 'bi-gear-wide-connected',
-        'table' => 'directorate_functions', 'order' => 'sort, id', 'reorder' => true,
-        'list'  => ['title' => 'Judul', 'description' => 'Deskripsi', 'sort' => 'Urutan', 'is_active' => 'Aktif'],
-        'fields' => [
-            'icon'        => f_icon(),
-            'title'       => ['label' => 'Judul', 'type' => 'text', 'required' => true, 'col' => 'half'],
-            'description' => ['label' => 'Deskripsi', 'type' => 'textarea'],
-            'sort'        => f_sort(),
-            'is_active'   => f_active(),
-        ],
-    ],
+    /* Tabel `directorate_functions` tidak lagi dipakai halaman Profil — daftar fungsi
+       sekarang diambil dari menu "Tugas & Fungsi" (tabel tf_functions). Datanya
+       dibiarkan utuh di basis data, hanya tidak lagi disunting dari panel. */
 
     /* ============ ORGANISASI ============ */
     'org_units' => [
@@ -302,20 +294,44 @@ return [
             'unit_key'     => ['label' => 'Kode Unit', 'type' => 'slug', 'from' => 'title', 'required' => true, 'col' => 'half',
                                'hint' => 'Huruf kecil tanpa spasi, harus unik'],
             'icon'         => f_icon(),
-            'title'        => ['label' => 'Nama Unit', 'type' => 'text', 'required' => true],
-            'description'  => ['label' => 'Deskripsi Tugas', 'type' => 'textarea'],
-            'chips'        => ['label' => 'Kata Kunci', 'type' => 'text', 'hint' => 'Pisahkan dengan koma, contoh: Standar Keselamatan, Audit Kepatuhan'],
-            'branch_class' => ['label' => 'Posisi Bagan', 'type' => 'select', 'col' => 'half',
-                               'options' => ['org-branch' => 'Cabang Utama', 'org-branch2' => 'Cabang Kedua']],
-            'sort'         => f_sort(),
-            'is_active'    => f_active(),
+            'title'         => ['label' => 'Nama Unit', 'type' => 'text', 'required' => true],
+            'description'   => ['label' => 'Deskripsi Singkat', 'type' => 'textarea'],
+            'tugas'         => ['label' => 'Tugas', 'type' => 'richtext', 'rows' => 5,
+                                'hint'  => 'Tampil pada kartu unit di halaman Organisasi'],
+            'head_name'     => ['label' => 'Nama Kepala Subdirektorat', 'type' => 'text', 'col' => 'half',
+                                'hint'  => 'Kosongkan untuk unit tanpa pejabat tunggal.'],
+            'head_position' => ['label' => 'Jabatan Kepala Subdirektorat', 'type' => 'text', 'col' => 'half',
+                                'hint'  => 'Contoh: Kepala Subdirektorat'],
+            'head_photo'    => ['label' => 'Foto Kepala Subdirektorat', 'type' => 'image',
+                                'hint'  => 'Pasfoto. Bila kosong, kartu menampilkan ikon orang.'],
+            'team_lead_name'     => ['label' => 'Nama Kepala Tim', 'type' => 'text', 'col' => 'half',
+                                     'hint'  => 'Pejabat kedua yang tampil pada kartu unit.'],
+            'team_lead_position' => ['label' => 'Jabatan Kepala Tim', 'type' => 'text', 'col' => 'half',
+                                     'hint'  => 'Contoh: Kepala Tim'],
+            'team_lead_photo'    => ['label' => 'Foto Kepala Tim', 'type' => 'image',
+                                     'hint'  => 'Pasfoto. Bila kosong, kartu menampilkan ikon orang.'],
+            'chips'         => ['label' => 'Kata Kunci', 'type' => 'text', 'hint' => 'Pisahkan dengan koma, contoh: Standar Keselamatan, Audit Kepatuhan'],
+            'branch_class'  => ['label' => 'Posisi Bagan', 'type' => 'select', 'col' => 'half',
+                                'options' => ['org-branch' => 'Cabang Utama', 'org-branch2' => 'Cabang Kedua']],
+            'sort'          => f_sort(),
+            'is_active'     => f_active(),
+        ],
+        'children' => [
+            'org_unit_functions' => [
+                'label' => 'Fungsi Unit', 'table' => 'org_unit_functions', 'foreign_key' => 'unit_id', 'order' => 'sort, id',
+                'hint'  => 'Rincian fungsi yang tampil pada kartu unit di halaman Organisasi.',
+                'fields' => [
+                    'content' => ['label' => 'Isi Fungsi', 'type' => 'textarea', 'rows' => 3, 'required' => true],
+                ],
+            ],
         ],
     ],
 
-    /* ============ TUGAS & FUNGSI ============ */
+    /* ============ TUGAS & FUNGSI (tampil di halaman Profil) ============ */
     'tf_overview' => [
         'group' => 'Tugas & Fungsi', 'label' => 'Tugas Direktorat', 'icon' => 'bi-bullseye',
         'table' => 'tf_overview', 'single' => true,
+        'hint'  => 'Tampil pada halaman Profil, bagian Tugas dan Fungsi.',
         'fields' => [
             'tugas_eyebrow'  => ['label' => 'Label Atas — Tugas', 'type' => 'text', 'col' => 'half'],
             'tugas_title'    => ['label' => 'Judul Seksi Tugas', 'type' => 'text', 'col' => 'half'],

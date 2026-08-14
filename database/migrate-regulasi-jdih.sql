@@ -4,10 +4,21 @@
 --  Jalankan: mysql -u root -h 127.0.0.1 dbu_cms < database/migrate-regulasi-jdih.sql
 -- ============================================================
 SET NAMES utf8mb4;
-USE `dbu_cms`;
+-- USE `dbu_cms`;   <- nama basis data di server sering berbeda.
+--                    Pilih basis datanya saat menjalankan, contoh:
+--                    mysql -u USER -p NAMA_DB < migrate-regulasi-jdih.sql
 
 -- Tautan ke dokumen resmi pada JDIH
-ALTER TABLE `regulations` ADD COLUMN IF NOT EXISTS `source_url` VARCHAR(500) NULL AFTER `file`;
+-- Tambah kolom hanya bila belum ada — cara ini jalan di MySQL 5.7/8 maupun MariaDB.
+-- (sintaks "ADD COLUMN IF NOT EXISTS" hanya dikenal MariaDB, gagal di MySQL)
+SET @ada := (SELECT COUNT(*) FROM information_schema.COLUMNS
+              WHERE TABLE_SCHEMA = DATABASE()
+                AND TABLE_NAME   = 'regulations'
+                AND COLUMN_NAME  = 'source_url');
+SET @sql := IF(@ada = 0,
+  'ALTER TABLE `regulations` ADD COLUMN `source_url` VARCHAR(500) NULL AFTER `file`',
+  'DO 0');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 -- Regulasi kebandarudaraan — mengacu pada JDIH Kementerian Perhubungan
 DELETE FROM `regulations`;

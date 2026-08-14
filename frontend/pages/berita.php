@@ -32,7 +32,7 @@ partial('page-title', ['meta' => $meta]);
 
     <div class="grid grid-3" data-news-grid>
       <?php foreach ($items as $item):
-          $detail = url('pages/berita-detail.php?slug=' . urlencode($item['slug'])); ?>
+          $detail = url('pages/berita-detail?slug=' . urlencode($item['slug'])); ?>
       <div class="card news-card" data-news-item data-cat="<?= e($item['category']) ?>">
         <div class="thumb"><?= art_block($item['image'], $item['art_class'], $item['icon'], '', $item['title']) ?><span class="cat"><?= e($catMap[$item['category']] ?? $item['category']) ?></span></div>
         <div class="body">

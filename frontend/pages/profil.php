@@ -7,7 +7,9 @@ $timeline = db_all('SELECT * FROM timeline_items WHERE is_active = 1 ORDER BY so
 $missions = db_all('SELECT * FROM missions WHERE is_active = 1 ORDER BY sort, id');
 $values   = db_all('SELECT * FROM value_cards WHERE is_active = 1 ORDER BY sort, id');
 $goals    = db_all('SELECT * FROM strategic_goals WHERE is_active = 1 ORDER BY sort, id');
-$funcs    = db_all('SELECT * FROM directorate_functions WHERE is_active = 1 ORDER BY sort, id');
+/* Tugas & Fungsi direktorat — sumbernya tf_overview/tf_functions (dulu halaman tersendiri). */
+$tf       = db_one('SELECT * FROM tf_overview ORDER BY id LIMIT 1') ?: [];
+$funcs    = db_all('SELECT * FROM tf_functions WHERE is_active = 1 ORDER BY sort, id');
 $s        = sections('profil');
 
 partial('header');
@@ -127,32 +129,41 @@ partial('page-title', ['meta' => $meta]);
 <?php endif; ?>
 
 <!-- TUGAS POKOK -->
+<?php if (!empty($tf['tugas'])): ?>
 <section class="section section-alt" id="tugas-pokok">
   <div class="container" style="max-width:900px;">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center"><?= e($s['tugas-pokok']['eyebrow'] ?? 'Tugas Pokok') ?></div>
-      <h2><?= e($s['tugas-pokok']['title'] ?? '') ?></h2>
+      <div class="eyebrow" style="justify-content:center"><?= e(($tf['tugas_eyebrow'] ?? '') ?: ($s['tugas-pokok']['eyebrow'] ?? 'Tugas Pokok')) ?></div>
+      <h2><?= e(($tf['tugas_title'] ?? '') ?: ($s['tugas-pokok']['title'] ?? 'Tugas Direktorat Bandar Udara')) ?></h2>
     </div>
     <div class="info-box">
-      <h3><i class="bi bi-bullseye"></i>&nbsp; Tugas Pokok</h3>
-      <?= paragraphs($about['tugas_pokok'] ?? '') ?>
+      <h3><i class="bi bi-bullseye"></i>&nbsp; Tugas</h3>
+      <?= paragraphs($tf['tugas']) ?>
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <!-- FUNGSI -->
 <?php if ($funcs): ?>
 <section class="section" id="fungsi">
-  <div class="container">
+  <div class="container" style="max-width:960px;">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center"><?= e($s['fungsi']['eyebrow'] ?? 'Fungsi') ?></div>
-      <h2><?= e($s['fungsi']['title'] ?? '') ?></h2>
+      <div class="eyebrow" style="justify-content:center"><?= e(($tf['fungsi_eyebrow'] ?? '') ?: ($s['fungsi']['eyebrow'] ?? 'Fungsi')) ?></div>
+      <h2><?= e(($tf['fungsi_title'] ?? '') ?: ($s['fungsi']['title'] ?? 'Fungsi Direktorat Bandar Udara')) ?></h2>
+      <?php if (!empty($tf['fungsi_intro'])): ?><p><?= e($tf['fungsi_intro']) ?></p><?php endif; ?>
     </div>
-    <div class="grid grid-3">
-      <?php foreach ($funcs as $f): ?>
-      <div class="card icon-card card-pad"><div class="ic"><i class="bi <?= e($f['icon']) ?>"></i></div><h3><?= e($f['title']) ?></h3><p><?= e($f['description']) ?></p></div>
+    <ol class="fungsi-list">
+      <?php foreach ($funcs as $i => $f): ?>
+      <li class="fungsi-item">
+        <span class="fungsi-num"><?= $i + 1 ?></span>
+        <div class="fungsi-body">
+          <?php if ($f['icon']): ?><i class="bi <?= e($f['icon']) ?>"></i><?php endif; ?>
+          <p><?= e($f['content']) ?></p>
+        </div>
+      </li>
       <?php endforeach; ?>
-    </div>
+    </ol>
   </div>
 </section>
 <?php endif; ?>

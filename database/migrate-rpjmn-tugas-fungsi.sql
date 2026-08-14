@@ -5,7 +5,9 @@
 --  Jalankan: mysql -u root -h 127.0.0.1 dbu_cms < database/migrate-rpjmn-tugas-fungsi.sql
 -- ============================================================
 SET NAMES utf8mb4;
-USE `dbu_cms`;
+-- USE `dbu_cms`;   <- nama basis data di server sering berbeda.
+--                    Pilih basis datanya saat menjalankan, contoh:
+--                    mysql -u USER -p NAMA_DB < migrate-rpjmn-tugas-fungsi.sql
 
 -- Program indikasi pembangunan/pengembangan bandar udara (RPJMN 2025–2029)
 DROP TABLE IF EXISTS `rpjmn_areas`;

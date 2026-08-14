@@ -59,7 +59,7 @@ partial('page-title', ['meta' => $meta]);
     <div class="tab-panel" data-tab-panel="gal" data-panel-id="album">
       <div class="grid grid-3">
         <?php foreach ($albums as $album): ?>
-        <a href="<?= e(url('pages/galeri-detail.php?slug=' . urlencode($album['slug']))) ?>" class="card" style="overflow:hidden;">
+        <a href="<?= e(url('pages/galeri-detail?slug=' . urlencode($album['slug']))) ?>" class="card" style="overflow:hidden;">
           <div class="thumb" style="aspect-ratio:4/3;"><?= art_block($album['image'], $album['art_class'], $album['icon'], '', $album['title']) ?></div>
           <div class="card-pad" style="padding:16px 18px;">
             <h4 style="font-size:14.5px;"><?= e($album['title']) ?></h4>
