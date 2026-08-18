@@ -401,33 +401,44 @@ input,textarea,select{ font-family:inherit; }
 .org-node b{ font-size:15px; } .org-node span{ font-size:12.5px; opacity:.8; }
 .org-connector{ width:2px; height:34px; background:var(--primary); margin:0 auto; position:relative; }
 .org-connector.line-h{ width:100%; height:2px; background:var(--primary); position:relative; }
+/* Jarak antar kartu dibuat lewat padding di dalam cabang, bukan `gap` pada
+   pembungkusnya. Garis penghubung mendatar adalah ::after tiap cabang yang
+   saling bersambung — `gap` akan memutus garis itu, sedangkan padding tidak
+   menggesernya karena ::after diposisikan absolut terhadap padding box. */
 .org-children{ display:flex; justify-content:center; gap:0; margin-top:0; position:relative; }
-.org-branch{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding-top:34px; max-width:230px; }
+.org-branch{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:34px 9px 0; max-width:248px; }
 .org-branch::before{ content:""; position:absolute; top:0; left:50%; width:2px; height:34px; background:var(--primary); }
 .org-branch::after{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--primary); }
 .org-branch:first-child::after{ left:50%; }
 .org-branch:last-child::after{ right:50%; }
-.org-branch2{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding-top:200px; max-width:230px; }
+.org-branch2{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:200px 9px 0; max-width:248px; }
 .org-branch2::before{ content:""; position:absolute; top:0; left:50%; width:2px; height:200px; background:var(--primary); }
 .org-branch2::after{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--primary); }
 .org-branch2:first-child::after{ left:50%; }
 .org-branch2:last-child::after{ right:50%; }
-/* Tinggi dipatok agar seluruh kartu unit seragam meski panjang judulnya berbeda. */
-.org-unit{ background:#fff; border:2px solid var(--border); border-radius:var(--r-md); padding:16px 12px; cursor:pointer; transition:.2s; width:100%; min-height:158px;
+/* Kartu unit dibuat seragam lewat dua hal: bingkai media berukuran tetap
+   (foto atau ikon) dan judul yang selalu memakan ruang tiga baris. Dengan
+   begitu tingginya sama tanpa bergantung panjang judul. */
+.org-unit{ background:#fff; border:2px solid var(--border); border-radius:var(--r-md); padding:16px 12px; cursor:pointer; transition:.2s; width:100%; min-height:193px;
            display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .org-unit:hover, .org-unit.active{ border-color:var(--primary); box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.org-unit .ic{ flex-shrink:0; width:40px; height:40px; border-radius:50%; background:var(--sky-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:17px; margin:0 auto 10px; }
-.org-unit b{ font-size:12.5px; display:block; line-height:1.4; text-wrap:balance; }
+.org-unit .ic{ flex-shrink:0; width:58px; aspect-ratio:3/4; height:auto; border-radius:var(--r-sm); background:var(--sky-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:19px; margin:0 auto 10px; }
+.org-unit b{ font-size:12.5px; display:flex; align-items:center; justify-content:center; min-height:5.6em; line-height:1.4; text-wrap:balance; }
 .org-detail{ display:none; text-align:left; margin-top:36px; background:var(--sky-50); border-radius:var(--r-md); padding:28px 30px; border:1px solid var(--sky-100); }
 .org-detail.show{ display:block; animation:fadeIn .3s ease; }
 .org-detail h3{ color:var(--primary-dark); font-size:18px; margin-bottom:10px; }
 .org-detail p{ color:var(--text-700); font-size:14.5px; margin-bottom:14px; }
-@media (max-width:900px){
+/* Di bawah 1000px kartu terlalu sempit untuk memuat nama subdirektorat yang
+   panjang — cabangnya mulai melebar sendiri dan lebar kartu jadi tidak rata.
+   Karena itu kartu langsung ditumpuk satu kolom mulai dari lebar ini. */
+@media (max-width:1000px){
   .org-children{ flex-direction:column; align-items:center; }
   .org-branch{ max-width:360px; width:100%; padding-top:24px; }
   .org-branch::after{ display:none; }
   .org-branch::before{ height:24px; }
+  /* Kartu ditumpuk, jadi tidak ada yang perlu disejajarkan. */
   .org-unit{ min-height:0; }
+  .org-unit b{ min-height:0; }
 }
 
 /* ---------- Timeline (history) ---------- */
@@ -945,8 +956,8 @@ table.pkp-table tbody tr:hover td{ background:var(--sky-50); }
 }
 
 /* ---------- Kartu unit organisasi: foto pejabat, tugas, fungsi, layanan ---------- */
-.org-photos{ display:flex; justify-content:center; gap:8px; margin-bottom:10px; }
-.org-photo{ width:52px; height:52px; border-radius:50%; overflow:hidden; background:var(--sky-50); flex-shrink:0;
+/* Bingkai pasfoto: persegi panjang tegak dengan proporsi 3:4, bukan lingkaran. */
+.org-photo{ width:58px; aspect-ratio:3/4; border-radius:var(--r-sm); overflow:hidden; margin:0 auto 10px; background:var(--sky-50);
             display:flex; align-items:center; justify-content:center; border:2px solid var(--sky-100); }
 .org-photo img{ width:100%; height:100%; object-fit:cover; }
 .org-photo span{ color:var(--primary); font-size:21px; }
@@ -959,7 +970,7 @@ table.pkp-table tbody tr:hover td{ background:var(--sky-50); }
 .org-pejabat{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-bottom:18px; }
 .org-person{ display:flex; align-items:center; gap:14px; padding:12px 14px; background:#fff;
              border:1px solid var(--sky-100); border-radius:var(--r-sm); }
-.org-detail-photo{ flex-shrink:0; width:64px; height:64px; border-radius:50%; overflow:hidden; background:var(--sky-50);
+.org-detail-photo{ flex-shrink:0; width:66px; aspect-ratio:3/4; border-radius:var(--r-sm); overflow:hidden; background:var(--sky-50);
                    border:2px solid var(--sky-100); display:flex; align-items:center; justify-content:center; }
 .org-detail-photo img{ width:100%; height:100%; object-fit:cover; }
 .org-detail-photo span{ color:var(--primary); font-size:26px; }

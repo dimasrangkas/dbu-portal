@@ -34,17 +34,16 @@ partial('page-title', ['meta' => $meta]);
       <div class="org-node top"><b><?= e($s['top']['title'] ?? 'Direktur Bandar Udara') ?></b><span><?= e($s['top']['subtitle'] ?? '') ?></span></div>
       <div class="org-connector"></div>
       <div class="org-children">
-        <?php foreach ($units as $unit): $pejabat = unit_pejabat($unit); ?>
+        <?php foreach ($units as $unit):
+            /* Kartu bagan cukup menampilkan kepala subdirektorat;
+               kepala tim baru muncul pada panel detail saat kartu diklik. */
+            $kepala = unit_pejabat($unit)[0] ?? null; ?>
         <div class="<?= e($unit['branch_class']) ?>">
           <div class="org-unit" data-unit="<?= e($unit['unit_key']) ?>">
-            <?php if ($pejabat): ?>
-            <div class="org-photos">
-              <?php foreach ($pejabat as $p): ?>
-              <div class="org-photo" title="<?= e($p['position']) ?><?= $p['name'] ? ' — ' . $p['name'] : '' ?>">
-                <?php if ($p['photo']): ?><img src="<?= e(asset_url($p['photo'])) ?>" alt="<?= e($p['name'] ?: $p['position']) ?>">
-                <?php else: ?><span><i class="bi bi-person-fill"></i></span><?php endif; ?>
-              </div>
-              <?php endforeach; ?>
+            <?php if ($kepala): ?>
+            <div class="org-photo" title="<?= e($kepala['position']) ?><?= $kepala['name'] ? ' — ' . $kepala['name'] : '' ?>">
+              <?php if ($kepala['photo']): ?><img src="<?= e(asset_url($kepala['photo'])) ?>" alt="<?= e($kepala['name'] ?: $kepala['position']) ?>">
+              <?php else: ?><span><i class="bi bi-person-fill"></i></span><?php endif; ?>
             </div>
             <?php else: ?>
             <div class="ic"><i class="bi <?= e($unit['icon']) ?>"></i></div>
